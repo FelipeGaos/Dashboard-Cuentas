@@ -1,0 +1,163 @@
+.jtable-bottom-panel {
+	/*Agrandamos el contenedor inferior al ancho de la tabla*/
+	//width: 80%;
+}
+
+.jtable-bottom-panel .jtable-right-area .jtable-add-record {
+	/*Ocultamos boton agregar registro del contenedor inferior*/
+	display: none;
+}
+
+form.jtable-dialog-form {
+	width: 700px;
+}
+
+#jtable-create-form,#jtable-edit-form {
+	width: 700px;
+}
+
+div.jtable-input-field-container {
+	display: inline-block;
+}
+
+.content_grilla_inventario {
+	border: 1px solid lightblue;
+	overflow-y: hidden;
+	overflow-x: auto;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+
+.contentSelectedRowList {
+	font-family: font-family Open Sans;
+	border: 1px solid lightblue;
+	margin: 5px auto 0px auto;
+}
+
+.contentSelectedRowList .title {
+	background-color: #0179ad;
+	border: 1px solid lightblue;
+	color: white;
+	font-size: 10px;
+	padding: 5px;
+	margin-bottom: 5px;
+}
+
+.contentSelectedRowList .footer {
+	font-size: 11px;
+}
+
+.contentActionDeleteAllRows {
+	background-color: #0179ad;
+	border: 1px solid lightblue;
+	color: white;
+	font-size: 12px;
+	padding: 5px;
+	margin-top: 5px;
+	text-align: right;
+}
+
+.contentActionDeleteAllRows #eliminarFilasSeleccionadas:hover {
+	text-decoration: underline;
+	cursor: pointer;
+}
+
+.contentSelectedRowList .body {
+	padding: 0 5 0 5px;
+}
+
+.btn_standar {
+	font-family: 'Open Sans';
+	border: 0px solid lightgray;
+	background-color: #f0f0f0;
+	color: blue;
+	padding: 3px;
+	font-size: 12.2px;
+	text-decoration: none;
+	cursor: pointer;
+}
+
+.btn_standar:hover {
+	text-decoration: underline;
+}
+
+<!--
+mis input class para forms crud -->
+
+.mi_input_class {
+	width: 150px;
+	border: 1px solid black;
+}
+
+.mi_input_doc {
+	width: 150px;
+	border: 1px solid yellow;
+}
+
+.mi_input_ia {
+	width: 150px;
+	border: 1.5px solid lightblue;
+}
+
+.mi_input_itca {
+	width: 150px;
+	border: 1px solid limegreen;
+}
+
+.mi_input_itcb {
+	width: 150px;
+	border: 1.5px solid orange;
+}
+
+.mi_input_sm {
+	width: 150px;
+	border: 1px solid lightblue;
+}
+
+.mi_input_st1 {
+	width: 150px;
+	border: 1px solid lightblue;
+}
+
+.mi_input_st2 {
+	width: 150px;
+	border: 1px solid darksalmon;
+}
+
+.mi_input_st3 {
+	width: 150px;
+	border: 1px solid lightblue;
+}
+
+hr {
+	border: 1px solid lightgray;
+}
+
+#pop {     
+    z-index:2;     
+    position:absolute;     
+    border: 1px solid #333333;     
+    text-align:center;     
+    background:#000000;  }  
+
+#cerrar {     
+    float:right;     
+    margin-right:5px;     
+    cursor:pointer;     
+    font:Verdana, Arial, Helvetica, sans-serif;     
+    font-size:12px;     
+    font-weight:bold;     
+    color:#FFFFFF;     
+    background-color:#666666;     
+    width:12px;     
+    position:relative;     
+    margin-top:-1px;     
+    text-align:center;  
+}
+
+.fixed-dialog {
+  position: fixed;
+  top: 50px;
+  left: 50px;
+}

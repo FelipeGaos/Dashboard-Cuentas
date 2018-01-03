@@ -1,0 +1,45 @@
+/*  
+Description: Archivo de normalizaci�n de estilos.
+Author: I2B Technologies
+Author URI: http://www.i2b.cl
+Version: 1.0
+*/
+/*#cabecera,
+#cabecera_menu {
+	font: 62.5% Arial, Helvetica, sans-serif !important;
+}*/
+#cabecera div, #cabecera ul, #cabecera ol, #cabecera li, #cabecera h1, #cabecera h2, #cabecera h3, #cabecera h4, #cabecera h5, #cabecera h6, #cabecera form, #cabecera input, #cabecera p, #cabecera span,
+#cabecera_menu div, #cabecera_menu ul, #cabecera_menu ol, #cabecera_menu li, #cabecera_menu h1, #cabecera_menu h2, #cabecera_menu h3, #cabecera_menu h4, #cabecera_menu h5, #cabecera_menu h6, #cabecera_menu form, #cabecera_menu input, #cabecera_menu p, #cabecera_menu span {
+	margin:0;
+	padding:0;
+}
+#cabecera img,
+#cabecera_menu img{
+	border:0;
+}
+#cabecera ol, #cabecera ul, #cabecera dl,
+#cabecera_menu ol, #cabecera_menu ul, #cabecera_menu dl{
+	list-style:none;
+}
+#cabecera a,
+#cabecera_menu a{
+	outline:none;
+}
+/* CLEARFIX ***********************/
+.clearfix:after{
+	visibility: hidden;
+	display: block;
+	font-size: 0;
+	content: " ";
+	clear: both;
+	height: 0;
+}
+.clearfix{
+	display: inline-block;
+}
+/*\*/* html .clearfix {
+	height: 1%;
+}
+.clearfix {
+	display: block;
+}/**/

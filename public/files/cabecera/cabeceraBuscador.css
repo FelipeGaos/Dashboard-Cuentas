@@ -1,0 +1,70 @@
+/*---------------------
+ * 	 	BUSCADOR
+ *-------------------*/
+#cabecera .cabecera_buscador {
+	float:right;
+	display:block;
+	padding-top:23px;
+}
+#cabecera .buscador_left {
+	float:left;
+	display:block;
+	background:url(../../img/cabecera/bg_buscadorLeft.gif) top left no-repeat;
+	width:3px;
+	height:29px;
+}
+#cabecera .buscador_main {
+	display:block;
+	float:left;
+	border-bottom:1px solid #bdc5c9;
+	border-top:1px solid #bdc5c9;
+	height:27px;
+	width:185px;
+}
+#cabecera .buscador_main input {
+	background:none;
+	border:none;
+	width:180px;
+	outline:none;
+	padding-top:3px;
+	margin-top:2px;
+	/*background:url(../../img/cabecera/logo_google.gif) 3px 3px no-repeat;*/
+}/** html #cabecera .buscador_main input {
+	height:18px;
+}*/
+#cabecera .buscador_main input.activo {
+	background:none;
+}
+
+#cabecera .cabecera_buscador a.btn_buscador {
+	background:url(../../img/cabecera/btn_buscador.gif) right -29px no-repeat;
+	padding-right:10px;	
+	/*margin-left:-1px;*/
+	height:29px;
+	
+	display:block;
+	float:left;
+	
+	font-family:Tahoma;
+	font-size:11px;
+	color:#FFFFFF;
+	text-decoration:none;
+}
+#cabecera .cabecera_buscador a.btn_buscador span {
+	background:url(../../img/cabecera/btn_buscador.gif) top left no-repeat;
+	display:block;
+	padding:7px 0 9px 11px;
+}/** html #cabecera .cabecera_buscador a.btn_buscador span {
+	padding-bottom:0px;
+	height:22px;
+	float:left;
+	cursor:pointer;
+}*/
+
+#cabecera .cabecera_buscador a.btn_buscador:hover {
+	background:url(../../img/cabecera/btn_buscador.gif) right bottom no-repeat;
+	color:#FFF;
+}
+#cabecera .cabecera_buscador a.btn_buscador:hover span {
+	background:url(../../img/cabecera/btn_buscador.gif) left -58px no-repeat;
+}

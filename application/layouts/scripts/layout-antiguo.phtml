@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <!-- METAS -->
+        <meta charset = "utf-8">
+        <meta http-equiv = "X-UA-Compatible" content = "IE=edge">
+        <meta name = "viewport" content = "width=device-width, initial-scale=1">
+        <meta name = "author" content = "Technology to Business ltda (T2B)">
+        
+        <!-- jQuery 2.1.4 -->
+        <script src="<?php echo $this->baseUrl(); ?>/plugins/jQuery/jQuery-2.1.4.min.js"></script>
+        <!-- TITULO -->
+        <title><?php echo My_ConfigIni::get('html')->titulo; ?></title>
+        
+        <!-- FAVICON -->
+        <link rel="icon" href="<?php echo $this->baseUrl(); ?>/img/favicon.ico">
+        
+        <!-- BOOTSTRAP core CSS -->
+        <link href="<?php echo $this->baseUrl(); ?>/bootstrap/css/bootstrap.min.css" rel="stylesheet">        
+        <!-- FONT AWESOME -->
+        <link href="<?php echo $this->baseUrl(); ?>/fonts/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+        <!--BLOCK UI-->
+        <script src="<?php echo $this->baseUrl(); ?>/plugins/blockUI/jquery.blockUI.js"></script>
+
+        <!-- TEMA -->
+        <link href="<?php echo $this->baseUrl(); ?>/css/AdminLTE.css" rel="stylesheet">
+        <link href="<?php echo $this->baseUrl(); ?>/css/skin-blue-light.css" rel="stylesheet">
+        <!-- CSS PROPIO -->
+        <link href="<?php echo $this->baseUrl(); ?>/css/custom.css" rel="stylesheet">
+                
+        <?php echo $this->headLink(); ?>
+        
+        <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+        <!--[if lt IE 9]>
+            <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+            <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+        <![endif]-->
+    </head>
+    
+    <body class="skin-blue-light sidebar-mini">
+        
+        <div class="wrapper">
+            <!-- Main Header -->
+            <header class="main-header">
+
+                <!-- Logo -->
+                <a href="#" class="logo">
+                    <!-- logo para cuando la barra esta minimizada -->
+                    <span class="logo-mini"><img src="<?php echo $this->baseUrl(); ?>/img/logo-t2b-2.png" alt="E"></span>
+                    <!-- Logo para el estado normal y moviles -->
+                    <span class="logo-lg" style="color: green"><img src="<?php echo $this->baseUrl(); ?>/img/logo-t2b-2.png" alt="[Operaciones]">&nbsp;[T2B]</span>
+                </a>
+
+                <!-- Header Navbar -->
+                <nav class="navbar navbar-static-top" role="navigation" style="background-color: #208700">
+                    <!-- Sidebar toggle button-->
+                    <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
+                        <span class="sr-only">Toggle navigation</span>
+                    </a>
+
+                    <!-- Navbar Right Menu -->
+                    <div class="navbar-custom-menu">
+                        <ul class="nav navbar-nav">
+                            <!-- Control Sidebar Toggle Button -->
+                            
+                        <?php if (!isset($this->session->username)) { ?>
+                            
+                        
+                            <li id="item-sesion">
+                                <a id="btn-login" href="<?php echo $this->baseUrl(); ?>">
+                                    <i class="fa fa-user"></i>&nbsp;&nbsp;
+                                    <span class="hidden-xs">Iniciar Sesi&oacute;n</span>
+                                </a>
+                            </li>
+                        <?php } else{ ?>
+                            <li id="item-sesion">
+                                <a id="btn-logout" id="btn-logout" href="<?php echo $this->baseUrl(); ?>/index.php/index/logout">
+                                    <i class="fa fa-times"></i>&nbsp;&nbsp;
+                                    <span class="hidden-xs">Cerrar Sesi&oacute;n</span>
+                                </a>
+                            </li>
+                        <?php } ?>
+                        </ul>
+                    </div>
+                </nav>
+            </header>
+            <!-- /HEADER -->
+
+            <!-- Columna del lado izquierdo. Contiene el logo y la barra lateral. -->
+            <aside class="main-sidebar">
+                <!-- sidebar: style can be found in sidebar.less -->
+                <section class="sidebar">
+                    <!-- Formulario de busqueda (Opcional) -->
+                    
+                    <!-- /.Formulario de busqueda -->
+                    
+
+                    <?php if (isset($this->session->username)) { ?>
+                    <!-- Sidebar Menu -->
+                    <ul id="menu-proyectos" class="sidebar-menu">
+                        <!-- MENU GENERADO DINAMICAMENTE -->
+                        
+                        <li class="treeview active">
+                            <a href="#">
+                            <i class="fa fa-user"></i> 
+                            <span>Administración</span>
+                                
+                            <i class="fa fa-angle-left pull-right"></i>
+                            </a>
+
+                            <ul class="treeview-menu menu-open" style="display: block;">
+                                
+                                <li>
+                                    <a href="<?php echo $this->baseUrl(); ?>/index.php/index/dias-festivos">Días festivos</a>
+                                </li> 
+                                
+                                <li>
+                                    <a href="<?php echo $this->baseUrl(); ?>/index.php/index/cuentas">Trabajadores</a>
+                                </li>
+                                <li>
+                                    <a href="<?php echo $this->baseUrl(); ?>/index.php/index/cuentas-admin">Usuarios</a>
+                                </li>
+                                <li>
+                                    <a href="<?php echo $this->baseUrl();?>/index.php/index/dependencias">Dependencias</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="treeview active">
+                            <a href="#">
+                            <i class="fa fa-calendar"></i> 
+                            <span>Registros</span>
+                            <i class="fa fa-angle-left pull-right"></i>
+                            </a>
+                            <ul class="treeview-menu menu-open" style="display: block;">
+                                
+                                <li>
+                                    <a href="<?php echo $this->baseUrl(); ?>/index.php/index/sesion">Registros de hoy</a>
+                                </li>
+                                <li>
+                                    <a href="<?php echo $this->baseUrl(); ?>/index.php/index/ver-horas-total">Horarios ingresos - salidas</a>
+                                </li>
+                                
+
+                            </ul>
+                        </li>
+
+
+                    </ul>
+
+                    <?php } ?>
+                    <!-- /.sidebar-menu -->
+                </section>
+            <!-- /.sidebar -->
+            </aside>
+
+            <!-- Envoltorio de contenido. Contenido de la pagina -->
+            <div class="content-wrapper">
+                <!-- Content Header (Header de la pagina) -->
+           
+
+                <!-- Contenido principal -->
+                <section class="content">
+                
+                    <?php echo $this->layout()->content; ?>
+                    <!-- Your Page Content Here -->
+
+                </section><!-- /.content -->
+            </div><!-- /.content-wrapper -->
+
+            <!-- Footer principal -->
+            <footer class="main-footer">
+                <!-- A la derecha - Se esconde en pantallas pequeñas -->
+                <div class="pull-right hidden-xs">
+                    <img src="<?php echo $this->baseUrl(); ?>/img/logo-t2b.png" alt="T2B" width="23px" height="23px">
+                </div>
+                <!-- Por defecto a la izquierda -->
+                <strong><a href="#" id="t2b-link">Technology to Business</a> &copy; 2015</strong> Todos los derechos reservados.
+            </footer>
+        </div><!-- ./wrapper -->
+
+        <!-- JS REQUERIDOS
+          =========================================================================== -->
+        
+        
+        <!-- Bootstrap 3.3.2 JS -->
+        <script src="<?php echo $this->baseUrl(); ?>/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
+        <!-- Base URL para usar con Javascript en vez de PHP -->
+        <script type="text/javascript"> const BASE_URL = "<?php echo $this->baseUrl(); ?>"; </script>
+        <!-- Service 
+        <script src="<?php echo $this->baseUrl(); ?>/js/service.js" type="text/javascript"></script>
+             JS Menu 
+        <script src="<?php echo $this->baseUrl(); ?>/js/menu.js" type="text/javascript"></script>
+        AdminLTE App -->
+        <script src="<?php echo $this->baseUrl(); ?>/js/app.js" type="text/javascript"></script>
+        <!--utiljs con msg de carga-->
+        <script src="<?php echo $this->baseUrl(); ?>/js/msgLoading.js" type="text/javascript"></script>
+
+        <!-- Bootbox -->
+        <script src="<?php echo $this->baseUrl(); ?>/bootstrap/js/bootbox.min.js" type="text/javascript"></script>
+        <!-- JS Propio 
+        <script src="<?php echo $this->baseUrl(); ?>/js/login.js"></script>-->
+
+
+        <script type="text/javascript">
+            $(document).on({
+              //  ajaxStart: function() { console.log("AJAXSTART"); esperaON()},
+              //  ajaxStop: function() { console.log("AJAXSTOP"); esperaOFF()}    
+            });
+        </script>
+    </body>
+</html>

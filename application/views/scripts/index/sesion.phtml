@@ -1,0 +1,105 @@
+<h1 style="color: black"> Registros de hoy </h1><p style="color: black"> <?php echo date("d-m-Y") ?> </p><br><br>
+<link href="<?php echo $this->baseUrl(); ?>/css/style.css" rel="stylesheet">
+<link href="<?php echo $this->baseUrl(); ?>/css/timelify.css" rel="stylesheet">
+
+
+
+<?php
+	$ingresosHoy = $this->ingresosHoy;
+
+	$username = $this->username;
+
+//Si no hay regustros en el dia muestra alerta.
+	if(count($ingresosHoy) == 0){
+
+
+?>
+<div class="alert alert-warning" role="alert">
+  	<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+  	<span class="sr-only">Error:</span>
+  	Hoy no hay registros guardados.
+</div>
+
+<?php } //si  hay registros, entonces realiza todas las funciones de la linea de tiempo
+else{
+	
+//ordena el arrreglo por hora 
+	function build_sorter($clave) {
+		return function ($a, $b) use ($clave) {
+    		return strnatcmp($a[$clave], $b[$clave]);
+    	};
+    }
+
+    usort($ingresosHoy, build_sorter('hora'));
+	if (isset($this->session->username)) { 
+
+?>
+
+
+<div class="timeline">    
+
+    <ul class="timeline-items">
+
+
+<?php for ($i=0; $i < count($ingresosHoy); $i++) { 
+if ($ingresosHoy[$i]['hora']!=""){
+//muestra cada registro en la lina de tiempo
+	//si es ingreso, se muesra haca la derecha
+	if($ingresosHoy[$i]['tipo'] == "Ingreso"){ ?>
+
+        <li class="timeline-item">
+            <h3><?php echo $ingresosHoy[$i]['nombre']; ?></h3>
+            
+            <hr>
+            <h4><time><?php echo $ingresosHoy[$i]['tipo'] .": " .$ingresosHoy[$i]['hora'] ?></time></h4>
+        </li>	
+    <?php }else{ 
+    	//Si es salida se muestra hacia la izquierda
+    ?>
+        <li class="timeline-item inverted">
+            <h3><?php echo $ingresosHoy[$i]['nombre']; ?></h3>
+            
+            <hr>
+            <h4><time><?php echo $ingresosHoy[$i]['tipo'] .": " .$ingresosHoy[$i]['hora'] ?></time></h4>
+        </li>	
+
+
+<?php }} }?>
+    </ul>
+</div>
+
+
+
+<script type="text/javascript">
+	function verHoras(){
+		location = BASE_URL + "/index.php/index/ver-horas-total"
+	}
+	function cerrarSesion(){
+		location = BASE_URL + "/index.php/index/logout"
+	}
+
+</script>
+
+
+<script src="<?php echo $this->baseUrl(); ?>/js/jquery.timelify.js" type="text/javascript"></script>
+<script>
+/*
+	$('.timeline').timelify({
+		animLeft: "zoomIn",
+		animCenter: "fadeInUp",
+		animRight: "fadeInRight",
+		animSpeed: 600,
+		offset: 150
+	});
+*/
+</script>
+
+<?php }else{ 
+//si no hay sesion iniciada muestra alerta
+?>
+<div class="alert alert-danger" role="alert">
+  	<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+  	<span class="sr-only">Error:</span>
+  	Sesión no iniciada.
+</div>
+<?php }} ?>

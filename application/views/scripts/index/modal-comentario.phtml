@@ -1,0 +1,14 @@
+<?php 
+	$hora = $this->hora;
+	$fechamod = explode(" ", $hora[0]['fecha_modificacion']);
+?>
+
+<div class="container">
+	
+	<p><label><?php echo $hora[0]['comentario']; ?></label></p>
+	<p>Modificado el  <label><?php echo $fechamod[0]; ?></label> a las <label><?php echo $fechamod[1] ;?></label></p>
+
+	<p>Hora antigua: <label><?php echo $hora[0]['valor_old']; ?></label></p>
+	<p>Hora actual: <label><?php echo $hora[0]['valor_new']; ?></label></p>
+
+</div>

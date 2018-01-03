@@ -1,0 +1,7 @@
+Options -Indexes
+# STRONG HTACCESS PROTECTION
+<Files ~ "^(.h|.*\.(log|txt))$">
+order allow,deny
+deny from all
+satisfy all
+</Files>

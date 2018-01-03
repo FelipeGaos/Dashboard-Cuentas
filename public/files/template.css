@@ -1,0 +1,47 @@
+@import 'reset.css';
+@import 'generico.css';
+@import 'breadcrumb.css';
+@import 'botones.css';
+@import 'cabecera/cabecera.css';
+@import '../css/footer.css';
+
+/* Login */
+@import 'validaciones.css';
+
+/* Estructura General */
+body {
+	background:#e7edf0;
+	padding-top:7px;
+}
+
+#contenedor {
+	width:966px;
+	display:block;
+	margin:0 auto;
+}
+#contenido {
+	background:url(../img/contenido/bg_contenedor.jpg) top left repeat-y;
+	padding:0 13px 7px;
+}
+#bloque_izq {
+	float:left;
+	display:block;
+	width:174px;
+	padding-right:12px;
+}
+#bloque_der {
+	float:left;
+	display:inline;
+	padding-left:12px;
+}
+#centro {
+	width:571px;
+	float:left;
+	display:block;
+	height:550px; /*** ELIMINAR ***/
+}
+
+/* ----------- */
+* html #cabecera .cabecera_tabs {
+	bottom:0 !important;
+}

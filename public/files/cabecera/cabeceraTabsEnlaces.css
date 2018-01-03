@@ -1,0 +1,128 @@
+/*---------------------
+ * 		  TABS
+ *-------------------*/
+#cabecera .cabecera_tabs {
+	display:block;
+	float:left;
+	
+	position:absolute;
+	bottom:0;
+	
+	padding-left:10px;
+}* html #cabecera .cabecera_tabs {
+	bottom:-1px;
+}
+#cabecera .cabecera_tabs ul li {
+	display:block;
+	float:left;
+	padding-right:3px;
+}
+#cabecera .cabecera_tabs ul li.primerTab {
+	/*padding-left:15px;*/
+	padding-left:3px;
+}
+#cabecera .cabecera_tabs ul li.primerTab.seleccionado {
+	padding-left:0px;
+}
+#cabecera .cabecera_tabs ul li a {
+	display:block;
+	background:url(../../img/cabecera/tab_cabecera.gif) right -34px no-repeat;
+	padding-right:6px;
+	height:34px;
+	color:#499bc5;
+	font-family:Tahoma;
+	font-size:13px;
+	text-align:center;
+	text-decoration:none;
+}* html #cabecera .cabecera_tabs ul li a {
+	float:left;
+}
+#cabecera .cabecera_tabs ul li a span {
+	display:block;
+	background:url(../../img/cabecera/tab_cabecera.gif) top left no-repeat;
+	padding:10px 7px 11px 13px;
+}/** html #cabecera .cabecera_tabs ul li a span {
+	padding-bottom:0px;
+	height:23px;
+	float:left;
+	cursor:pointer;
+}*/
+
+#cabecera .cabecera_tabs ul li a:hover {
+	background:url(../../img/cabecera/tab_cabecera.gif) right bottom no-repeat;
+	color:#0073ae;
+}
+#cabecera .cabecera_tabs ul li a:hover span {
+	background:url(../../img/cabecera/tab_cabecera.gif) left -68px no-repeat;
+}
+/* ------------ */
+/* Seleccionado */
+
+#cabecera .cabecera_tabs ul li.seleccionado a,
+#cabecera .cabecera_tabs ul li.seleccionado a:hover {
+	display:block;
+	background:url(../../img/cabecera/tab_cabecera_seleccionado.gif) bottom right no-repeat;
+	padding-right:6px;
+	height:34px;
+	color:#0073ae;
+	font-family:Tahoma;
+	font-size:13px;
+	font-weight:bolder;
+	text-align:center;
+	text-decoration:none;
+}
+#cabecera .cabecera_tabs ul li.seleccionado a span {
+	display:block;
+	background:url(../../img/cabecera/tab_cabecera_seleccionado.gif) top left no-repeat;
+	padding:10px 7px 11px 13px;
+}/** html #cabecera .cabecera_tabs ul li.seleccionado a span {
+	padding-bottom:0px;
+	height:23px;
+	float:left;
+	cursor:pointer;
+}*/* html #cabecera .cabecera_tabs ul li.seleccionado a:hover span {
+	background:url(../../img/cabecera/tab_cabecera_seleccionado.gif) top left no-repeat !important;
+}
+
+
+#cabecera .cabecera_tabs ul li.seleccionado {
+	margin:0 -2px;
+}
+#cabecera .cabecera_tabs ul li.primerTab.seleccionado {
+	margin:0 -2px 0 0;
+}
+#cabecera .cabecera_tabs ul li.primerTab.seleccionado a span {
+	background:url(../../img/cabecera/tab_cabeceraSeleccionadoPrimerTab.gif);
+}* html #cabecera .cabecera_tabs ul li.primerTab.seleccionado a span {
+	background:url(../../img/cabecera/tab_cabeceraSeleccionadoPrimerTabIE6.gif);
+}
+
+
+/*---------------------
+ *  ENLACES SUPERIORES
+ *-------------------*/
+#cabecera .cabecera_enlaces {
+	float:right;
+	display:block;
+	color:#0073ae;
+	padding:2px 13px 0 0;
+}
+#cabecera .cabecera_enlaces ul li {
+	background:none;
+	float:left;
+	display:block;
+}
+#cabecera .cabecera_enlaces a {
+	font-family:Tahoma;
+	font-size:11px;
+	color:#0073ae;
+	text-decoration:none;
+}
+#cabecera .cabecera_enlaces a:hover {
+	text-decoration:underline;
+}
+#cabecera .cabecera_enlaces img {
+	position:relative;
+	top:-2px;
+	padding:7px 5px 0 5px;
+}

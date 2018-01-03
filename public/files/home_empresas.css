@@ -1,0 +1,1196 @@
+@import "../home/jCarrusel.css";
+
+#globoError {
+	display:block;
+	width:223px;
+	padding:0 0 5px 0;
+	background:none;
+	position:absolute;
+	z-index:30;
+	
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:1.1em;
+	color:#e30101;
+}* html #globoError{ background:none;}
+
+#globoError div {
+	display:block;
+	padding: 6px 10px 5px;
+	background:url(../../img/validaciones/globoError_after.png) top left no-repeat;
+	height: 23px;
+	z-index:30;
+}* html #globoError div {
+	background:url(../../img/validaciones/globoError_after.gif) top left no-repeat;
+}
+
+
+/* Estilos para los controles del carrusel */
+.jcarousel-clip.jcarousel-clip-horizontal {
+	overflow:hidden;
+}
+.jcarousel-control {
+	position:relative;
+	/*z-index:29;
+	width:753px;*/
+}* html .jcarousel-control {
+	width:723px !important;
+}
+
+#bannerPrincipal_home .destacado_home{
+ 	display: block;
+ 	margin: 0 0 0 0px;
+	padding: 0 5px 0px 0;
+
+}* html #bannerPrincipal_home .destacado_home{
+	background: url(../img/home/destacado_home.gif) no-repeat 8px 13px;
+}
+
+/*
+ * Estilos para los botones controladores del destacado
+ */
+
+.jcarousel-control {
+	float: right;
+    margin-top: -18px;
+    padding-right: 15px;
+    /*padding-top: 10px;*/
+    z-index: 29;
+	
+}#bannerPrincipal_home a.enlace_destacado {
+	height: 16px;
+	width: 15px;
+	padding: 0 0 3px 0;
+	display: block;
+	float: left;
+	position: relative;
+	z-index: 29;
+	text-decoration: none;
+	color: #a0a0a0;
+	margin-left: 8px;
+	background: url(../img/btn_carouselHomeLiquido.png) no-repeat;
+}#bannerPrincipal_home a.enlace_seleccionado {
+	background: url(../img/btn_carouselHomeLiquidoSeleccionado.png) no-repeat;
+	color: #f0f0f0;
+	padding:0 0 5px 0;
+}* html #bannerPrincipal_home a.enlace_seleccionado {
+	margin: 0px 3px 0px 0px;
+	background: url(../img/btn_carouselHomeLiquidoSeleccionado.gif) no-repeat;
+}*:first-child+html #bannerPrincipal_home a.enlace_seleccionado{
+	background: url(../img/btn_carouselHomeLiquidoSeleccionado.png) no-repeat;
+}
+
+
+/*#bannerPrincipal_home a.enlace_destacado {
+	width: 178px;
+	margin: 5px 5px 0 0;
+	padding:0 0 3px 0;
+	display: block;
+	float: left;
+	position: relative;
+	z-index: 29;
+	text-decoration: none;
+	color: #a0a0a0;
+	background: url(/empresas/img/carousel_home/btn_carouselHomeLiquido.png) -178px bottom no-repeat;
+}* html #bannerPrincipal_home a.enlace_destacado {
+	width: 175px !important;
+	margin-left:0px !important;
+	background: url(/empresas/img/carousel_home/btn_carouselHomeLiquido.gif) -175px bottom no-repeat;
+}
+
+#bannerPrincipal_home a.enlace_destacado span.enlace_contenido {
+	font-size: 1.1em;
+	font-family: Tahoma, Arial, Helvetica, sans-serif;
+	width: 178px;
+	padding: 7px 0 1px;	
+	cursor:pointer;
+	background: url(/empresas/img/carousel_home/btn_carouselHomeLiquido.png) top left no-repeat;
+}* html #bannerPrincipal_home a.enlace_destacado span.enlace_contenido{
+	width: 175px !important;
+	background: url(/empresas/img/carousel_home/btn_carouselHomeLiquido.gif) top left no-repeat;
+}
+
+#bannerPrincipal_home a.enlace_destacado img{
+	display: block;
+	float: left;
+	margin: -2px 4px 0;
+}
+
+#bannerPrincipal_home a.enlace_destacado span {
+	display: block;
+	float: left;
+	width: 130px;
+	line-height: 10px;
+}* html #bannerPrincipal_home a.enlace_destacado span{
+	width: 115px;
+	cursor: pointer;
+}
+
+#bannerPrincipal_home a.enlace_destacado:hover{
+	background: url(/empresas/img/carousel_home/btn_carouselHomeLiquido.png) right bottom no-repeat;
+	color: #ffffff;
+}* html #bannerPrincipal_home a.enlace_destacado:hover{
+	background: url(/empresas/img/carousel_home/btn_carouselHomeLiquido.gif) right bottom no-repeat;
+}
+
+#bannerPrincipal_home a.enlace_destacado:hover span.enlace_contenido {
+	cursor:pointer;
+	background: url(/empresas/img/carousel_home/btn_carouselHomeLiquido.png) -356px top no-repeat;
+	color: #ffffff;
+}* html #bannerPrincipal_home a.enlace_destacado:hover span.enlace_contenido {
+	background: url(/empresas/img/carousel_home/btn_carouselHomeLiquido.gif) -350px top no-repeat;
+}
+
+#bannerPrincipal_home a.enlace_seleccionado {
+	background: url(/empresas/img/carousel_home/btn_carouselHomeLiquidoSeleccionado.png) right bottom no-repeat;
+	color: #f0f0f0;
+	margin-top: -6px;
+	padding:0 0 6px 0;
+}* html #bannerPrincipal_home a.enlace_seleccionado {
+	margin: -6px 3px 0px 0px;
+	background: url(/empresas/img/carousel_home/btn_carouselHomeLiquidoSeleccionado.gif) right bottom no-repeat;
+}*:first-child+html #bannerPrincipal_home a.enlace_seleccionado{
+	background: url(/empresas/img/carousel_home/btn_carouselHomeLiquidoSeleccionado.png) right bottom no-repeat;
+}
+
+#bannerPrincipal_home a.enlace_seleccionado span.enlace_contenido {
+	padding: 17px 0 0;
+	background: url(/empresas/img/carousel_home/btn_carouselHomeLiquidoSeleccionado.png) top left no-repeat;
+}* html #bannerPrincipal_home a.enlace_seleccionado span.enlace_contenido {
+	background: url(/empresas/img/carousel_home/btn_carouselHomeLiquidoSeleccionado.gif) top left no-repeat;
+}
+
+
+#bannerPrincipal_home a.enlace_seleccionado:hover{
+	background: url(/empresas/img/carousel_home/btn_carouselHomeLiquidoSeleccionado.png) -178px bottom no-repeat;
+}* html #bannerPrincipal_home a.enlace_seleccionado:hover{
+	background: url(/empresas/img/carousel_home/btn_carouselHomeLiquidoSeleccionado.gif) -175px bottom no-repeat;
+}
+
+#bannerPrincipal_home a.enlace_seleccionado:hover span.enlace_contenido {
+	background: url(/empresas/img/carousel_home/btn_carouselHomeLiquidoSeleccionado.png) top left no-repeat;
+}* html #bannerPrincipal_home a.enlace_seleccionado:hover span.enlace_contenido {
+	background: url(/empresas/img/carousel_home/btn_carouselHomeLiquidoSeleccionado.gif) top left no-repeat;
+}*/
+
+
+/*
+ * Contenedor de imagen de fondo
+ */
+.fondo {
+    display: block;
+}
+
+.ejecutivo {
+	min-height: 736px;
+    background: url(../../img/home_empresas/backgrounds/bg_home_empresas1.jpg) left top no-repeat;
+}* html .ejecutivo {
+	height: 736px;
+}
+
+.edificio {
+	min-height: 1100px;
+    background: url(../../img/home_empresas/backgrounds/bg_home_empresas2.jpg) left top no-repeat;
+}* html .edificio {
+	height: 1100px;
+}
+
+.operadora {
+	min-height: 794px;
+    background: url(../../img/home_empresas/backgrounds/bg_home_empresas3.jpg) left top no-repeat;
+}* html .operadora {
+	height: 794px;
+}
+
+.skyscraper {
+	min-height: 814px;
+    background: url(../../img/home_empresas/backgrounds/bg_home_empresas4.jpg) left top no-repeat;
+}* html .skyscraper {
+	height: 814px;
+}
+
+.fondo .banner_home_destacado{
+	display: block;
+    padding: 0 0 0px;
+    position: relative;
+}
+
+.fondo #bannerPrincipal {
+	outline: none;
+}
+
+.fondo .destacado_flash {
+    display: block;
+    background: url(../../img/home_personas/bg_flash.gif) top left no-repeat;
+    width: 900px;
+    height: 230px;
+    margin: 0 0 40px 0;
+}
+
+.fondo #bannerPrincipal_home {
+	/*background: url(../../img/loader_destacado.gif) center center no-repeat;*/
+	display: block;
+    float: right;
+    height: 250px;
+    width: 730px;
+}
+
+.fondo a.enlace_banner_top{
+	display: block;
+	height: 212px;
+	width: 900px;
+}
+
+.fondo .caja_contenidos .caja_ancha_arriba {
+    float: left;
+    margin-right: 10px;
+    width: 680px;
+}
+
+.fondo .caja_contenidos .caja_delgada_arriba {
+    float: left;
+    width: 208px;
+}
+
+.fondo .caja_contenidos .caja_ancha_abajo {
+    float: left;
+    margin-right: 10px;
+    width: 596px;
+}
+
+.fondo .caja_contenidos .caja_delgada_abajo {
+    float: left;
+    width: 294px;
+}
+
+/*
+ * Estilos para el contenido interno de las cajas
+ */
+.fondo .caja_contenidos .caja_destacada .cabecera {
+    display: block;
+}
+
+.fondo .alto_landing_empresas {
+	min-height: 90px;
+}* html .fondo .alto_landing_empresas {
+	height: 90px;
+}
+
+.fondo .alto_landing_callcenter {
+	min-height: 130px;
+}* html .fondo .alto_landing_callcenter {
+	height: 130px;
+}
+
+/*
+ * Estilos enlace balisa
+ */
+.fondo .caja_contenidos .caja_destacada .flotar_izquierda {
+    float: left;
+}
+
+.fondo .caja_contenidos .caja_destacada .balisa {
+    position: relative;
+    float: right;
+    background: url(../../img/home_personas/img_balisa.png) top right no-repeat;
+    padding: 20px 40px 5px 0;
+    margin: -20px 0 0 0;
+}* html .fondo .caja_contenidos .caja_destacada .balisa {
+    background: url(../../img/home_personas/img_balisa.gif) top right no-repeat;
+}
+
+.fondo .caja_contenidos .caja_destacada .enlace a, .fondo .caja_contenidos .caja_destacada .enlace a:visited {
+    font-family: Tahoma, Arial, Helvetica, sans-serif;
+    float: right;
+    color: #0073ae;
+    font-size: 1.1em;
+    border-bottom: 1px dotted #0073ae;
+    text-decoration: none;
+}
+
+.fondo .caja_contenidos .caja_destacada .enlace a:hover {
+    border-bottom: none;
+}
+
+/*
+ * Fin de Estilos enlace balisa
+ */
+/*
+ * Columnas de la caja destacada
+ */
+.fondo .caja_contenidos .columna_destacada {
+    display: block;
+    float: left;
+    border-width: 0 1px 0 0;
+    border-color: #b2b2b2;
+    border-style: dotted;
+    width: 210px;
+    padding: 0 9px;
+}
+
+.fondo .caja_contenidos .columna_destacada_home {
+    display: block;
+    position: relative;
+    float: left;
+    border-width: 0 1px 0 0;
+    border-color: #b2b2b2;
+    border-style: dotted;
+    width: 175px;
+    min-height: 191px;
+    padding: 0 5px;
+}* html .fondo .caja_contenidos .columna_destacada_home {
+    height: 195px;
+}
+
+.fondo .caja_contenidos .ultima_columna {
+    border: none
+}
+
+/*
+ * Columnas de la caja destacada con imagen
+ */
+.fondo .caja_contenidos .columna_destacada_imagen {
+    display: block;
+    float: left;
+    width: 210px;
+    padding: 0 9px;
+}
+
+.fondo .caja_contenidos .columna_destacada_imagen img, .fondo .caja_contenidos .columna_ancha img {
+    display: block;
+    float: right;
+}
+
+.fondo .caja_contenidos .columna_destacada_imagen .contenido_columna_destacada_imagen p.texto_callcenter {
+	width: 129px;
+}
+
+.fondo .caja_contenidos .columna_destacada_imagen .contenido_columna_destacada_imagen p,
+.fondo .caja_contenidos .columna_ancha .contenido_columna_destacada_imagen p {
+    display: block;
+    float: left;
+    font-family: Tahoma, Arial, Helvetica, sans-serif;
+    color: #000;
+    font-size: 1.1em;
+}
+
+.fondo .caja_contenidos .columna_destacada_imagen .contenido_columna_destacada_imagen p {
+    width: 101px;
+}
+
+.fondo .caja_contenidos .columna_destacada_imagen .contenido_columna_destacada_imagen .alto_landing_callcenter .trunk{
+    width: 104px;
+}
+
+.fondo .caja_contenidos .columna_ancha .contenido_columna_destacada_imagen p {
+    width: 140px;
+}
+
+.fondo .caja_contenidos .columna_destacada_imagen .contenido_columna_destacada_imagen ul, .fondo .caja_contenidos .columna_ancha .contenido_columna_destacada_imagen ul {
+    display: block;
+    float: left;
+    position: relative;
+    width: 105px;
+}
+
+ul.reduccion_margen {
+    width: 140px !important;
+    margin: 0 -40px 0 0;
+}
+
+.fondo .caja_contenidos .columna_ancha { /*Para la caja ancha de abajo*/
+    width: 276px;
+    min-height: 140px;
+}* html .fondo .caja_contenidos .columna_ancha {
+    height: 140px;
+}
+
+.fondo .caja_contenidos .columna_destacada_imagen .titulo_interno { /*Para la caja de concursos y promociones*/
+    display: block;
+    float: none;
+    font-weight: bolder;
+    font-family: Tahoma, Arial, Helvetica, sans-serif;
+    color: #000;
+    font-size: 1.4em;
+    margin: 0 0 15px;
+}
+
+/*
+ * Estilos para los conrtoles del carrusel
+ */
+.controles {
+    display: block;
+    position: absolute;
+    margin: -30px 0 0 20px;
+    z-index: 10;
+}
+
+.controles .botones li {
+    display: block;
+    float: left;
+    margin: 0 10px 0 0;
+}
+
+.controles .botones li a, .controles .botones li a:visited, .controles .botones li a:hover {
+    font-size: 1.1em;
+    background: #959ea5;
+    padding: 2px 7px;
+    color: #444;
+    text-decoration: none;
+}
+
+.controles .botones li a.seleccionado, .controles .botones li a.seleccionado:visited, .controles .botones li a.seleccionado:hover {
+    background: #FF5800;
+    padding: 2px 7px;
+    color: #fff;
+    text-decoration: none;
+}
+
+.marca p{
+	font-size:1.1em;
+}
+
+p.texto_caja_blanca {
+	display: block;
+	color: #000;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 1.1em;
+}
+
+
+#contenido .fondo #mensaje_mi_entel {
+    background: url(../../img/home_empresas/mensaje_home.png) no-repeat left top;
+    height: 94px;
+    width: 213px;
+    display: block;
+    float: left;
+	left:-24px;
+	position:relative;
+	top:-60px;
+}
+
+#contenido .fondo #mensaje_mi_entel p {
+    font-family: Tahoma;
+    font-size: 1.2em;
+	color: #0073ae;
+    margin: 22px 50px 0 12px;
+	width:130px;
+}
+
+
+
+/*
+ * Caja Mi Entel
+ */
+.fondo .caja_mi_entel {
+	float: left;
+    /*margin-right: 10px;*/
+    width: 200px;
+}
+
+.fondo .caja_contenidos .caja_ancha_arriba {
+    float: left;
+    margin-right: 10px;
+    width: 650px;
+}
+
+.fondo .caja_contenidos .caja_delgada_arriba {
+    float: left;
+    width: 235px;
+}
+
+.fondo .caja_contenidos .caja_ancha_abajo {
+    float: left;
+    margin-right: 10px;
+    width: 596px;
+}
+
+.fondo .caja_contenidos .caja_delgada_abajo {
+    float: left;
+    width: 294px;
+}
+
+#contenido .fondo .banner_home_destacado #mensaje_mi_entel {
+    background: url(../../img/home_personas/mensaje_home.png) no-repeat left top;
+    height: 80px;
+    width: 185px;
+    position: absolute;
+    display: block;
+    float: left;
+    top: -30px;
+    left: -21px;
+}
+
+#contenido .fondo .banner_home_destacado #mensaje_mi_entel .btn_salir_mensaje {
+    /*background: url(../../img/home_personas/cerrar_mensaje.png) no-repeat left top;*/
+    height: 26px;
+    width: 26px;
+    position: relative;
+    display: block;
+    float: right;
+    top: 10px;
+    cursor: pointer;
+}
+
+#contenido .fondo .banner_home_destacado #mensaje_mi_entel p {
+    font-family: Tahoma;
+    font-size: 1.2em;
+	color: #0073ae;
+    margin: 22px 50px 0 12px;
+}
+
+
+/*
+ * Estilos para tabs de la caja mi entel
+ */
+#caja_mi_entel .contenedor_tabs {
+	display: block;
+	padding: 10px 0 0;
+}* html #caja_mi_entel .contenedor_tabs {
+	padding: 0;
+}
+
+#caja_mi_entel .contenedor_tabs .tab {
+	display: block;
+	float: left;
+	background: #ececec;
+	position: relative;
+	width: 45px;
+	font-size: 1.1em;
+	color: #898989;
+	text-align: center;
+	padding: 5px;
+	margin: 0 1px 0 0;
+	cursor: pointer;
+	border-bottom: 1px solid #fff;
+	font-weight: bolder;
+}
+
+#caja_mi_entel .contenedor_tabs .tab .tab_arriba {
+	display: block;
+	position: absolute;
+	/*background: url(../../img/home_personas/caja_mi_entel/top_tab_no_seleccionado.gif) center top no-repeat;*/
+	width: 45px;
+	height: 4px;
+	top: -4px;
+	left: 0;
+}
+
+#caja_mi_entel .contenedor_tabs .tab_seleccionado {
+	background: #f0f0f0;
+	padding: 5px 5px 6px;
+	border-bottom: none;
+	color: #0073ae;
+	border-top: 1px solid #a0a0a0;
+	border-left: 1px solid #a0a0a0;
+	border-right: 1px solid #a0a0a0;
+	border-bottom: 1px solid #f0f0f0;
+	margin-bottom: -1px;
+	z-index: 29;
+}
+
+#caja_mi_entel .contenedor_tabs .tab_seleccionado .tab_arriba {
+	/*background: url(../../img/home_personas/caja_mi_entel/top_tab_seleccionado.gif) center top no-repeat;*/
+}
+
+#caja_mi_entel .input_clave {
+	display: block;
+	position: relative;
+}
+
+#caja_mi_entel .item_formulario span.clave_texto {
+	display: block;
+	position: absolute;
+	color: #666666;
+	font-size: 1.2em;
+	font-family: Tahoma, Arial, Helvetica, sans-serif;
+	z-index: 29;
+	padding: 12px 0 0 4px;
+	top: 0;
+	left: 0;
+}
+
+#caja_mi_entel .bajada_titulo_gris {
+	color: #a0a0a0;
+	display: block;
+	font-size: 1.1em;
+}
+
+/*
+ * Estilos Nuevos para los formularios de ingreso a MI ENTEL Empresas
+ */
+ 
+ 
+/********** CAJAS SELECCION (PASO1) *******************/ 
+#caja_mi_entel #seleccion .select-movil, 
+#caja_mi_entel #seleccion .select-fijo{
+	background:url(../img/bg-seleccion-movil.jpg) no-repeat;
+	height:117px;
+    padding-left: 15px;
+    padding-top:5px;
+    width: 185px;
+}
+#caja_mi_entel #seleccion .select-movil p,
+#caja_mi_entel #seleccion .select-fijo p{font:12px Arial;color:#FFF;}
+
+#caja_mi_entel #seleccion .select-movil p span,
+#caja_mi_entel #seleccion .select-fijo p span{font:20px Tahoma;}
+
+#caja_mi_entel #seleccion .select-movil .contenedor_boton,
+#caja_mi_entel #seleccion .select-fijo .contenedor_boton{margin-left:75px;margin-top:15px;position:absolute;}
+#caja_mi_entel #seleccion .select-fijo {
+	background:url(../img/bg-seleccion-fijo.jpg) no-repeat;
+	margin-top:7px;
+}
+
+/********** OPCION MOVIL (PASO2) *******************/
+#caja_mi_entel .contenido_tab_1{background:url(/empresas/img/home_empresas/caja_mi_entel/contenido-tab-1.jpg) no-repeat;}
+#caja_mi_entel #mientel-movil .cuadro-fijo {
+	background:url(/empresas/img/home_empresas/caja_mi_entel/cuadro-mientel-fijo.jpg) no-repeat;
+	height: 35px;
+    margin-top: 7px;
+    padding-left: 15px;
+    padding-top:7px;
+    width: 185px;
+}#caja_mi_entel #mientel-movil a{text-decoration:none;}
+
+
+/********** OPCION FIJO (PASO3) *******************/
+#caja_mi_entel #mientel-fijo .cuadro-movil {
+	background:url(/empresas/img/home_empresas/caja_mi_entel/cuadro-mientel-movil.jpg) no-repeat;
+	height: 30px;
+    margin-bottom:9px;
+    padding-left: 15px;
+    padding-top: 10px;
+    width: 185px;
+}#caja_mi_entel #mientel-fijo a{text-decoration:none;}
+#caja_mi_entel .contenido_tab_2 {
+	background:url(/empresas/img/home_empresas/caja_mi_entel/contenido-tab-2.jpg) no-repeat;
+	height: 190px;
+    padding-top: 15px;
+}
+
+
+/********** ESTILOS GENERICOS CAJA DE SELECCION (PASO2 Y PASO3) *******************/
+
+#caja_mi_entel .contenido_tab {height:197px;padding-left:10px;padding-top:5px;width:190px;}
+#caja_mi_entel .contenido_tab h1,
+#caja_mi_entel #mientel-movil .cuadro-fijo h1,
+#caja_mi_entel #mientel-fijo .cuadro-movil h1{
+	background: url(/empresas/img/home_empresas/caja_mi_entel/bg-h1.png) no-repeat scroll 0 5px transparent;
+    color: #FFFFFF;
+    font: 20px Tahoma;
+    padding-left: 20px;
+}
+#caja_mi_entel .contenido_tab_2 h1{margin-bottom:5px;}
+#caja_mi_entel .contenido_tab .bajada_titulo{font:12px Arial;color:#FFF;width:180px;}
+#caja_mi_entel .contenido_tab_2 .bajada_titulo{margin-bottom:10px;}
+#caja_mi_entel .contenido_tab .item_formulario{display:block;padding:7px 0 0 0;}
+#caja_mi_entel .contenido_tab .item_formulario input{color:#666666;font:1.2em Tahoma;}
+#caja_mi_entel .contenido_tab .contenedor_botones_home{display:block;padding:10px 0 0;}
+* html #caja_mi_entel .contenido_tab .contenedor_botones_home{padding:10px 0 0px;}
+
+#caja_mi_entel .contenido_tab .contenedor_botones_home .solicitar_clave{display:block;float:left;}
+#caja_mi_entel .contenido_tab .contenedor_botones_home .solicitar_clave a,
+#caja_mi_entel .contenido_tab .contenedor_botones_home .solicitar_clave a:visited {
+	display: block;
+	float: left;
+	font:11px Arial;
+	color: #FFF;
+	margin: 5px 12px 0 0;
+	text-decoration:underline;
+}
+
+* html #caja_mi_entel .contenido_tab .contenedor_botones_home .solicitar_clave a,
+* html #caja_mi_entel .contenido_tab .contenedor_botones_home .solicitar_clave a:visited{margin:5px 3px 0 0;}
+#caja_mi_entel .contenido_tab .contenedor_botones_home .solicitar_clave a:hover{border-bottom:none;}
+
+
+/*
+ * Estilos para los formularios de ingreso a MI ENTEL
+ */
+/*#caja_mi_entel .contenido_tab {
+	display: none;
+	position: relative;
+	background: #f0f0f0;
+	border-top: 1px solid #a0a0a0;
+	border-left: 1px solid #a0a0a0;
+	border-right: 1px solid #a0a0a0;
+	padding: 10px;
+	min-height: 155px;
+}* html #caja_mi_entel .contenido_tab {
+	height:167px;
+}
+#caja_mi_entel .tab_desplegado {
+	display: block;
+}
+
+#caja_mi_entel .contenido_tab .item_formulario {
+	display: block;
+	padding: 7px 0 0 0;
+}
+
+#caja_mi_entel .contenido_tab .item_formulario input {
+	color: #666666;
+	font-size: 1.2em;
+	font-family: Tahoma, Arial, Helvetica, sans-serif;
+}
+
+#caja_mi_entel .contenido_tab .contenedor_botones_home {
+	display: block;
+	padding: 10px 0 0;
+}* html #caja_mi_entel .contenido_tab .contenedor_botones_home {
+	padding: 10px 0 0px;
+}
+
+#caja_mi_entel .contenido_tab .contenedor_botones_home .solicitar_clave {
+	display: block;
+	float: left;
+}
+
+#caja_mi_entel .contenido_tab .contenedor_botones_home .solicitar_clave a,
+#caja_mi_entel .contenido_tab .contenedor_botones_home .solicitar_clave a:visited {
+	display: block;
+	float: left;
+	font-family: Tahoma, Arial, Helvetica, sans-serif;
+	color: #0073ae;
+	font-size: 1.2em;
+	margin: 5px 12px 0 0;
+	text-decoration: none;
+	border-bottom: 1px dotted #0073ae;
+}
+
+* html #caja_mi_entel .contenido_tab .contenedor_botones_home .solicitar_clave a,
+* html #caja_mi_entel .contenido_tab .contenedor_botones_home .solicitar_clave a:visited {
+	margin: 5px 3px 0 0;
+}
+
+#caja_mi_entel .contenido_tab .contenedor_botones_home .solicitar_clave a:hover {
+	border-bottom: none;
+}
+
+.fondo h2.titulo_mientel {
+	display: block;
+	font-family: Tahoma, Arial, Helvetica, sans-serif;
+	font-size: 2.2em;
+	color: #0073ae;
+	border-left: 5px solid #0073ae;
+	padding: 0 0 0 3px;
+	margin: 0 0 5px;
+}
+
+.fondo .caja_destacada_mi_entel input {
+	outline: 0;
+}
+
+.fondo .caja_destacada_mi_entel {
+	position: relative;
+	background: #fff;
+	padding:0px;
+}*html .fondo .caja_destacada_mi_entel {padding:0px;}
+
+.fondo .caja_destacada_abajo_mi_entel {
+	background: transparent url(/personas/img/generico/bg_caja_contenidos_mi_entel.gif) no-repeat scroll right top;
+    display: block;
+	z-index: 5;
+    padding-right: 17px;
+}
+
+.fondo .caja_destacada_abajo_mi_entel span {
+	background: url(/personas/img/generico/bg_caja_contenidos_mi_entel.gif) no-repeat scroll left top;
+    display: block;
+    height: 7px;
+}*/
+
+
+/************************/
+
+.caja_contenidos .caja_destacada_abajo_sm {
+    background: url(/empresas/img/generico/bg_caja_contenidos_sm.jpg) no-repeat scroll right top transparent;
+    display: block;
+    height: 11px;
+    width: 940px;
+}
+.caja_contenidos .caja_destacada {
+	
+    display: block;
+    padding: 10px 10px;
+	width:918px;
+	margin:0px;
+}
+.borde_top_naranjo{
+	border-top:3px solid #f78f20;
+}
+.borde_top_verde{
+	border-top:3px solid #33a935;
+}
+
+.borde_top_azul{
+	border-top:3px solid #0073AE;
+}
+
+.caja_contenidos .titulo_caja_contenidos{
+	font:11px Tahoma;
+	color:#000;
+	margin-bottom:5px;
+}
+
+.caja_contenidos .titulo_caja_contenidos h1{
+	font:20px Tahoma;
+	color:#FF5800;
+}.caja_contenidos .titulo_caja_contenidos h1 span{font:bold 14px Tahoma;}
+
+.caja_contenidos .titulo_caja_contenidos h2{
+	font:20px Tahoma;
+	color:#33a935;
+}.caja_contenidos .titulo_caja_contenidos h2 span{font:bold 14px Tahoma;}
+
+.caja_contenidos {
+    margin: 20px 0 30px;
+}
+
+.caja_contenidos .titulo_caja_contenidos_home{
+	font:11px Tahoma;
+	color:#000;
+	margin-bottom:5px;
+}
+
+.caja_contenidos .titulo_caja_contenidos_home h1{
+	font:20px Tahoma;
+	color:#0073AE;
+}.caja_contenidos .titulo_caja_contenidos_home h1 span{font:bold 14px Tahoma;}
+
+.caja_contenidos .titulo_caja_contenidos_home h2{
+	font:20px Tahoma;
+	color:#0073AE;
+}.caja_contenidos .titulo_caja_contenidos_home h2 span{font:bold 14px Tahoma;}
+
+
+.caja_fono_byd{
+	font-family:Tahoma, Geneva, sans-serif;
+	font-size:11px;
+	line-height:13px;
+	color:#FF5800;
+	padding-left:30px;
+	float:right;
+	background:url(../img/img_bydb_f_gris.jpg) no-repeat left 2px;
+	margin-top: -4px;
+	/*margin-right:2px;*/											
+}
+
+a.enlace_flecha_naranja{
+	/*background:url(../img/img_flecha_naranja.jpg) no-repeat right 5px;*/
+	padding-right:8px;
+	/*color:#0073AE;*/
+	color:#FF5800;
+	font-weight:bold;
+	text-decoration:underline;				
+}
+
+a.enlace_flecha_naranja:hover{
+	text-decoration:underline;
+}
+
+.separador_azul {
+    background: none repeat scroll 0 0 #B2B2B2;
+    border-right: 9px solid #0073AE;
+    display: block;
+    height: 3px;
+    margin: 4px 0 10px;
+}* html .separador_azul {
+    font-size: 1px;
+}
+
+.home_fono_byd {
+    background: url(../../img/ico_home_bloydes.jpg) no-repeat scroll left 3px transparent;
+    color: #0073AE;
+    float: right;
+    font-family: Tahoma,Geneva,sans-serif;
+    font-size: 10px;
+	margin-left:10px;
+    margin-right: 2px;
+    /*margin-top: -4px;*/
+    padding-left: 30px;
+}
+
+p.con_esp_detalle{
+	width: 130px;
+}
+
+.fondo .con_alto{
+	height:120px;
+}
+
+/* Encabezado Gris */
+
+.caja_contenidos .gris {
+    background: url(../../img/generico/bg_caja_contenidos_gris.gif) no-repeat scroll left top transparent;
+}
+
+.caja_contenidos .caja_destacada_medio {
+    display: block;
+    padding-right: 10px;
+}
+
+.caja_contenidos .gris_titulo {
+    background: none repeat scroll 0 0 #F0F0F0;
+}
+
+.caja_contenidos .caja_destacada_titulo span.titulo_caja {
+    background: url(../img/llave_naranja.jpg) no-repeat scroll right 1px transparent;
+    font-size: 2em;
+    padding: 0 15px 0 0;
+	height:26px;
+}
+
+.caja_contenidos .caja_destacada_titulo span.titulo_caja.cam_llave {
+    background: url("../img/llave_naranja_normal.jpg") no-repeat scroll right 1px transparent;
+}
+
+.caja_contenidos .caja_destacada_titulo span {
+    color: #0073AE;
+    display: block;
+    float: left;
+    font-family: Tahoma,Arial,Helvetica,sans-serif;
+}
+
+.caja_contenidos .caja_destacada_titulo {
+    
+    display: block;
+    padding: 2px 10px 0;
+	padding-bottom:2px;
+}
+
+.caja_contenidos .gris span {
+    background: url(../../img/generico/bg_caja_contenidos_gris.gif) no-repeat scroll left top transparent;
+}
+
+.caja_contenidos .caja_destacada_medio span {
+    display: block;
+    height: 6px;
+}
+
+
+.caja_contenidos .caja_destacada_titulo span.bajada_titulo_caja {
+    font-size: 1.4em;
+    font-weight: bold;
+    margin-left: 10px;
+    padding: 5px 10px 0 0;
+	font-weight:normal;
+}
+
+.link_ver_mas {
+    color: #FF5800;
+    font-size: 11px;
+    margin-left: 10px;
+	font-weight:bold;
+}
+
+h2.titulo a, h2.titulo a:visited{
+	color:#0073AE;
+}
+
+h2.titulo.pd_titulo{
+	margin-bottom:10px;
+}
+
+.enlace_compra ul li {
+    background: url("/empresas/img/home_empresas/ico_bullet_naranja.jpg") no-repeat scroll left 5px transparent;
+    display: block;
+    padding: 0 0 5px 15px;
+	font-size:1.1em;
+	font-family:Tahoma, Geneva, sans-serif;
+}
+
+.enlace_compra ul li a{
+	color: #0073AE;
+    text-decoration: underline;
+}
+
+.pb_caja_principal{
+	width: 455px; margin-right:30px; border-right:1px dotted #999999;
+}
+
+.pb_caja_principal .pbcj_caja_izq{
+	float:left; width:250px; margin-right:35px;
+}
+
+.pb_caja_principal .pbcj_caja_der{
+	float:left; width:170px;
+}
+
+.pb_caja_principal .pbcj_caja_der p, .pb_caja_principal .pbcj_caja_izq p{
+	height:50px; width: 140px; padding-left:10px; margin-top:50px; margin-top: 20px;
+}
+
+.fondo .ccdi_alto {
+	min-height: 100px;
+}* html .fondo .ccdi_alto {
+	height: 100px;
+}
+
+.nota-destacada{
+	color:#0073AE;
+	font:14px Tahoma;
+	float:right;
+	margin-top:5px;
+}
+
+
+/***************** CAJAS IMAGEN CONTENIDO ***********************/
+.caja_contenidos .caja_destacada_contenido h4.pd_titulo {
+    color: #0073AE;
+    font: 18px tahoma;
+    margin-bottom: 10px;
+    width: 100%;
+}
+
+.caja_contenidos .caja_destacada_contenido .contenido_columna_destacada_imagen .promo_destacadas p.pd_detalle, 
+.caja_contenidos .caja_destacada_contenido .enlace_compra p.pd_detalle {
+    color: #000000;
+    font: 11px tahoma;
+    width: 100%;
+}
+.caja_contenidos .caja_destacada_contenido.pb_alto {
+    height: 190px;
+}
+.caja_contenidos .caja_destacada_contenido {
+    
+    display: block;
+    padding: 5px 10px;
+}
+.caja_destacada_abajo {
+    background: url(../../img/generico/bg_caja_contenidos_abajo_lite.gif) no-repeat scroll right top transparent;
+    display: block;
+    padding-right: 10px;
+}
+.caja_destacada_abajo span {
+    background: url(../../img/bg_caja_contenidos_abajo_lite.gif) no-repeat scroll left top transparent;
+    display: block;
+    height: 7px;
+}
+
+/*********  CAJA TE AYUDAMOS ***********/
+#cajaTeAyudamos {
+/*	background:url(/personas/img/home_personas/te_ayudamos/bg_barra_teayudamos.jpg) top left no-repeat;
+*/  height: 114px;
+	width:920px;
+	margin-top:10px;
+}
+
+#cajaTeAyudamos .titulo{
+	color:#FFFFFF;
+	font-family:Tahoma;
+	font-size:16px;
+	font-weight:bold;
+	margin-left:16px;
+	margin-top:10px;
+	position:absolute;
+}
+
+#contenedor_cajas{
+	height: 115px;
+	margin-left: 25px;
+	position: absolute;
+	width: 870px;
+}
+
+.opciones{
+	float:left;
+	height:100px;
+	width:110px;
+}
+
+.imagenes_opciones{
+	height:44px; 
+	margin-left:12px;
+	margin-top:5px; 
+	position:absolute; 
+	width:44px;
+}
+
+.texto_bajada{
+	color:#0073ae;
+	font-family:Tahoma;
+	font-size:11px;
+	margin-top:75px;
+	text-align:center;
+	width:100px;
+	position:absolute;
+}
+
+#cajaTeAyudamos a{
+	color:#0073ae;
+	text-decoration:underline;
+	font-size:12px;
+}
+
+#cajaTeAyudamos a:hover{
+	/*color:#FF5800;*/
+	/*text-decoration:none;*/
+}
+
+#cajaTeAyudamos .link_vermas{
+	margin-left:505px;
+	margin-top:174px;
+	position:absolute;
+}
+
+#cajaTeAyudamos .verMas {
+	background:url(../img/flecha.gif) right center no-repeat;
+	padding-right:15px;
+	text-decoration:none;
+	font-weight:bolder;
+	font-family:Tahoma;
+	font-size:11px;
+	color:#444;
+	bottom:10px;
+	right:25px;
+	color: #444444;
+}
+#cajaTeAyudamos .verMas:hover {
+	color: #444444;
+	text-decoration:underline;
+}
+
+.mas_opciones{
+	height: 40px;
+	margin-left: 15px;
+	margin-top: 10px;
+	width: 890px;
+}
+
+.mas_opciones .texto0{
+	color:#0073ae;/*color: #F2911E;*/
+	font: normal 13px Tahoma;
+	width:190px;
+	margin-right:20px;
+	padding-top:10px;
+	float:left;
+}
+
+.mas_opciones .texto1, .texto2, .texto3, .texto4{
+	/*background: url(/personas/img/home_personas/te_ayudamos/Twitter.jpg) no-repeat scroll 0 5px transparent;*/
+	color: #F2911E;
+	float: left;
+	font: bold 12px Arial;
+	height:25px;
+	margin-top:5px;    
+	margin-left:50px;
+}
+.mas_opciones .texto2{
+	/*background: url(/personas/img/home_personas/te_ayudamos/Smartphones.jpg) no-repeat scroll 0 6px transparent;*/
+}
+.mas_opciones .texto3{
+	/*background: url(/personas/img/home_personas/te_ayudamos/Foros-Entel.jpg) no-repeat scroll 0 5px transparent;*/
+}
+
+.mas_opciones .texto4{
+	/*background: url(/personas/img/home_personas/te_ayudamos/Mi-Bam.jpg) no-repeat scroll 0 0 transparent;*/
+}
+
+.bloqueoydesb{
+	/*background:url(/personas/img/home_personas/img_home_bloydes.jpg) no-repeat left 2px transparent;*/
+	font: 12px Tahoma;
+	padding: 6px 0 7px 0;
+}
+

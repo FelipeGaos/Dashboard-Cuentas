@@ -1,0 +1,42 @@
+<input type="hidden" id="id_usuario" value="<?php echo $this->trabajador['id'] ?>">
+<p>Nombre de trabajador <label><?php echo $this->trabajador['nombre'] ?></label></p>
+<p>RUT: <label><?php echo $this->trabajador['rut'] ?></label></p>
+<p>Correo: <label><?php echo $this->trabajador['correo'] ?></label></p>
+<p>Cargo: <label><?php echo $this->trabajador['cargo'] ?></label></p>
+<p>Fecha de registro de trabajador: <label><?php echo $this->trabajador['fecha_reg'] ?></label></p>
+<p>Horas Diarias: <label><?php echo $this->trabajador['horasDiarias'] ?></label></p>
+<p>Horas mensuales: <label><?php echo $this->trabajador['horasMensuales'] ?></label></p>
+
+<?php if ($this->trabajador['uuid'] != null) {?>
+
+<div id="uuid">
+<p>UUID Conectado: <label><?php echo $this->trabajador['uuid'] ?></label></p><button type="button" class="btn btn-primary" onclick="borrarUUID()">Borrar UUID</button>
+</div>
+
+<?php }else {echo "No hay UUID asociado a esta cuenta";} ?>
+<script type="text/javascript">
+	
+	//COMPLETAR BORRADO UUID
+	function borrarUUID(){
+		
+		conf = confirm('Estas seguro de borrar el UUID asociado a esta cuenta?');
+
+		if (conf){
+			$.ajax({
+				url: BASE_URL + "/index.php/index/borrar-uuid",
+				dataType: 'html',
+				type: "POST",
+				data: {
+					id: $('#id_usuario').val()
+				}
+			}).done(function(response){
+				$('#uuid').css('display', 'none');
+
+				alert("UUID ELIMINADO");
+				location = BASE_URL + "/index.php/index/cuentas";
+			});
+		}
+
+
+	}
+</script>

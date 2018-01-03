@@ -1,0 +1,170 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <!-- Meta, title, CSS, favicons, etc. -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>T2B</title>
+
+
+<!-- jQuery 2.1.4 -->
+        <script src="<?php echo $this->baseUrl(); ?>/plugins/jQuery/jQuery-2.1.4.min.js"></script>
+        <!-- TITULO -->
+        <title><?php echo My_ConfigIni::get('html')->titulo; ?></title>
+        
+        <!-- FAVICON -->
+        <link rel="icon" href="<?php echo $this->baseUrl(); ?>/img/favicon.ico">
+        
+        <!-- BOOTSTRAP core CSS -->
+        <link href="<?php echo $this->baseUrl(); ?>/bootstrap/css/bootstrap.min.css" rel="stylesheet">        
+        <!-- FONT AWESOME -->
+        <link href="<?php echo $this->baseUrl(); ?>/fonts/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+        <!--BLOCK UI-->
+        <script src="<?php echo $this->baseUrl(); ?>/plugins/blockUI/jquery.blockUI.js"></script>
+
+
+<!-- Alertify -->
+
+        <script src="https://cdn.rawgit.com/alertifyjs/alertify.js/v1.0.10/dist/js/alertify.js"></script>
+
+    <!-- Custom Theme Style -->
+   <link href="<?php echo $this->baseUrl(); ?>/css/custom.css" rel="stylesheet">
+  </head>
+
+  <body class="login">
+    <div>
+      <a class="hiddenanchor" id="signup"></a>
+      <a class="hiddenanchor" id="signin"></a>
+
+      <div class="login_wrapper">
+        <div class="animate form login_form">
+          <section class="login_content">
+            <form method="post" name="formu" id="formu">
+              <h1>Panel de control</h1>
+              <div>
+                <input type="text" class="form-control" placeholder="Usuario" name='usuario' value="" />
+              </div>
+              <div>
+                <input type="password" class="form-control" placeholder="Contraseña" name='contraseña' value="" />
+              </div>
+              <div>
+                <input type="submit" name="Ingresar" value="Ingresar" onclick="validar();">
+                <a class="reset_pass" href="#">Olvidaste la contraseña?</a>
+              </div>
+
+
+              <div class="clearfix"></div>
+
+              <div class="separator">
+               
+                <div class="clearfix"></div>
+                <br />
+
+                <div>
+                  <h1>T2B</h1>
+                  <p>©2017 Todos los derechos reservados. Technology to Business. Terminos y condiciones</p>
+                </div>
+              </div>
+            </form>
+          </section>
+        </div>
+
+        <div id="register" class="animate form registration_form">
+          <section class="login_content">
+            <form>
+              <h1>Create Account</h1>
+              <div>
+                <input type="text" class="form-control" placeholder="Usuario" id='usuario' required="" />
+              </div>
+              <div>
+                <input type="password" class="form-control" placeholder="Contraseña" id='contraseña' required="" />
+              </div>
+              <div>
+                <a class="btn btn-default submit" onclick='validar();' >Submit</a>
+              </div>
+
+              <div class="clearfix"></div>
+
+              <div class="separator">
+                <p class="change_link">Already a member ?
+                  <a href="#signin" class="to_register"> Log in </a>
+                </p>
+
+                <div class="clearfix"></div>
+                <br />
+
+                <div>
+                  <h1>T2B</h1>
+                  <p>©2017 Todos los derechos reservados. Technology to Business. Terminos y condiciones</p>
+                </div>
+              </div>
+            </form>
+          </section>
+        </div>
+      </div>
+    </div>
+  </body>
+    <?php
+        if( APPLICATION_ENV !== 'production' ){
+            echo '<div id="panel_app_pruebas" style="background:red;color:white"> ENV('.APPLICATION_ENV.')
+            <i class="fa fa-warning"></i> Esta es una versión de prueba<span class="hidden-xs"> y en desarrollo</span>.
+            Puede NO funcionar correctamente<span class="hidden-xs"> y los cambios realizados NO SON GUARDADOS<span>.
+                </span>
+            </span>
+            </div>';
+        }
+        ?>
+   <script type="text/javascript"> const BASE_URL = "<?php echo $this->baseUrl(); ?>"; </script>
+   <script src="https://cdn.rawgit.com/alertifyjs/alertify.js/v1.0.10/dist/js/alertify.js"></script>
+<script>
+
+
+
+  function validar() {
+
+
+     usuario = document.formu.usuario.value;
+    contraseña = document.formu.contraseña.value;
+    console.log(usuario, contraseña);
+    // alertify.success("Usuario es:"+usuario+" "+"Contraseña:"+contraseña);
+
+            $.ajax({
+                dataType: 'json',
+                type: "POST",
+                url: BASE_URL+"/index.php/index/login",
+                data: {usuario:usuario,contraseña:contraseña}
+            }).done(function(response){
+
+                if(response.estado=="OK"){
+                     alertify.success("Ingresado correctamente");
+                     location.href=BASE_URL+'/index.php/index/home';
+                   }else{
+                     alertify.error("Usuario  y/o contraseña incorrecto");
+
+                   }
+            });
+
+
+
+
+
+
+/*
+    if (usuario==kevin && pass= t2b) {
+        location.href='http://www.dme.unab.cl';
+    }else{
+      alertify.success("Usuario y contraseña no validos");
+      //alert ('Usuario y contraseña no validos');
+    }*/
+    
+  } 
+</script>
+
+
+
+</html>
+

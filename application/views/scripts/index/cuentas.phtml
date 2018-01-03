@@ -1,0 +1,338 @@
+<link rel='stylesheet' href='http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.18/themes/base/jquery-ui.css'>
+<link href="<?php echo $this->baseUrl(); ?>/plugins/dataTables-1.10.11/datatables.min.css" rel="stylesheet">
+<?php 
+	$usuarios = $this->usuarios; 	
+  
+?>
+
+<div class="container">
+	<h1> Administración de trabajadores </h1><br><br>
+
+<button class="btn btn-success" onclick="nuevoUsuario()">Nuevo trabajador</button>
+<br><br>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">Trabajadores</div>
+<div class="panel-body">
+<div class="table-responsive">
+<table class="table table-striped text-center" id="tabla-usuarios">
+  <thead>
+	<tr>
+	 	<th style="width: 100px">RUT</th>
+	 	<th>Nombre</th>
+	 	<th>Correo</th>
+	 	<th style="width: 50px">Editar/Eliminar</th>
+ 	</tr>
+  </thead>
+  <tbody>
+  <?php 
+  for ($i=0; $i < count($usuarios); $i++) { ?>
+  	<tr>
+  		<td> <?php echo $usuarios[$i]['rut'] ?></td>
+  		<td> <button class="btn btn-link" onclick="verDetalle(
+      '<?php echo $usuarios[$i]['id_usuario']; ?>',
+      '<?php echo $usuarios[$i]['nombre'] ?>',
+      '<?php echo $usuarios[$i]['correo'] ?>',
+      '<?php echo $usuarios[$i]['rut'] ?>',
+      '<?php echo $usuarios[$i]['cargo'] ?>',
+      '<?php echo $usuarios[$i]['fecha_reg'] ?>',
+      '<?php echo $usuarios[$i]['horasMensuales'] ?>',
+      '<?php echo $usuarios[$i]['horasDiarias'] ?>',
+      '<?php echo $usuarios[$i]['uuid'] ?>'
+
+      )"><?php echo $usuarios[$i]['nombre']?></button></td>
+  		<td> <?php echo $usuarios[$i]['correo']?></td>
+  		<td>
+
+
+        <button class="btn btn-primary" onclick="editarUsuario('<?php echo $usuarios[$i]['id_usuario']?>')"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
+  		  <button class="btn btn-danger" onclick="eliminarUsuario('<?php echo $usuarios[$i]['id_usuario']?>')"><i class="fa fa-trash" aria-hidden="true"></i></button>
+  			
+  		</td>
+  	</tr>
+  <?php } ?>
+  </tbody>
+</table>
+</div>
+</div>
+</div>
+
+
+
+<script src="<?php echo $this->baseUrl(); ?>/plugins/dataTables-1.10.11/datatables.min.js"></script>
+<script type="text/javascript">
+
+
+
+function verDetalle(id, nombre, correo, rut, cargo, fecha_reg,horasMensuales, horasDiarias, uuid){
+  
+  $.ajax({
+            url: BASE_URL + "/index.php/index/modal-detalle-cuentas",
+            dataType: 'html',
+            type: "POST",
+            data: {
+              id: id,
+              nombre: nombre,
+              correo: correo,
+              rut: rut,
+              cargo: cargo,
+              fecha_reg: fecha_reg,
+              horasMensuales: horasMensuales,
+              horasDiarias: horasDiarias, 
+              uuid: uuid
+            }
+        }).done(function(response) {
+      $("#detalleUsuario").html(response);
+      $("#modalDetalleUsuarios").modal();
+
+  });
+}
+
+function nuevoUsuario(){
+  
+
+	$.ajax({
+            url: BASE_URL + "/index.php/index/modal-agregar-usuario",
+            dataType: 'html',
+            type: "POST",
+            data: {
+
+            }
+        }).done(function(response) {
+			$("#agregarUsuario").html(response);
+			$("#modalAgregarUsuarios").modal();
+
+	});
+}
+
+
+function guardarUsuario(){
+	$("#correo").css('border-color', '');
+	if ($("#nombre").val() == "" || $("#correo").val() == "" || $("#rut").val() == "" || $("#horas").val() == ""){
+		alert("No debe dejar campos vacíos");
+		return;
+	}
+
+  expr = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+  if ( !expr.test($("#correo").val()) ){
+        alert("Dirección de correo " + $("#correo").val() + " es incorrecta.");
+        $("#correo").css('border-color', 'red');
+        console.log("error");
+        return;
+  }
+
+	var comproabacion = confirm("¿Desea guardar los cambios?");
+		if (comproabacion) {
+      esperaON();
+			$.ajax({
+	            url: BASE_URL + "/index.php/index/guardar-usuario",
+	            dataType: 'json',
+	            type: "POST",
+	            data: {	nombre: $("#nombre").val(),
+	            		correo: $("#correo").val(),
+	            		rut: $("#rut").val(),
+	            		cargo: $("#cargo").val(),
+	            		horas: $("#horas").val(),
+	        		}
+	        }).done(function(response) {
+            console.log(response);
+            alert(response.mensaje);
+
+            if (response.estado == "OK"){
+	           	location = BASE_URL + "/index.php/index/cuentas"
+            }
+            else if (response.estado == "NO")
+               $("#rut").css('boreder-color', 'red');
+            esperaOFF();
+            
+    
+	        });
+	}
+}
+
+function editarUsuario(id){
+  
+
+  $.ajax({
+            url: BASE_URL + "/index.php/index/modal-editar-usuario",
+            dataType: 'html',
+            type: "POST",
+            data: {id: id}
+        }).done(function(response) {
+      $("#editarUsuario").html(response);
+      $("#modalEditarUsuarios").modal();
+  });
+}
+
+
+function guardarCambios(){
+  $('#rut').css('border-color','');
+
+  if ($("#nombre").val() == "" || $("#correo").val() == "" || $("#rut").val() == "" || $("#horas").val() == ""){
+    alert("No debe dejar campos vacíos");
+    return;
+  }
+
+  expr = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+  if ( !expr.test($("#correo").val()) ){
+        alert("Error: La dirección de correo " + $("#correo").val() + " es incorrecta.");
+        $("#correo").css('border-color', 'red');
+        console.log("error");
+        return;
+  }
+
+
+  var comproabacion = confirm("¿Desea guardar los cambios?");
+    if (comproabacion) {
+      esperaON();
+
+      $.ajax({
+              url: BASE_URL + "/index.php/index/editar-usuario",
+              dataType: 'json',
+              type: "POST",
+              data: { 
+                  id: $("#id").val(),
+                  nombre: $("#nombre").val(), 
+                  correo: $("#correo").val(),
+                  rut:    $("#rut").val(), 
+                  cargo:  $("#cargo").val(), 
+                  horas:  $("#horas").val(), 
+              }
+          }).done(function(response) {
+          console.log(response);
+          alert(response.mensaje);
+
+           if(response.estado=='OK')
+              location = BASE_URL + "/index.php/index/cuentas";
+          else if(response.estado=='NO')
+            $('#rut').css('border-color','red');
+          esperaOFF();
+          
+          });
+  }
+}
+
+
+
+function eliminarUsuario(id){
+
+  var comproabacion = confirm("¿Estás seguro de eliminar este usuario?");
+  if (comproabacion) {
+    esperaON();
+
+    $.ajax({
+      url: BASE_URL + "/index.php/index/eliminar-usuario/id/"+ id,
+      dataType: 'json',
+      type: "POST"
+    }).done(function(response){
+        console.log(response);
+        alert(response.mensaje);
+        if (response.estado == 'OK'){
+          
+          location = BASE_URL + "/index.php/index/cuentas";
+        }
+        else{
+          
+          esperaOFF();
+        }
+    })
+  }
+}
+
+$(document).ready(function () {
+
+	$('#tabla-usuarios').DataTable({
+    	"bPaginate": true,
+        "lengthMenu": [[5, 10, 20, -1], [5, 10, 20, "Todos"]],
+        "bLengthChange": true,
+        "bFilter": true,
+        "bSort": true,
+        "bInfo": false,
+        "bAutoWidth": true,
+        "language": {
+            "lengthMenu": "Mostrar _MENU_ registros por p&aacute;gina",
+            "zeroRecords": "No se ha encontrado nada - lo sentimos",
+            "info": "Mostrando p&aacute;gina _PAGE_ de _PAGES_",
+            "infoEmpty": "No hay registros disponibles",
+            "search": "BUSCAR:&nbsp;&nbsp;&nbsp;&nbsp;",
+            "zeroRecords": "No se han encontrado registros que coincidan con la b&uacute;squeda",
+            "paginate": {
+                "first": "Primero",
+                "last": "&Uacute;ltimo",
+                "next": "Siguiente",
+                "previous": "Anterior"
+            }
+        }
+    });
+});
+
+</script>
+
+<!--Modal para ver detalle de trabajador-->
+<div class="modal fade" id="modalDetalleUsuarios" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 class="modal-title" id="exampleModalLabel">Detalles </h3>
+      </div>
+      <div class="modal-body">
+      
+        <div id="detalleUsuario">
+          
+        </div>
+      
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!--Modal para agregar trabajador-->
+<div class="modal fade" id="modalAgregarUsuarios" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 class="modal-title" id="exampleModalLabel">Nuevo trabajador</h3>
+      </div>
+      <div class="modal-body">
+      
+      	<div id="agregarUsuario">
+      		
+      	</div>
+      
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+        <button type="button" class="btn btn-primary" onclick="guardarUsuario()">Guardar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<!--Modal para editar usuario-->
+
+<div class="modal fade" id="modalEditarUsuarios" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 class="modal-title" id="exampleModalLabel">Editar usuario</h3>
+      </div>
+      <div class="modal-body">
+      
+        <div id="editarUsuario">
+          
+        </div>
+      
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+        <button type="button" class="btn btn-primary" onclick="guardarCambios()">Guardar cambios</button>
+      </div>
+    </div>
+  </div>
+</div>

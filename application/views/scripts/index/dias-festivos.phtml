@@ -1,0 +1,180 @@
+<link rel='stylesheet' href='http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.18/themes/base/jquery-ui.css'>
+<link href="<?php echo $this->baseUrl(); ?>/plugins/dataTables-1.10.11/datatables.min.css" rel="stylesheet">
+
+<?php 
+	
+	$festivos = $this->festivos;
+	$fecha = $this->fecha;
+?>
+
+<div class="container">
+<h1> Administración de días festivos </h1><br><br>
+
+
+<button class="btn btn-success" id="btn_agregar_festivo" onclick="nuevoFestivo()"> Agregar festivo </button>
+<br><br>
+
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">Festivos, periodo <?php echo $fecha ?> </div>
+<div class="panel-body">
+<div class="table-responsive">
+<table class="table table-striped text-center" id="tabla-festivos">
+ <thead>
+ <tr>
+ 	<th>Fecha</th>
+ 	<th>Descripción</th>
+ 	<th>Eliminar</th>
+ </tr>
+</thead>
+<tbody>
+
+<?php  
+	for ($i=0; $i < count($festivos); $i++) { 
+?>
+
+<tr>
+	<td><?php echo $festivos[$i]['fecha']; ?></td>
+	<td><?php echo $festivos[$i]['nombreFestivo']; ?></td>
+	<td><button class="btn btn-danger" onclick="eliminar('<?php echo $festivos[$i]['fecha']; ?>')"><i class="fa fa-trash" aria-hidden="true"></i></button></td>
+</tr>
+
+<?php } ?>
+
+</tbody>
+</table>
+</div>
+</div>
+</div>
+
+
+
+<script src="<?php echo $this->baseUrl(); ?>/plugins/dataTables-1.10.11/datatables.min.js"></script>
+<script type="text/javascript">
+
+function nuevoFestivo(){
+	$.ajax({
+            url: BASE_URL + "/index.php/index/modal-festivos",
+            dataType: 'html',
+            type: "POST",
+        }).done(function(response) {
+			$("#agregarFestivo").html(response);
+			$("#modalAgregarFestivos").modal();
+	});
+};
+
+function eliminar(fecha){
+	var comproabacion = confirm("¿Estás seguro de eliminar este festivo?");
+	if (comproabacion) {
+    esperaON();
+		$.ajax({
+      url: BASE_URL + "/index.php/index/eliminar-festivo/fecha/"+fecha,
+      dataType: 'json',
+      type: "POST"
+    }).done(function(response){
+        console.log(response);
+        alert(response.mensaje);
+        if (response.estado = "OK")
+          location = BASE_URL + "/index.php/index/dias-festivos/";
+        else
+          esperaOFF();
+    })
+	}
+}
+
+function guardar(){
+  $("#fecha").css('border-color','');
+  
+	var date = new Date($("#fecha").val());
+	var datemin = new Date("2010-01-01");
+	var datemax = new Date("2025-12-31");
+	
+
+	if($("#fecha").val() == "" || $("#desc").val() == ""){
+		alert("No puede dejar campos vacíos");
+	}
+	else if(date < datemin || date > datemax){
+		alert("Ingresa otra fecha");
+	}
+	else{
+		
+		var comproabacion = confirm("¿Desea guardar los cambios?");
+		if (comproabacion) {
+      esperaON();
+			$.ajax({
+		      url: BASE_URL + "/index.php/index/festivos-guardar",
+		      dataType: 'json',
+	        type: "POST",
+	        data: {	fecha: $("#fecha").val(),		
+		            	descripcion: $("#desc").val()
+		      }
+		    }).done(function(response){
+          alert(response.mensaje);
+          console.log(response);
+            if(response.estado == "Ok")
+			       location = BASE_URL + "/index.php/index/dias-festivos";
+            else
+              $("#fecha").css('border-color','red');
+            esperaOFF();
+        });
+		}
+
+	}
+
+};
+
+$(document).ready(function () {
+
+	$('#tabla-festivos').DataTable({
+    	"bPaginate": true,
+        "lengthMenu": [[5, 10, 20, -1], [5, 10, 20, "Todos"]],
+        "bLengthChange": true,
+        "bFilter": true,
+        "bSort": true,
+        "bInfo": false,
+        "bAutoWidth": true,
+        "language": {
+            "lengthMenu": "Mostrar _MENU_ registros por p&aacute;gina",
+            "zeroRecords": "No se ha encontrado nada - lo sentimos",
+            "info": "Mostrando p&aacute;gina _PAGE_ de _PAGES_",
+            "infoEmpty": "No hay registros disponibles",
+            "search": "BUSCAR:&nbsp;&nbsp;&nbsp;&nbsp;",
+            "zeroRecords": "No se han encontrado registros que coincidan con la b&uacute;squeda",
+            "paginate": {
+                "first": "Primero",
+                "last": "&Uacute;ltimo",
+                "next": "Siguiente",
+                "previous": "Anterior"
+            }
+        }
+    });
+});
+
+</script>
+</script>
+
+
+
+
+
+<!--Modal-->
+<div class="modal fade" id="modalAgregarFestivos" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 class="modal-title" id="exampleModalLabel">Agregar nuevo festivo</h3>
+      </div>
+      <div class="modal-body">
+      
+      	<div id="agregarFestivo">
+      		
+      	</div>
+      
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+        <button type="button" class="btn btn-primary" onclick="guardar()">Guardar</button>
+      </div>
+    </div>
+  </div>
+</div>

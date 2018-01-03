@@ -1,0 +1,21 @@
+/*---------------------
+ * 	   BREADCRUMB
+ *-------------------*/
+
+.breadcrumb {
+	color:#f78e1e;
+	font-family:Tahoma;
+	font-size:1.1em;
+	padding:0 0 20px 2px;
+}
+.breadcrumb a {
+	color:#0073ae;
+	text-decoration:underline;
+}
+.breadcrumb a:hover {
+	text-decoration:none;
+}
+.breadcrumb a.seleccionado {
+	font-weight:bolder;
+	text-decoration:none;
+}

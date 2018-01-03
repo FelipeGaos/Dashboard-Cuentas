@@ -1,0 +1,316 @@
+<div class="">
+            <div class="page-title">
+              <div class="title_left">
+                <h3>Calendario <small></small></h3>
+              </div>
+
+              <div class="title_right">
+                <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
+                  <div class="input-group">
+                    <input type="text" class="form-control" placeholder="Buscar por...">
+                    <span class="input-group-btn">
+                      <button class="btn btn-default" type="button">Go!</button>
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+
+
+            <div class="clearfix"></div>
+
+            <div class="row">
+              <div class="col-md-12">
+                <div class="x_panel">
+                  <div class="x_title">
+                    <h2>Eventos del mes <small></small></h2>
+                    <ul class="nav navbar-right panel_toolbox">
+                      <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                      </li>
+                      <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
+                        <ul class="dropdown-menu" role="menu">
+                          <li><a href="#">Settings 1</a>
+                          </li>
+                          <li><a href="#">Settings 2</a>
+                          </li>
+                        </ul>
+                      </li>
+                      <li><a class="close-link"><i class="fa fa-close"></i></a>
+                      </li>
+                    </ul>
+                    <div class="clearfix"></div>
+                  </div>
+                  <div class="x_content">
+
+                    <div id='calendar'></div>
+
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+      
+        <!-- /page content -->
+
+    <!-- calendar modal -->
+    <div id="CalenderModalNew" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+            <h4 class="modal-title" id="myModalLabel">Nueva Tarea</h4>
+          </div>
+          <div class="modal-body">
+            <div id="testmodal" style="padding: 5px 20px;">
+              <form id="antoform" class="form-horizontal calender" role="form">
+
+                <div class="form-group">
+                  <label class="col-sm-3 control-label">Fecha inicio</label>
+                  <div class="col-sm-9">
+                  <input type="text" id="fecha_inicio" readonly="">
+                  </div>
+                </div>
+
+
+                <div class="form-group">
+                  <label class="col-sm-3 control-label">Título  </label>
+                  <div class="col-sm-9">
+
+                  <select class="selectpicker" style="height: 40px;" id="titulo">
+                     <option value="0">On-Demand</option>
+                    <?php print_r($this->tareas);
+                    foreach ($this->tareas as $key) { ?>
+                    <option value="<?php echo $key['id_tarea']; ?>"><?php echo $key['nombre_tarea']; ?></option>
+                  <?php }
+                  ?>
+              </select>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="col-sm-3 control-label">Descripción</label>
+                  <div class="col-sm-9">
+                    <textarea class="form-control" style="height:55px;" id="descr" name="descr"></textarea>
+                  </div>
+                </div>
+                  <div class="form-group">
+                  <label class="col-sm-3 control-label">Prioridad</label>
+                  <div class="col-sm-9">
+                  <select class="selectpicker" style="height: 40px;" id="prioridad">
+                    <option>Alta</option>
+                    <option>Media</option>
+                    <option>Baja</option>
+              </select>
+                  </div>
+                </div>
+                 <div class="form-group">
+                  <label class="col-sm-3 control-label">Periodicidad</label>
+                    <div class="col-sm-9">
+                  <select class="selectpicker" style="height: 40px;" id="period">
+                    <?php print_r($this->tareas);
+                    foreach ($this->per as $key) { ?>
+                    <option value="<?php echo $key['id_periodicidad']; ?>"><?php echo $key['periodicidad']; ?></option>
+                  <?php }
+                  ?>
+              </select>              
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label class="col-sm-3 control-label">Fecha limite</label>
+                    <div class="col-sm-9">
+                    <div id="" data-date="12/03/2012"></div>
+                    <input type="text" id="datepicker">
+
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label class="col-sm-3 control-label">Persona a cargo</label>
+                  <div class="col-sm-9">
+                  <select class="selectpicker" style="height: 40px;" id="cargo">
+                    <?php 
+                    foreach ($this->usuarios as $keyy) { ?>
+                    <option><?php echo $keyy; ?></option>
+                    <?php }
+                 ?>
+                </select>
+              </div>
+                </div>
+              </form>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default btn_cerrar_crear" data-dismiss="modal">Cerrar</button>
+            <button type="button" class="btn btn-primary " onclick= 'guardar();'>Guardar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id="CalenderModalEdit" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+            <h4 class="modal-title" id="myModalLabel2">Editar Tarea</h4>
+          </div>
+          <div class="modal-body">
+
+            <div id="testmodal2" style="padding: 5px 20px;">
+              <form id="antoform2" class="form-horizontal calender" role="form">
+                <div class="form-group">
+                  <label class="col-sm-3 control-label">Título</label>
+                  <div class="col-sm-9">
+                    <input type="text" class="form-control" id="title2" name="title2">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="col-sm-3 control-label">Descripción</label>
+                  <div class="col-sm-9">
+                    <textarea class="form-control" style="height:55px;" id="descr2" name="descr"></textarea>
+                  </div>
+                </div>
+
+              </form>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default antoclose2" data-dismiss="modal">Cerrar</button>
+            <button type="button" class="btn btn-primary antosubmit2">Guardar</button>
+            <button type="button" class="btn btn-danger">Eliminar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="fc_create" data-toggle="modal" data-target="#CalenderModalNew"></div>
+    <div id="fc_edit" data-toggle="modal" data-target="#CalenderModalEdit"></div>
+
+
+<script>
+    //var f = new Date();
+    //var fech  =  f.getFullYear() + "/" + (f.getMonth() +1) + "/" + f.getDate();
+
+$(document).ready(function() {
+
+$('#datepicker').datetimepicker({
+
+                    format: 'YYYY-MM-DD', locale: 'es',  defaultDate: $('#fecha_inicio').val(),
+                    disabledDates: [
+                        // moment("12/25/2013")
+                       //,new Date(2013, 11 - 1, 21
+                       //,"11/22/2013 00:53"
+                    ]
+                });
+   
+
+
+    // page is now ready, initialize the calendar...
+
+//init_calendar()
+        console.log("init_calendar");
+        var e,
+        f,
+        a=new Date,
+        b=a.getDate(),
+        c=a.getMonth(),
+        d=a.getFullYear(),
+        k=a.getDay();
+        g=$("#calendar").fullCalendar( {
+           locale: 'es',
+           events: BASE_URL + "/index.php/index/get-tarea",
+          firstDay:1,
+            header: {
+                left: "prev,next today", center: "title", right: "month,agendaWeek,agendaDay,listMonth"
+            }
+            ,
+            selectable:!0,
+            selectHelper:!0,
+            select:function(a, b, c) {
+                $("#fc_create").click(),
+                e=a,
+                ended=b,
+                console.log(a);
+                 console.log(b);
+                  console.log(c);
+                
+
+            }
+            ,
+            dayClick: function(date, jsEvent, view) {
+            $("#fecha_inicio").val(date.format());
+            console.log(fecha_inicio);
+            console.log(a);
+                 console.log(b);
+
+        //alert('Clicked on: ' + date.format());
+        // change the day's background color just for fun
+        //$(this).css('background-color', 'red');
+
+    }
+
+            ,
+            eventClick:function(a, b, c) {
+                $("#fc_edit").click()
+          
+            }
+            ,
+            editable:!0
+          
+        }
+        )
+
+});
+
+
+
+
+  function guardar() {
+
+
+    titulo = $('#titulo').val();
+    descripcion = $('#descr').val();
+    prioridad = $('#prioridad').val();
+    periodicidad = $('#period').val();
+    fecha_inicio=$('#fecha_inicio').val();
+    fecha_hasta= $('#datepicker').val();
+    responsable = $('#cargo').val();
+    
+
+
+    console.log(fecha_inicio);
+    console.log(titulo, descripcion, prioridad, periodicidad, fecha_inicio, fecha_hasta, responsable);
+    // alertify.success("Usuario es:"+usuario+" "+"Contraseña:"+contraseña);
+$(".btn_cerrar_crear").click()
+            $.ajax({
+                dataType: 'json',
+                type: "POST",
+                url: BASE_URL+"/index.php/index/tarea",
+                data: {titulo:titulo, descripcion:descripcion, prioridad:prioridad, periodicidad:periodicidad, fecha_inicio:fecha_inicio, fecha_hasta:fecha_hasta, responsable:responsable}
+            }).done(function(response){
+                console.log(response);
+                if(response['estado']=="OK"){
+                     alertify.success("Tarea asignada correctamente");
+                     $("#calendar").fullCalendar( 'refetchEvents' )
+                     console.log("Par");
+
+                     console.log($("#calendar").fullCalendar( 'getEventSources' ));
+                     
+                     
+                   }else{
+                     alertify.error("Tarea no fue asignada");
+
+                   }
+            });
+
+
+
+
+
+  } 
+
+
+</script>

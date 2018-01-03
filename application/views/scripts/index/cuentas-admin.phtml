@@ -1,0 +1,294 @@
+<link rel='stylesheet' href='http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.18/themes/base/jquery-ui.css'>
+<link href="<?php echo $this->baseUrl(); ?>/plugins/dataTables-1.10.11/datatables.min.css" rel="stylesheet">
+
+<?php 
+	$usuarios = $this->usuarios;
+  $sesion = $this->sesion;
+
+?>
+
+<div class="container">
+	<h1>Administración de usuarios</h1><br><br>
+
+
+<button class="btn btn-success" onclick="nuevoUsuario()">Nuevo usuario</button>
+<br><br>
+</div>
+<!--tabla de usuarios-->
+<div class="panel panel-default">
+<div class="panel-heading">Usuarios registrados </div>
+<div class="panel-body">
+<div class="table-responsive">
+<table class="table table-striped text-center" id="tabla-usuarios">
+  <thead>
+	<tr>
+	 	
+	 	<th>Nombre</th>
+	 	<th>Usuario</th>
+	 	<th>Correo</th>
+	 	<th style="width: 50px">Editar/Eliminar</th>
+ 	</tr>
+  </thead>
+  <tbody>
+  <?php for ($i=0; $i < count($usuarios); $i++) { ?>
+  	<tr>
+  		
+  		<td> <?php echo $usuarios[$i]['nombre']?></td>
+  		<td> <?php echo $usuarios[$i]['nombreUsuario']; ?> </td>
+  		<td> <?php echo $usuarios[$i]['correo']?></td>
+  		<td>
+
+<!--Boton para editar un usuario-->
+        <button class="btn btn-primary" onclick="editarAdmin('<?php echo $usuarios[$i]['id_admin']?>')"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
+
+<!--Boton para eliminar un usuario, se deshabilita si es el usuario actual-->
+        <?php if ($sesion[0]['id'] == $usuarios[$i]['id_admin']) { ?>
+  		  <button disabled class="btn btn-danger" onclick="eliminarAdmin('<?php echo $usuarios[$i]['id_admin']?>')"><i class="fa fa-trash" aria-hidden="true"></i></button>
+  			<?php } else{ ?>
+        <button class="btn btn-danger" onclick="eliminarAdmin('<?php echo $usuarios[$i]['id_admin']?>')"><i class="fa fa-trash" aria-hidden="true"></i></button>
+
+        <?php } ?>
+
+  		</td>
+  	</tr>
+  <?php } ?>
+  </tbody>
+</table>
+</div>
+</div>
+</div>
+<!--FIN TABLA-->
+
+
+<script src="<?php echo $this->baseUrl(); ?>/plugins/dataTables-1.10.11/datatables.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function () {
+
+	$('#tabla-usuarios').DataTable({
+    	"bPaginate": true,
+        "lengthMenu": [[5, 10, 20, -1], [5, 10, 20, "Todos"]],
+        "bLengthChange": true,
+        "bFilter": true,
+        "bSort": true,
+        "bInfo": false,
+        "bAutoWidth": true,
+        "language": {
+            "lengthMenu": "Mostrar _MENU_ registros por p&aacute;gina",
+            "zeroRecords": "No se ha encontrado nada - lo sentimos",
+            "info": "Mostrando p&aacute;gina _PAGE_ de _PAGES_",
+            "infoEmpty": "No hay registros disponibles",
+            "search": "BUSCAR:&nbsp;&nbsp;&nbsp;&nbsp;",
+            "zeroRecords": "No se han encontrado registros que coincidan con la b&uacute;squeda",
+            "paginate": {
+                "first": "Primero",
+                "last": "&Uacute;ltimo",
+                "next": "Siguiente",
+                "previous": "Anterior"
+            }
+        }
+    });
+});
+
+
+//boton par abrir modal para agregar
+function nuevoUsuario(){
+	$.ajax({
+            url: BASE_URL + "/index.php/index/modal-agregar-admin",
+            dataType: 'html',
+            type: "POST",
+            data: {
+            }
+        }).done(function(response) {
+			$("#agregarAdmin").html(response);
+			$("#modalAgregarAdmin").modal();
+	});
+}
+
+//boton para abrir modal para editar
+function editarAdmin(id){
+  $.ajax({
+            url: BASE_URL + "/index.php/index/modal-editar-admin",
+            dataType: 'html',
+            type: "POST",
+            data: {id: id}
+        }).done(function(response) {
+
+      $("#editarAdmin").html(response);
+      $("#modalEditarAdmin").modal();
+  });
+}
+
+//oton para guardar cambios del modal para editar usuario
+function guardarCambios(){
+
+  if ($("#nombre").val() == "" || $("#nombre_usuario").val() == "" || $("#correo").val() == ""){
+      alert("Campos vacíos");
+      return;
+  }
+  else if($("#pass").val() != $("#pass2").val()){
+    alert("Las contraseñas no coinciden");
+    $('#pass').css('border-color','red');
+    $('#pass2').css('border-color','red');
+
+    return;
+  }
+  else{
+    var comproabacion = confirm("¿Desea guardar los cambios?");
+    if (comproabacion) {
+      esperaON();
+      $("#correo").css('border-color','');
+      $("#nombre_usuario").css('border-color','');
+      $('#pass').css('border-color','');
+      $('#pass2').css('border-color','');
+      $.ajax({
+        url: BASE_URL + "/index.php/index/editar-admin",
+        dataType: 'json',
+        type: "POST",
+        data: { 
+            id:           $("#id").val(),
+            nombre:       $("#nombre").val(), 
+            nombre_old:   $("#nombre_old").val(),
+            correo:       $("#correo").val(),
+            correo_old:   $("#correo_old").val(),
+            usuario:      $("#nombre_usuario").val(), 
+            usuario_old:  $("#nombre_usuario_old").val(), 
+            pass:         $("#pass").val(), 
+            pass_old:     $("#pass_old").val(), 
+        }
+      }).done(function(response) {
+        console.log(response);
+        alert(response.mensaje);
+        if(response.estado == "OK")
+          location = BASE_URL + "/index.php/index/cuentas-admin";
+        else if(response.estado == "CORREO")
+          $("#correo").css('border-color', 'red');
+        else if(response.estado == "USUARIO")
+          $("#nombre_usuario").css('border-color', 'red');
+        esperaOFF();
+            
+      });
+    } 
+  }
+}
+
+
+//boton eliminar
+function eliminarAdmin(id){
+    var comproabacion = confirm("¿Estás seguro de eliminar este usuario?");
+    
+    if (comproabacion) {
+    esperaON();
+    $.ajax({
+      url: BASE_URL + "/index.php/index/eliminar-admin/id/"+ id,
+      dataType: 'json',
+      type: "POST"
+    }).done(function(response){
+        console.log(response);
+        alert(response.mensaje);
+
+        if (response.estado == "OK")
+          location = BASE_URL + "/index.php/index/cuentas-admin";
+        else
+          esperaOFF();
+    })
+  }
+}
+
+//boton guardar del modal para crear
+function guardarAdmin(){
+
+  console.log($("#nombre").val());
+
+
+  if ($("#nombre").val() == "" || $("#nombre_usuario").val() == "" || $("#pass").val() == "" || $("#pass2").val() == "" || $("#correo").val() == ""){
+      alert("Campos vacíos");
+      return;
+  }
+  else if($("#pass").val() != $("#pass2").val()){
+    alert("Las contraseñas no coinciden");
+    $("#pass").css('border-color','red') ;
+    $("#pass2").css('border-color','red');
+    return;
+  }
+  else{
+  esperaON();
+  $("#correo").css('border-color','');
+  $("#nombre_usuario").css('border-color','');
+  $("#pass").css('border-color','') ;
+  $("#pass2").css('border-color','');
+
+	$.ajax({
+        url: BASE_URL + "/index.php/index/guardar-admin",
+        dataType: 'json',
+        type: "POST",
+        data: {
+        	nombre: $("#nombre").val(),
+        	nombre_usuario: $("#nombre_usuario").val(),
+        	pass: 	$("#pass").val(),
+          correo: $("#correo").val()
+    	}
+    }).done(function(response) {
+      console.log(response);  
+      alert (response.mensaje);
+
+      if(response.estado == "OK"){
+        location = BASE_URL + "/index.php/index/cuentas-admin"
+      }else if(response.estado == "CORREO"){
+        $("#correo").css('border-color','red');
+      }
+      else if(response.estado == "USUARIO"){
+        $("#nombre_usuario").css('border-color','red');
+      }
+      esperaOFF();
+    });
+  }
+}
+
+</script>
+
+
+<!--Modal para agregar usuario-->
+<div class="modal fade" id="modalAgregarAdmin" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 class="modal-title" id="exampleModalLabel">Nuevo administrador</h3>
+      </div>
+      <div class="modal-body">
+      
+      	<div id="agregarAdmin">
+      		
+      	</div>
+      
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+        <button type="button" class="btn btn-primary" onclick="guardarAdmin()">Guardar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!--Modal para editar usuario-->
+<div class="modal fade" id="modalEditarAdmin" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 class="modal-title" id="exampleModalLabel">Editar usuario</h3>
+      </div>
+      <div class="modal-body">
+      
+        <div id="editarAdmin">
+          
+        </div>
+      
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+        <button type="button" class="btn btn-primary" onclick="guardarCambios()">Guardar cambios</button>
+      </div>
+    </div>
+  </div>
+</div>

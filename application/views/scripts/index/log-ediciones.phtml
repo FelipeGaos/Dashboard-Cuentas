@@ -1,0 +1,55 @@
+<?php 
+  $horas= $this->horas;
+
+?>
+
+<div> <h4><?php echo $horas[0]['nombre']?></h4> 
+      <h4><?php echo $horas[0]['fecha']  ?></h4>
+</div>
+
+
+<form>
+
+  <div class="form-group col-md-6" style="width: 200px" style="float: left;">
+    <label for="ingreso" class="form-control-label">Hora de ingreso:</label>
+    <input type="hidden" class="form-control" id="vacio" value="<?php echo $horas[0]['salida']; ?>">
+    <input type="time" class="form-control" id="ingreso" value="<?php echo $horas[0]['ingreso']; ?>">
+    <input type="hidden" name="id_mov" id="id_mov" value="<?php echo $horas[0]['id']; ?>">
+    <input type="hidden" name="ingreso_old" id="ingreso_old" value="<?php echo $horas[0]['ingreso']; ?>">
+    <input type="hidden" name="salida_old" id="salida_old" value="<?php  
+    if(!is_null($horas[0]['salida']))
+        echo $horas[0]['salida']; 
+      else{
+        echo "18:00";
+      }
+    
+    ?>">
+    <input type="hidden" name="id_usuario" id="id_usuario" value="<?php echo $horas[0]['id_usuario']; ?>">
+  </div>
+  <div class="form-group col-md-6" style="width: 200px;">
+    <label for="salida" class="form-control-label">Hora de salida:</label>
+    <input type="time" class="form-control" id="salida" value="<?php 
+      $text = null;
+      if(!is_null($horas[0]['salida']))
+        echo $horas[0]['salida']; 
+      else{
+        echo "18:00";
+        $text = "(* No marcó hora de salida)";
+      }
+    ?>"  style="float: left;"> 
+  </div>
+  <br><br>
+  <div>
+    <p><?php echo $text ?></p>
+  </div>
+  <div class="form-group col-md-12" >
+    <label for="comentario" class="form-control-label">Comentario:</label>
+    <textarea class="form-control" id="comentario" style="max-width: 540px; height: 100px"></textarea>
+  </div>
+  <br>
+
+  <br><br><br><br><br><br>
+</form>
+
+<script type="text/javascript">
+</script>

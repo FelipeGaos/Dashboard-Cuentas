@@ -1,0 +1,52 @@
+@CHARSET "ISO-8859-1";
+.QSIPopOver div,.QSIPopOver dl,.QSIPopOver dt,.QSIPopOver dd,.QSIPopOver ul,.QSIPopOver ol,.QSIPopOver li,.QSIPopOver h1,.QSIPopOver h2,.QSIPopOver h3,.QSIPopOver h4,.QSIPopOver h5,.QSIPopOver h6,.QSIPopOver pre,.QSIPopOver form,.QSIPopOver fieldset,.QSIPopOver textarea,.QSIPopOver p,.QSIPopOver blockquote,.QSIPopOver th,.QSIPopOver td {margin:0;padding:0;color: black;font-family: arial;font-size: 12px;line-height: normal;}.QSIPopOver ul {margin: 12px 0;padding-left: 40px;}.QSIPopOver ol,.QSIPopOver ul {margin: 12px 0;padding-left: 40px;}.QSIPopOver ul li {list-style-type: disc;}.QSIPopOver ol li {list-style-type: decimal;}.QSIPopOver .scrollable {-webkit-overflow-scrolling: touch;}.QSIPopOver table {border-collapse: collapse;border-spacing: 0;}.QSIPopOver table td {padding: 2px;}
+
+	table
+	{
+		border-spacing:0;
+	    border-collapse: collapse; /* 'cellspacing' equivalent */
+	    border: 0px solid black;
+	}
+	
+	table td, table th
+	{
+	    padding: 2px; /* 'cellpadding' equivalent */
+	}
+	.breadcrumb {
+		color: #F78E1E;
+		font-family: Tahoma;
+		font-size: 1.1em;
+		padding: 0 0 20px 2px;
+		float: none;
+		width: 70%;
+	}
+	#buscadorEquipos {
+		float: right;
+		display: block;
+		position: relative;
+		top: -33px;
+		right: 22px;
+	}
+	.caja-opciones.carcs ul li{
+		padding-left: 0;
+		background: none;
+	}
+	
+	#mantencion-pagina{
+		color: #0073AE;
+	    height: 160px;
+	    margin: auto;
+	    text-align: center;
+	    width: 335px;
+	}
+	#mantencion-pagina h1{
+		font:bold 12px Arial;
+		margin-bottom:10px;
+		padding-left:0px;
+		background:none;
+		text-align:left;
+	}
+	#mantencion-pagina h2{
+		font:12px Arial;
+		text-align:left;
+	}

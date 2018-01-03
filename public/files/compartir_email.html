@@ -1,0 +1,38 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  	<meta content="text/html; charset=UTF-8" http-equiv="content-type">
+	<title>Entel - Compartir por Correo</title>
+	<link rel="stylesheet" type="text/css" href="compartir_email.css" media="all">
+	<script type="text/javascript" src="../js/jquery/jquery-1.10.2.min.js"></script>
+	<script type="text/javascript" src="entel.footer.compartir.js"></script>
+</head>
+<body>
+	<div id="caja_compartir" class="compartir cleafix">
+		<div id="contenido_compartir" class="contenido_compartir">
+			<div class="label"><strong>Para </strong> (e-mail)</div>
+			<div class="input"><input type="text" name="destino" class="inputstyle"></div>
+			
+			<div class="label"><strong>Tu nombre</strong></div>
+			<div class="input"><input type="text" name="nombre_remitente" class="inputstyle"></div>
+			
+			<div class="label"><strong>Tu correo</strong></div>
+			<div class="input"><input type="text" name="remitente" class="inputstyle"></div>
+			
+			<div class="botones clearfix">
+				<div class="exito"><a href="http://www.entel.cl/personas/includes/footer/compartir_email.iws#" id="enviarCompartir">Enviar</a></div>
+				<!--<div class="cancelar"><a href="#" id="btnCompartirCancelar">Cancelar</a></div>-->
+			</div>
+			
+			<input type="hidden" id="urlExterna" value="">
+		</div>
+		
+		<div id="contenido_exito" class="contenido_compartir exito">
+			<br><br><br><br><br>
+			<div class="label">Tu mensaje ha sido enviado exitosamente.</div>
+			<a href="http://www.entel.cl/personas/includes/footer/compartir_email.iws#" class="btnVolver">Volver</a>
+		</div>
+	</div>
+
+</body>
+</html>

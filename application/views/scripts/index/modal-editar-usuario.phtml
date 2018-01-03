@@ -1,0 +1,35 @@
+<?php 
+  $usuario = $this->usuario;
+?>
+
+<div >
+  <form>
+  <label for="nombre" class="form-control-label">NOMBRE:</label>
+    <input class="form-control" type="text" name="nombre" id="nombre" value="<?php 
+      echo  $usuario[0]['nombre'];
+    ?>">
+  <label for="correo" class="form-control-label">CORREO:</label>
+    <input class="form-control" type="text" name="correo" id="correo" value="<?php 
+      echo  $usuario[0]['correo'];
+    ?>">
+  <label for="rut" class="form-control-label">RUT:</label>
+    <input class="form-control" type="text" name="rut" id="rut" value="<?php 
+      echo  $usuario[0]['rut'];
+    ?>">
+  <label for="cargo" class="form-control-label">CARGO:</label>
+    <input class="form-control" type="text" name="cargo" id="cargo" value="<?php 
+      echo $usuario[0]['cargo'];
+    ?>">
+  <label for="horas" class="form-control-label">HORAS DIARIAS:</label>
+    <input class="form-control" type="time" name="horas" id="horas" value="<?php 
+      echo $usuario[0]['horas'];
+    ?>">
+    <input type="hidden" name="" id="id" value="<?php echo $usuario[0]['id_usuario'] ?>">
+
+    
+
+    
+    
+
+  </form>
+</div>

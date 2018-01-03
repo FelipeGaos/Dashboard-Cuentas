@@ -1,0 +1,80 @@
+.envoltorio {
+    margin: 5px 15px;
+}
+
+.select-data {
+	background:#FAFAFA;
+	border:1px solid #C1C1C1;
+	border-radius:3px;
+	-webkit-border-radius:3px; 
+	-moz-border-radius:3px;
+	box-shadow: 0 0 0 0;
+	-webkit-box-shadow: 0 0 0 0;
+	-moz-box-shadow: 0 0 0 0;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	margin-right:3px;
+	padding:5px 5px;
+	font-size: 12px;
+	width: 150px;
+	cursor: pointer;
+}
+
+.base_boton {
+	border:none;
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	color:#FFF;
+	cursor:pointer;
+	display: inline-block;
+	font:bold 12px "Trebuchet ms", Arial;
+	font-weight:bold;
+	padding: 5px 8px;
+	margin-right: 4px;
+	text-align: center;
+	text-decoration: none;
+	border-radius: 3px;
+	-webkit-border-radius:3px; 
+	-moz-border-radius:3px;
+}
+
+.btnRojoMin{
+	background-color: #E08484;
+}
+.btnRojoMin:hover{
+	background-color: #D14747;
+}
+
+.btnCelesteMin{
+	background-color: #A7C4F8;
+	color: #383838;
+}
+.btnCelesteMin:hover{
+	background-color: #93b6f7;
+	color: #383838;
+}
+
+.btnVerdeMin, .btnVerde{
+	background-color: #66B18D;
+}
+.btnVerdeMin:hover, .btnVerde:hover{
+	background-color: #1EA966;
+}
+
+.btnAzulMin, .btnAzul{
+	background-color: #0073AE;
+}
+.btnAzulMin:hover, .btnAzul:hover{
+	background-color: #0073AE;
+}
+
+.label-azul {
+    font-size: 13px;
+	color:#0073AE; 
+	font-weight: bold;
+}
+
+.titulo-general {
+	font-size: 20px;
+    font-weight:600;
+	color:#0073AE; 
+}

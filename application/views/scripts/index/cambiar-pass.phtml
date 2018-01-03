@@ -1,0 +1,61 @@
+<div id="cambiar" class="generar_div">
+                            	
+                            	
+                                <form id="frm_cambiar_clave" class="form-signin" action="" method="post">
+                                    <h3 class="form-signin-heading">Cambiar Clave</h3>
+                                     		
+                                     		<input name="clave_actual" id="clave_actual" type="password" class="form-control" placeholder="Clave Actual" required>
+                                     	
+                                     		
+                                     		<input name="clave_nueva" id="clave_nueva" type="password" class="form-control" placeholder="Clave Nueva" required>
+                                     	
+                                     		
+                                     		<input name="clave_nueva2" id="clave_nueva2" type="password" class="form-control" placeholder="Repetir Clave Nueva" required>
+                                     	
+                                    <div class="contenedor-botones">
+                                        <div class="contenedor-boton-ingresar">
+                                           
+                                             <button id="btn_cambiar" class="btn btn-lg btn-primary btn-block" type="submit">[ Cambiar_</button>
+                                        </div>
+                                    </div>	
+                                 </form>
+                            </div>
+
+    
+   
+<script type="text/javascript">
+
+$(document).ready(function(){
+
+
+
+ $("#btn_cambiar").click(function() {
+		esperaON();
+		postData = "clave_actual=" + $("#clave_actual").val();
+		postData += "&clave_nueva=" + $("#clave_nueva").val();
+		postData += "&clave_nueva2=" + $("#clave_nueva2").val();
+			
+
+		$.post("<?php echo $this->baseUrl();?>/index.php/index/cambiar-clave/", postData, function(data){
+			data=data.trim();
+			//msg = data + ' ' + data.length + ' ';
+                      //  alert(data);
+                        op="ERR";
+			if (data == "OK") {
+				msg ="Clave Cambiada";
+				op="OK";
+			}
+			else  {
+				msg = data;
+			}
+                        esperaOFF();
+			mensaje(msg,op);
+			
+			
+		});		
+	});
+  
+  
+  
+  });
+</script>

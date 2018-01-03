@@ -1,0 +1,27 @@
+    <script async defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBzAIijSQnWLMwxo_Ixuw68VwbMn55kiM4&callback=initMap"></script>
+
+<?php 
+  $x = $this->xin;
+  $y = $this->yin;
+?>
+
+  <div id="map" style="width: 500px; height: 400px;"></div>
+
+  <script>
+
+function initMap() {
+  var myLatLng = {lat: <?php echo $y ?>, lng: <?php echo $x ?>};
+
+  var map = new google.maps.Map(document.getElementById('map'), {
+    zoom: 16,
+    center: myLatLng
+  });
+  marker = new google.maps.Marker({
+            position: myLatLng,
+            map: map
+        });
+}
+
+    </script>
+  

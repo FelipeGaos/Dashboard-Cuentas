@@ -1,0 +1,147 @@
+ <div id="menu_login" style="display:none">
+<div id="login">
+    <form  name="frm_login" id="frm_login" class="form-signin" role="form" action="#" method="post">
+        <h3 class="form-signin-heading">Ingrese nombre de usuario y clave:</h3>
+        <input name="username" type="text" class="form-control" placeholder="Usuario" required autofocus>
+        <input name="clave" type="password" class="form-control" placeholder="Password" required>
+        <label class="checkbox">
+          <input type="checkbox" value="remember-me"> 
+          Recordarme
+        </label>
+        
+        <button id="bt_ingresar" class="btn btn-lg btn-primary btn-block" type="submit">[ Ingresar_</button>
+        <a href="#" id="btn_nueva_clave">[Nueva Clave]</a> | <a href="#" id="bt_cambiar_clave">[Cambiar Clave]</a>
+      </form>
+</div>
+<div id="generar" style="display: none;" class="generar_div">
+                            	<h3>Ingrese  nombre de usuario o e-mail</h3>
+                            	<div class="borde-login"></div>
+                            	<div class="fila-formulario clearfix">
+										<div class="input"><span class="form-signin">
+										  <input type="text" class="form-control" placeholder="Usuario" required autofocus>
+										</span></div>
+								</div>
+                                <div class="contenedor-botones">
+                                     <div class="solicitar-clave"></div>
+                                     <div class="contenedor-boton-ingresar">
+                                   
+  <button id="bt_generar" class="btn btn-lg btn-primary btn-block" type="submit">[ Generar_</button>     
+<a href="#" id="bt_login2">[Login]</a>
+</div>
+                                </div>							
+							
+</div>
+
+    </div>   <!-- /menu login --> 
+    
+
+    
+   
+<script type="text/javascript">
+function mensaje(msg,opcion) {
+  //exito=ok,alerta= inf, error= err
+  
+  $("#mensaje").html("<div id='msj'></div>");
+  if(opcion=='OK'){$("#msj").attr('class','alert alert-success alert-dismissible');}
+  if(opcion=='INF'){$("#msj").attr('class','alert alert-warning alert-dismissible');}
+  if(opcion=='ERR'){$("#msj").attr('class','alert alert-danger alert-dismissible');}
+  
+  $("#msj").html(' <button type="button" class="close" data-dismiss="alert">&times;</button>');
+  $("#msj").append(msg);
+
+  $("#mensaje").show();
+};
+$(document).ready(function(){
+<?php if (!isset($this->session->username)) {?>  
+$("#menu_login").show();
+<?php } ?> 
+  $('ul.dropdown-menu [data-toggle=dropdown]').on('click', function(event) {
+      event.preventDefault(); 
+      event.stopPropagation(); 
+      $(this).parent().siblings().removeClass('open');
+      $(this).parent().toggleClass('open');
+    });
+
+
+$("#btnFormBuscadorEntel").click(function () {
+  
+    mensaje('No implementado ...','ok');
+  });
+
+$("#btn_nueva_clave").click(function () {
+  $("#login").hide();
+  $("#generar").show();
+    
+  }); 
+  $("#bt_cambiar_clave").click(function () {
+    $("#login").hide();
+    $("#cambiar").show();
+    
+  });
+    $("#bt_login").click(function () {
+    $("#login").show();
+    $("#generar").hide();
+    $("#cambiar").hide();
+    
+  });
+  $("#bt_login2").click(function () {
+    $("#login").show();
+    $("#generar").hide();
+    $("#cambiar").hide();
+    
+  });
+  $("#bt_ingresar").click(function (){
+      postData=$("#frm_login").serialize();
+      		$.post("<?php echo $this->baseUrl();?>/index.php/index/login/", postData, function(data){
+			data=data.trim();
+                        
+			//msg = data + ' ' + data.length + ' ';
+			if (data == "<?php echo My_Constantes::STATUS_OK;?>") {
+				msg ="Autenticacion Correcta";
+                                op="OK"
+		   		setTimeout(function()
+		   				{
+		   	         		location.reload();
+		   				}, 1000);			
+			}
+			else {
+				msg ="Usuario/Clave no corresponde";
+                                op="ERR"
+			}
+                        
+			mensaje(msg,op);
+	   		
+		});
+  });
+  
+  $("#btn_generar").click(function() {
+		$("#btn_generar").attr("disabled", "disabled");
+		postData = "username=" + $("#username-e_mail").val();
+		$("#username-e_mail").val("");
+		$('#clave_spin').html('');
+		$('#clave_spin').spin(opts);
+		$.post("<?php echo $this->baseUrl();?>/index.php/index/nueva-clave/", postData, function(data){
+			data=data.trim();
+			//msg = data + ' ' + data.length + ' ';
+			if (data == "<?php echo My_Constantes::STATUS_OK;?>") {
+				msg ="E-mail con nueva clave enviado";
+		   		setTimeout(function()
+		   				{
+		   	         	  	$('#mensaje').html('');
+		   	         		$('#mensaje').dialog("close");
+		   				}, 1000);				
+			}
+			else if (data == "<?php echo My_Constantes::STATUS_ERROR_USER_NOTFOUND;?>") {
+				msg ="E-mail no registrado";
+			}
+			else  {
+				msg ="Error al generar nueva clave";
+			}
+			mensaje(msg);
+			$('#clave_spin').html('');
+			$("#btn_generar").removeAttr("disabled");
+		});		
+	});
+  
+  });
+</script>

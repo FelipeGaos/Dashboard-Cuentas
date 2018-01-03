@@ -1,0 +1,185 @@
+
+<?php
+echo "<script src='".$this->baseUrl()."/js/jquery.mtz.monthpicker.js'></script>";
+	//$this->headScript()->appendFile($this->baseUrl().'/js/jquery.mtz.monthpicker.js','text/javascript');
+	$rs = $this->infoUsuarios;
+	$fecha = $this->fecha;
+	$feriado = $this->feriados;
+	$feriados = array();
+
+	foreach ($this->feriados as $value) {
+		$fechaSeleccionada = explode("-", $value['fecha']);
+		$fechaSeleccionada = $fechaSeleccionada[0]."-".$fechaSeleccionada[1];
+		if ($fecha == $fechaSeleccionada)
+			$feriados[] = $value['fecha'];
+	}
+
+	//print_r($rs);
+	$fechaHoy = getdate();
+	//primer dia de este mes
+	$fechaInicio = "1-". $fechaHoy['mon']."-".$fechaHoy['year'];
+	//hoy
+	$fechaFin = $fechaHoy['mday']."-".$fechaHoy['mon']."-".$fechaHoy['year'];
+
+//cuenta dias habiles para poder calcular las horas que se deberian haber trabajado a la fecha actual
+function getDiasHabiles($fechainicio, $fechafin, $diasferiados = array()) {
+// Convirtiendo en timestamp las fechas
+	$fechainicio = strtotime($fechainicio);
+	$fechafin = strtotime($fechafin);
+
+// Incremento en 1 dia
+	$diainc = 24*60*60;
+
+// Arreglo de dias habiles, inicianlizacion
+	$diashabiles = array();
+
+// Se recorre desde la fecha de inicio a la fecha fin, incrementando en 1 dia
+	for ($midia = $fechainicio; $midia <= $fechafin; $midia += $diainc) {
+// Si el dia indicado, no es sabado o domingo es habil
+		if (!in_array(date('N', $midia), array(6,7))) { // DOC: http://www.php.net/manual/es/function.date.php
+// Si no es un dia feriado entonces es habil
+			if (!in_array(date('Y-m-d', $midia), $diasferiados)) {
+				array_push($diashabiles, date('Y-m-d', $midia));
+			}
+		}
+	}
+	return count($diashabiles);
+}
+	if(date('Y-m') == $fecha){
+ 			$diasHabiles = getDiasHabiles($fechaInicio, $fechaFin, $feriados);
+ 	}
+ 	else{
+ 			
+ 			$fechaArr = explode("-", $fecha);
+ 			
+ 			$fechaInicio = "1-".$fechaArr[1]."-".$fechaArr[0];
+ 			$fechaFin = "30-".$fechaArr[1]."-".$fechaArr[0];
+
+ 			$diasHabiles = getDiasHabiles($fechaInicio, $fechaFin, $feriados);
+ 	}
+?>
+
+
+<link rel='stylesheet' href='http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.18/themes/base/jquery-ui.css'>
+<link href="<?php echo $this->baseUrl(); ?>/plugins/dataTables-1.10.11/datatables.min.css" rel="stylesheet">
+
+
+
+<div class="container">
+
+	<h1>Horario de los trabajadores</h1>
+	
+	
+		
+		<br>
+<!--seleccionar un periodo -->		
+	<div class="inline-block col-md-4 col-md-offset-3 col-sm-4 col-sm-offset-2 text-center">
+		
+			<label>Seleccionar periodo</label>
+   			<input type="text" class="form-control" id="periodo" placeholder="<?php echo $fecha ?>" ?>
+	   		<br>
+		</div>
+	
+</div>
+<br>
+
+<!--muestra resultados de consulta en una tabla-->	
+
+<div class="panel panel-default">
+<div class="panel-heading">Resultados, periodo <?php echo $fecha ?> </div>
+<div class="panel-body">
+<div class="table-responsive">
+<table class="table table-striped text-center" id="tabla-trabajador">
+ <thead>
+ <tr>
+ 	<th style="width: 90px;">Rut</th>
+ 	<th style="width: 180px;">Nombre</th>
+ 	<th>Correo</th>
+ 	<th style="width: 60px">Horas mensuales asignadas</th>
+ 	<th style="width: 60px">Horas requeridas este periodo</th>
+ 	<th style="width: 60px">Horas realizadas</th>
+ 	<th style="width: 60px">Imprimir hoja</th>
+ </tr>
+</thead>
+<tbody>
+<?php 
+	for($i=0; $i<count($rs);$i++){
+?>
+
+ <tr>
+ <!-- detalles de cada usuario-->
+ 	<td><?php echo $rs[$i]['Rut'] ?> </td>
+ 	<td><button type="button" class="btn btn-link" onclick="verHorasMensual('<?php echo $rs[$i]['id'] ?>','<?php  echo $fecha?>')"><?php echo $rs[$i]['nombre'] ?></button></td>
+ 	<td> <?php echo $rs[$i]['correo']?></td>
+ 	<td> <?php echo $rs[$i]['horasMensuales'] ?> </td>
+ 	<td> <?php echo ($diasHabiles)* $rs[$i]['horasDiarias'] ?> </td>
+ 	<td> <?php echo $rs[$i]['horas'] ?> </td>
+ 	<td> <button class="btn btn-default" type="button" onclick="imprimir('<?php echo $rs[$i]['id'] ?>','<?php  echo $fecha?>')"><i class="fa fa-print" aria-hidden="true"></i></button></td>
+</tr>
+
+
+<?php }?>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+
+<script src="<?php echo $this->baseUrl(); ?>/plugins/dataTables-1.10.11/datatables.min.js"></script>
+<script >
+	function verHorasMensual(id, fecha){
+		
+		location = BASE_URL + "/index.php/index/ver-horas-mensual/id/"+ id + "/fecha/" + fecha
+		
+	};
+
+
+	function imprimir(id, fecha){
+		location = BASE_URL + "/index.php/index/imprimir-hoja/id/"+ id + "/fecha/" + fecha
+	}
+
+	$(document).ready(function () {
+		
+		options = {
+	   		pattern: 'yyyy-mm', // Default is 'mm/yyyy' and separator char is not mandatory
+	   		startYear: 2010,
+	   		finalYear: 2025,
+	   		monthNames: ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic']
+		};
+		$('#periodo').monthpicker(options);
+	   	$('#periodo').monthpicker().bind('monthpicker-click-month', function (e, month) {	
+
+	   		location = BASE_URL + "/index.php/index/ver-horas-total/fecha/"+ $('#periodo').val();
+
+		}); 
+
+		$('#tabla-trabajador').DataTable({
+           "bPaginate": true,
+           "lengthMenu": [[5, 10, 20, -1], [5, 10, 20, "Todos"]],
+           "bLengthChange": true,
+           "bFilter": true,
+           "bSort": true,
+           "bInfo": false,
+           "bAutoWidth": true,
+           "language": {
+               "lengthMenu": "Mostrar _MENU_ registros por p&aacute;gina",
+               "zeroRecords": "No se ha encontrado nada - lo sentimos",
+               "info": "Mostrando p&aacute;gina _PAGE_ de _PAGES_",
+               "infoEmpty": "No hay registros disponibles",
+               "search": "BUSCAR:&nbsp;&nbsp;&nbsp;&nbsp;",
+               "zeroRecords": "No se han encontrado registros que coincidan con la b&uacute;squeda",
+               "paginate": {
+                   "first": "Primero",
+                   "last": "&Uacute;ltimo",
+                   "next": "Siguiente",
+                   "previous": "Anterior"
+               }
+           },
+           "responsive": true
+       });
+   
+
+	});
+
+</script>
+

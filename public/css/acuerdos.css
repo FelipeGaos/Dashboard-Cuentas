@@ -1,0 +1,108 @@
+table.estado {
+	border: 0px solid black;
+	border-color: inherit;
+	border-top-color: inherit;
+	border-right-color: inherit;
+	border-bottom-color: inherit;
+	border-left-color: inherit;
+	table-layout: fixed;
+	font-weight: bold;
+	width: 200px;
+}
+
+th.estado {
+	border: 0px solid black;
+	font-size: 10px;
+	overflow: hidden;
+	width: 400px;
+	font-size: 10px;
+}
+
+td.estado {
+	border-color: inherit;
+	border-top-color: inherit;
+	border-right-color: inherit;
+	border-bottom-color: inherit;
+	border-left-color: inherit;
+	overflow: hidden;
+	width: 200px;
+	font-size: 10px;
+	font-color: #FFFFFF;
+    height: 25px;
+    padding: 10px;
+}
+
+th.estado_sce {
+	border-color: inherit;
+	border-top-color: inherit;
+	border-right-color: inherit;
+	border-bottom-color: inherit;
+	border-left-color: inherit;
+	font-weight: bold;
+	overflow: hidden;
+	width: 90px;
+    height: 25px;
+	font-size: 10px;
+}
+
+td.estado_sce {
+	border-color: inherit;
+	border-top-color: inherit;
+	border-right-color: inherit;
+	border-bottom-color: inherit;
+	border-left-color: inherit;
+	overflow: hidden;
+	width: 120px;
+	font-size: 10px;
+}
+
+tr:hover td{
+	background-color: lightsteelblue;
+}
+
+.fila_0 { background-color: #FFFFFF;}
+.fila_1 { background-color: #E1E8F1;}
+
+.fixed-dialog {
+  position: fixed !important;
+  top: 80px !important;
+}
+
+
+/* 
+    Created on : 29-08-2014, 10:34:07 AM
+*/
+@CHARSET "UTF-8";
+#grilla table tr td{
+    font-family: 'Segoe UI Semilight', 'Open Sans', Verdana, Arial, Helvetica, sans-serif;
+    font-size: 11px;
+}
+#grilla table tr th{
+    font-family: 'Segoe UI Semilight', 'Open Sans', Verdana, Arial, Helvetica, sans-serif;
+    font-size: 11px;
+    text-align: center;
+}
+#jtable-edit-form {
+    display: block;
+    width: 450px;
+    -moz-column-gap:40px;
+    -webkit-column-gap:40px;
+    column-gap:40px;
+    -moz-column-count:2;
+    -webkit-column-count:2;
+    column-count:2;
+}
+
+#jtable-create-form {
+    display: block;
+    width: 480px;
+    -moz-column-gap:50px;
+    -webkit-column-gap:50px;
+    column-gap:50px;
+    -moz-column-count:3;
+    -webkit-column-count:3;
+    column-count:3;
+}
+#jtable-create-form  input{
+    border: 1px solid rgb(160, 160, 160);
+}

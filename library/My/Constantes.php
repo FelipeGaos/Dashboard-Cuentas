@@ -1,0 +1,34 @@
+<?php
+
+Class My_Constantes {
+	
+    // STATUS GENERICOS:
+    // ===============================================
+    const STATUS_NOT_FOUND = "-1";
+	const STATUS_OK = "1";
+	const STATUS_ERROR = "0";
+	const STATUS_ERROR_USER_NOTFOUND = "2";
+	const STATUS_ERROR_FILE = "3";
+	const STATUS_ERROR_SQL = "4";
+	const STATUS_ERROR_FILENAME = "5";
+	const STATUS_ERROR_CONTENIDO = "6";
+	const STATUS_SESION_EXPIRADA = "7";
+	const STATUS_ERROR_CLAVENUEVA_NO_COINCIDE = "8";
+	const STATUS_ERROR_CLAVEACTUAL_NO_COINCIDE = "9";
+	const STATUS_NOT_GGSN_REGISTERED = "10";
+	const STATUS_COMMAND_NOT_ALLOWED = "11";
+    
+    
+    // OSS STATUS
+    // ==========================================================
+	const OSS_STATUS_OK = "CREADO";
+	const OSS_STATUS_OK_CLAVE = "CLAVE CAMBIADA";
+	const OSS_STATUS_DESCONECTADO = "DESCONECTADO";
+	const OSS_STATUS_EXISTENTE = "USUARIO EXISTENTE";
+	const OSS_STATUS_USER_NO_EXISTE = "USUARIO NO EXISTE EN OSS";
+	const OSS_STATUS_UID_EXISTENTE = "UID EXISTENTE";
+	const OSS_STATUS_LARGO_USERNAME = "LARGO USERNAME EXCEDE 8 CARACTERES";
+	const OSS_STATUS_ERROR_GENERICO = "ERROR GENERICO";
+    
+    
+} // End Class

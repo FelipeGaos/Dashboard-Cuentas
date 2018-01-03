@@ -1,0 +1,78 @@
+/*****************************************/
+/*      BOTON CUADRADO NARANJA             */
+/*****************************************/
+
+
+.btnNaranjaCuadrado{
+	background: #ff6702;
+	color: #FFF;
+	display: inline-block;
+	font:bold 12px "Trebuchet ms", Arial;
+	height: 23px;
+	padding-top: 5px;
+	text-align: center;
+	text-decoration: none;
+	width:125px;
+	cursor:pointer;
+	margin-bottom:10px;
+}
+.btnNaranjaCuadrado:hover{
+	background: #F37F42;
+}
+/* boton base */
+.base_boton {
+	border:none;
+	-webkit-appearance: none; 
+	-moz-appearance: none;
+	color:#FFF;
+	cursor:pointer;
+	display: inline-block;
+	font:bold 12px "Trebuchet ms", Arial;
+	font-weigth:bold;
+	padding: 4px 7px;
+	margin-left: 4px;
+	text-align: center;
+	text-decoration: none;
+	border-radius: 3px;
+	-webkit-border-radius:3px; 
+	-moz-border-radius:3px;
+}
+.btnAzul, .btnVerde{
+	font-size: 14px;
+}
+.btnRojoMin{
+	background-color: #E08484;
+}
+.btnRojoMin:HOVER{
+	background-color: #D14747;
+}
+.btnAzulMin, .btnAzul{
+	background-color: #0073AE;
+}
+.btnAzulMin:HOVER, .btnAzul:HOVER{
+	background-color: #0073AE;
+}
+.btnVerdeMin, .btnVerde{
+	background-color: #66B18D;
+}
+.btnVerdeMin:HOVER, .btnVerde:HOVER{
+	background-color: #59aa84;
+}
+.btnCelesteMin{
+	background-color: #A7C4F8;
+	color: #383838;
+}
+.btnCelesteMin:HOVER{
+	background-color: #93b6f7;
+	color: #383838;
+}
+.btn_inactivo{
+    opacity: 0.5;
+}
+/* boton azul */
+.btnAzulMin, .btnAzul{
+	background-color: #0073AE;
+}
+.btnAzulMin:HOVER, .btnAzul:HOVER{
+	background-color: #0073AE;
+}

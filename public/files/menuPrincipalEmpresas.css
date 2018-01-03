@@ -1,0 +1,216 @@
+/*------------------------------
+ *   MENU PRINCIPAL: EMPRESAS
+ *----------------------------*/
+#cabecera_menu .menu_principal {
+	background:#0073AE;
+	width:940px;
+	display:block;
+}
+#cabecera_menu .menu_principal_top,
+#cabecera_menu .menu_principal_tabs_top,
+#cabecera_menu .menu_principal_bottom {
+	height:2px;
+	display:block;
+	font-size:1px;
+}
+
+#cabecera_menu .menu_principal_tabs_top {
+	background:url(../../img/cabecera/menu_top.png) top left no-repeat;
+}* html #cabecera_menu .menu_principal_tabs_top {
+	background:url(../../img/cabecera/menu_top.gif) top left no-repeat;
+}
+#cabecera_menu .menu_principal_top {
+	background:url(../../img/cabecera/empresas/menu_top.png) top left no-repeat;
+}* html #cabecera_menu .menu_principal_top {
+	background:url(../../img/cabecera/empresas/menu_top.gif) top left no-repeat;
+}
+#cabecera_menu .menu_principal_bottom {
+	background:url(../../img/cabecera/menu_bottom.png) top left no-repeat;
+}* html #cabecera_menu .menu_principal_bottom {
+	background:url(../../img/cabecera/menu_bottom.gif) top left no-repeat;
+}
+
+#cabecera_menu .menu_principal_main {
+	padding:1px 0 1px 0;
+}
+
+#cabecera_menu .menu_principal_main.mp_paddding{
+	padding-bottom:0;
+}
+
+#cabecera_menu .menu_principal_main .mp_flotar_izq{
+	float:left;
+	width:auto;
+}
+
+/* --------- */
+/* Menu Tabs */
+
+#cabecera_menu .menu_tabs_left{
+	background:url(../../img/cabecera/empresas/menu_left.png) no-repeat left top;
+	float:left;
+	width:8px;
+	height:38px;
+}
+* html #cabecera_menu .menu_tabs_left{
+	background:url(../../img/cabecera/empresas/menu_left.gif) no-repeat left top;
+}
+
+#cabecera_menu .menu_tabs_right{
+	background:url(../../img/cabecera/empresas/menu_right.png) no-repeat left top;
+	float:left;
+	width:8px;
+	height:38px;
+}
+* html #cabecera_menu .menu_tabs_right{
+	background:url(../../img/cabecera/empresas/menu_right.gif) no-repeat left top;
+}
+
+#cabecera_menu .menu_tabs_center{
+	background:url(../../img/cabecera/empresas/menu_center.png) repeat-x left top;
+	float:left;
+	height:38px;
+	width:924px;
+}
+*html #cabecera_menu .menu_tabs_center{
+	background:url(../../img/cabecera/empresas/menu_center.gif) repeat-x left top;
+}
+
+#cabecera_menu .menu_tabs_center ul{
+	padding-top:6px;
+}
+
+#cabecera_menu .menu_tabs {
+	background:none;
+	width:730px;
+}
+#cabecera_menu .menu_tabs ul li {
+	background:none;
+	display:block;
+	float:left;
+	padding-left:0;
+}
+#cabecera_menu .menu_tabs ul li a {
+	color:#0073AE;
+	text-decoration:none;
+	font-family:Tahoma;
+	font-size:12px;
+	display:block;
+}
+#cabecera_menu .menu_tabs ul li a span {
+	display:block;
+	padding:2px 8px 4px 12px;
+}
+
+/* ------------------------ */
+/* Menu Tabs > Seleccionado */
+#cabecera_menu .menu_tabs ul li a.mt_seleccionado {	
+	color:#F78E1E;
+	font-weight:bold;	
+}
+
+#cabecera_menu .menu_tabs ul li a:hover {
+	color:#F78E1E;
+}
+
+/* ------------ */
+/* Menu > Lista */
+
+#cabecera_menu .menu_principal ul li {
+	background:none;
+	float:left;
+	display:block;
+	padding-left:4px;
+	/*margin-right:57px;*/
+}
+#cabecera_menu .menu_principal ul li.ultimo-item-menu {margin-right:0px;}
+#cabecera_menu .menu_principal ul li a {
+	display:block;
+	float:left;
+	padding-right:3px;
+	height:30px;
+	font-family:Tahoma;
+	font-size:12px;
+	color:#FFF;
+	text-decoration:none;
+}* html #cabecera_menu .menu_principal ul li a {
+	float:left;
+}*:first-child+html #cabecera_menu .menu_principal ul li a {
+	height:auto;
+}
+
+#cabecera_menu .menu_principal ul li a span {
+	display:block;
+	padding:7px 8px 9px 11px;
+}
+
+/* -------------------- */
+/* Menu > Lista > Hover */
+#cabecera_menu .menu_principal ul li a:hover {
+	background:url(../../img/cabecera/empresas/menu_seleccionado.gif) right -30px no-repeat; /* #015083; */
+	height:30px;
+	display:block;
+}*:first-child+html #cabecera_menu .menu_principal ul li a:hover {
+	height:auto;
+}
+
+#cabecera_menu .menu_principal ul li a:hover span {
+	background:url(../../img/cabecera/empresas/menu_seleccionado.gif) top left no-repeat;
+	display:block;
+	cursor:pointer;
+}* html #cabecera_menu .menu_principal ul li a:hover span {
+	/*padding-bottom:0;
+	height:23px;*/
+	height:auto !important;
+	float:left;
+	display:block;
+}
+
+/* --------------------------- */
+/* Menu > Lista > Seleccionado */
+
+#cabecera_menu .menu_principal ul li a.seleccionado {
+	background:url(../../img/cabecera/empresas/menu_seleccionado.gif) right -30px no-repeat;
+	height:30px;
+	display:block;
+	font-weight:bolder;
+}
+#cabecera_menu .menu_principal ul li a.seleccionado span {
+	background:url(../../img/cabecera/empresas/menu_seleccionado.gif) top left no-repeat;
+	display:block;
+}* html #cabecera_menu .menu_principal ul li a.seleccionado span {
+	padding-bottom:0;
+	height:23px;
+	float:left;
+	display:block;
+}
+
+/* --------------------------- */
+/* Menu > Lista > Seleccionado TAG */
+
+#cabecera_menu .menu_principal ul li a.select_tag, * html #cabecera_menu .menu_principal ul li a.select_tag:hover {
+	padding-right:7px;
+	color:#F78E1E;
+	background:url(../../img/cabecera/empresas/menu_select_tag.png) right -33px no-repeat;
+	display:block;
+	font-weight:bold;
+	height:33px;	
+}*:first-child+html #cabecera_menu .menu_principal ul li a.select_tag:hover {
+	height:auto;
+}
+* html #cabecera_menu .menu_principal ul li a.select_tag, * html #cabecera_menu .menu_principal ul li a.select_tag:hover{
+	background:url(../../img/cabecera/empresas/menu_select_tag.gif) right -33px no-repeat;
+}
+
+#cabecera_menu .menu_principal ul li a.select_tag span, * html #cabecera_menu .menu_principal ul li a.select_tag:hover span {
+	background:url(../../img/cabecera/empresas/menu_select_tag.png) top left no-repeat;
+	display:block;	
+	padding:7px 10px 12px 14px;
+}* html #cabecera_menu .menu_principal ul li a.select_tag span, * html #cabecera_menu .menu_principal ul li a.select_tag:hover span {
+	background:url(../../img/cabecera/empresas/menu_select_tag.gif) top left no-repeat;
+	padding-bottom:0;
+	height:26px;
+	float:left;
+	display:block;
+}
+

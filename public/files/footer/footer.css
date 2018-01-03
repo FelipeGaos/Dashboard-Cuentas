@@ -1,0 +1,372 @@
+@import 'footerReset.css';
+
+/*
+ * Estructura Footer
+ */
+#footerEntel.footerEntel {
+    background: url("../../img/footer_arriba.gif") no-repeat scroll left top #E7EDF0;
+    display: block;
+    padding:35px 0 0px;
+    position: relative;
+    width: 966px;
+    z-index: 2;
+}
+#footerEntel .contenedor_columnas {
+	display: block;
+	padding:0 0 25px 20px;
+}
+#footerEntel .contenedor_columnas .columna_enlaces {
+	border-right: 1px solid #CCCCCC;
+    color: #666666;
+    display: block;
+    float: left;
+    margin:0 35px 0 0;
+    min-height: 120px;
+    padding:10px 40px 10px 0;
+}* html #footerEntel .contenedor_columnas .columna_enlaces {
+	height: 120px;
+}
+#footerEntel .contenedor_columnas .columna_enlaces.ultima {
+	border-right: none;
+	margin-right: 0;
+    padding-right: 0;
+}
+#footerEntel .contenedor_columnas .columna_enlaces span.titulo {
+	display: block;
+	font-family: Tahoma, Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	font-weight: bolder;
+	padding: 0 0 8px 0;
+}
+#footerEntel .contenedor_columnas .columna_enlaces a span.titulo:hover {text-decoration:underline !important;}
+#footerEntel .contenedor_columnas .columna_enlaces ul li {
+	display: block;
+	font-family: Tahoma, Arial, Helvetica, sans-serif;
+	padding: 2px 0;
+	font-size: 10px;
+}
+#footerEntel .contenedor_columnas .columna_enlaces ul li a,
+#footerEntel .contenedor_columnas .columna_enlaces ul li a:visited {
+	display: block;
+	color: #666666;
+	text-decoration: none;
+}
+#footerEntel .contenedor_columnas .columna_enlaces ul li a:hover {
+	text-decoration: underline;
+}
+#footerEntel p {
+	display: block;
+	padding: 15px 0 0 0;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	color: #666666;
+}
+
+/*
+ * Tooltip
+ */
+#footerEntel.footerEntel .footer_derecha div.tooltip {
+    bottom: 24px;
+    display: none;
+    right: -3px;
+    position: absolute;
+    width: 100px;
+	top:inherit;
+	left:inherit;
+}
+#footerEntel.footerEntel .footer_derecha .rss div.tooltip {
+	width: 67px;
+}
+#footerEntel.footerEntel .footer_derecha .youtube div.tooltip {
+	width: 107px;	
+}
+#footerEntel.footerEntel .footer_derecha .facebook div.tooltip {
+	width: 59px;
+}
+#footerEntel.footerEntel .footer_derecha .twitter div.tooltip {
+	width: 102px;
+}
+#footerEntel.footerEntel .footer_derecha .url div.tooltip {
+	width: 100px;
+}
+#footerEntel.footerEntel .footer_derecha .rss:hover div.tooltip,
+#footerEntel.footerEntel .footer_derecha .youtube:hover div.tooltip,
+#footerEntel.footerEntel .footer_derecha .facebook:hover div.tooltip,
+#footerEntel.footerEntel .footer_derecha .twitter:hover div.tooltip,
+#footerEntel.footerEntel .footer_derecha .url:hover div.tooltip {
+	display: block;
+}
+
+#footerEntel.footerEntel .footer_derecha div.tooltip div.tooltip_top {
+    background: transparent url(../../img/footer/tooltip/bg_tooltip_top.gif) no-repeat scroll right top;
+    display: block;
+    padding-right: 3px;
+}
+#footerEntel.footerEntel .footer_derecha div.tooltip div.tooltip_top span {
+    background: #e7edf0 url(../../img/footer/tooltip/bg_tooltip_top.gif) no-repeat scroll left top;
+    display: block;
+    height: 3px;
+}
+#footerEntel.footerEntel .footer_derecha div.tooltip div.tooltip_main {
+    background: #ececec url(../../img/footer/tooltip/bg_tooltip_back.gif) repeat-x scroll left bottom;
+    border-left: 1px solid #cccccc;
+    border-right: 1px solid #cccccc;
+    color: #666;
+    font-family: Tahoma, Arial, Helvetica, sans-serif;
+    font-size: 10px;
+    padding: 2px 5px;
+}
+#footerEntel.footerEntel .footer_derecha div.tooltip div.tooltip_bottom {
+    background: transparent url(../../img/footer/tooltip/bg_tooltip_bottom.gif) no-repeat scroll right top;
+    display: block;
+    padding-right: 3px;
+}
+#footerEntel.footerEntel .footer_derecha div.tooltip div.tooltip_bottom span {
+    background: #e7edf0 url(../../img/footer/tooltip/bg_tooltip_bottom.gif) no-repeat scroll left top;
+    display: block;
+    height: 3px;
+}
+#footerEntel.footerEntel .footer_derecha div.tooltip div.tooltip_flecha {
+    background: transparent url(../../img/footer/tooltip/bg_tooltip_flecha.gif) no-repeat scroll left top;
+    bottom: -5px;
+    display: block;
+    height: 6px;
+    right: 6px;
+    position: absolute;
+    width: 9px;
+}
+
+/*
+ * Caja que es esto
+ */
+#footerEntel.footerEntel #caja_info_compartir.que_es_esto{
+	display: none;
+	width: 604px;
+	background: #eeeeee;
+	border: 1px solid #d7d7d7;
+	padding: 10px;
+	margin: 0 auto;
+	
+	position:absolute;
+	bottom:0;
+	right:8px;
+	margin-bottom:80px;
+}
+#footerEntel.footerEntel #caja_info_compartir.que_es_esto .titulo{
+	display: block;
+	color: #0073ae;
+	font-family: Tahoma, Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	font-weight: bolder;
+}
+#footerEntel.footerEntel #caja_info_compartir.que_es_esto .centro {
+	margin: 0 6px;
+	padding: 0 6px 20px;
+	border-width: 0 1px;
+	border-style: dotted;
+	border-color: #b2b2b2;
+}
+#footerEntel.footerEntel #caja_info_compartir.que_es_esto .caja_informativa {
+	display: block;
+	float: left;
+	width: 192px;
+	color: #000;
+	font-family: Tahoma, Arial, Helvetica, sans-serif;
+	font-size: 11px;
+}
+#footerEntel.footerEntel #caja_info_compartir.que_es_esto .caja_informativa img {
+	display: block;
+	padding: 0 0 10px 0;
+}
+#footerEntel.footerEntel #caja_info_compartir.que_es_esto .caja_informativa a,
+#footerEntel.footerEntel #caja_info_compartir.que_es_esto .caja_informativa a:visited {
+	color: #0073ae;
+	font-family: Tahoma, Arial, Helvetica, sans-serif;
+	text-decoration: none;
+}
+#footerEntel.footerEntel #caja_info_compartir.que_es_esto .caja_informativa a:hover {
+	text-decoration: underline;
+}
+
+/*
+ * Caja compartir
+ */
+#footerEntel.footerEntel #caja_compartir {
+	position:absolute;
+	bottom:0;
+	right:0;
+	padding-bottom:80px;
+	display:none;
+	width:280px;
+}
+
+/*
+ * Tabs
+ */
+#footerEntel.footerEntel #caja_compartir.compartir .tabs .tab {
+	display: block;
+	float: left;
+	cursor: pointer;
+	position: relative;
+	width: 140px;
+}* html #footerEntel.footerEntel #caja_compartir.compartir .tabs .tab {
+	width: 132px;
+}*:first-child+html #footerEntel.footerEntel #caja_compartir.compartir .tabs .tab {
+	width: 132px;
+}
+
+* html #footerEntel.footerEntel #caja_compartir.compartir .tabs .margen_explorer{
+	margin: 0 8px 0 0;
+}*:first-child+html #footerEntel.footerEntel #caja_compartir.compartir .tabs .margen_explorer{
+	margin: 0 8px 0 0;
+}
+
+#footerEntel.footerEntel #caja_compartir.compartir .tabs .tab .tab_centro {
+	display: block;
+	float: left;
+	padding: 2px 5px 4px;
+	border-width: 0 1px;
+	border-style: solid;
+	border-color: #d7d7d7;
+	text-align: center;
+	width: 120px;
+	font-family: Tahoma, Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	color: #0073ae;
+	margin: -4px 0 0 0;
+	background:#FFF;
+}
+#footerEntel.footerEntel #caja_compartir.compartir .tabs .seleccionado .tab_centro {
+	font-weight: bolder;
+	background: #eee;
+	padding: 2px 5px 5px;
+	z-index: 10;
+}
+#footerEntel.footerEntel #caja_compartir.compartir .tabs .tab .tab_arriba {
+	display: inline-block;
+	padding-right: 5px;
+    background: url(../../img/footer/caja_compartir/bg_tabs_arriba.gif) no-repeat right -6px;
+}
+#footerEntel.footerEntel #caja_compartir.compartir .tabs .tab .tab_arriba span {
+	display: block;
+    height: 3px;
+	width: 127px;
+	padding: 1px 0;
+    background: url(../../img/footer/caja_compartir/bg_tabs_arriba.gif) no-repeat left top;
+}* html #footerEntel.footerEntel #caja_compartir.compartir .tabs .tab .tab_arriba span {
+	padding: 0;
+	margin: 0 0 -10px 0;
+}*:first-child+html #footerEntel.footerEntel #caja_compartir .compartir .tabs .tab .tab_arriba span {
+	padding: 2px;
+	margin: 0;
+}
+
+#footerEntel.footerEntel #caja_compartir.compartir .tabs .seleccionado .tab_arriba {
+    background: url(../../img/footer/caja_compartir/bg_tabs_arriba_seleccionado.gif) no-repeat right -6px;
+}
+#footerEntel.footerEntel #caja_compartir.compartir .tabs .seleccionado .tab_arriba span {
+    background: url(../../img/footer/caja_compartir/bg_tabs_arriba_seleccionado.gif) no-repeat left top;
+}
+
+/*
+ * Contenido compartir esta URL
+ */
+#footerEntel.footerEntel #caja_compartir.compartir .contenido_compartir {
+	width: 260px;
+	padding: 5px 5px 10px;
+	background: #eee;
+	border: 1px solid #d7d7d7;
+	margin: -1px 0 0 0;
+}
+#footerEntel.footerEntel #caja_compartir.compartir .contenido_compartir .label {
+	display: block;
+	font-size: 11px;
+	margin: 12px 0 0;
+}
+#footerEntel.footerEntel #caja_compartir.compartir .contenido_compartir input {
+	width: 250px;
+	margin: 2px 0 0;
+}
+#footerEntel.footerEntel #caja_compartir.compartir .contenido_compartir .botones {
+	margin: 15px 0 0;
+}
+#footerEntel.footerEntel #caja_compartir.compartir .contenido_compartir .botones div {
+	display:block;
+	float:left;
+}
+#footerEntel.footerEntel #caja_compartir.compartir .contenido_compartir .botones .exito a {
+	display: block;
+	float: left;
+	width: 57px;
+	height: 24px;
+	text-indent: -9999px;
+	margin: 0 10px 0 0;
+	background: url(../../img/btn_enviar.gif) top left no-repeat;
+}
+#footerEntel.footerEntel #caja_compartir.compartir .contenido_compartir .botones .cancelar a,
+#footerEntel.footerEntel #caja_compartir.compartir .contenido_compartir .botones .cancelar a:visited {
+	display: block;
+	float: left;
+	padding: 5px 0 0;
+	color: #0073ae;
+	font-size: 11px;
+	text-decoration: none; 
+}
+#footerEntel.footerEntel #caja_compartir.compartir .contenido_compartir .botones .cancelar a:hover {
+	border-bottom: 1px dotted #0073ae;
+}
+
+/*
+ * Contenido Marcadores sociales
+ */
+#footerEntel.footerEntel #caja_compartir.compartir .marcadores_sociales {
+	width: 260px;
+	padding: 5px 5px 10px;
+	background: #eee;
+	border: 1px solid #d7d7d7;
+	margin: -1px 0 0 0;
+	display:none;
+}
+#footerEntel.footerEntel #caja_compartir.compartir .marcadores_sociales .columna_marcadores {
+	display: block;
+	float: left;
+	width: 120px;
+	padding: 2px 5px;
+}
+#footerEntel.footerEntel #caja_compartir.compartir .marcadores_sociales .columna_marcadores .marcador {
+	display: block;
+	margin: 3px 0;
+}
+#footerEntel.footerEntel #caja_compartir.compartir .marcadores_sociales .columna_marcadores .marcador img {
+	height: 16px;
+	width: 16px;
+	margin: 0 5px 0 0;
+}
+#footerEntel.footerEntel #caja_compartir.compartir .marcadores_sociales .columna_marcadores .marcador a,
+#footerEntel.footerEntel #caja_compartir.compartir .marcadores_sociales .columna_marcadores .marcador a:visited {
+	font-family: Tahoma, Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	color: #0073ae;
+	text-decoration: none;
+}
+#footerEntel.footerEntel #caja_compartir.compartir .marcadores_sociales .columna_marcadores .marcador a:hover {
+	text-decoration: underline;
+}
+
+/******************************************************************************/
+#footerEntel.footerEntel .separador{
+	display: block;
+	margin: 4px 0 10px;
+	height: 3px;
+	background: #b2b2b2;
+	border-right: 9px solid #f78e1e;
+	font-size:1px;
+	width:auto;
+}
+
+/*
+ * 
+ */
+#footerEntel ul li {
+    background: none !important;
+ }

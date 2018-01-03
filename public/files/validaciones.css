@@ -1,0 +1,47 @@
+#globoError {
+	display:block;
+	width:223px;
+	padding:0 0 5px 0;
+	background:url(../img/validaciones/globoError.png) bottom right no-repeat;
+	position:absolute;
+	z-index:10;
+	
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:1.1em;
+	color:#e30101;
+}* html #globoError {
+	background:url(../img/validaciones/globoError.gif) bottom right no-repeat;
+}
+
+#globoError div {
+	display:block;
+	padding:9px 10px 5px 20px;
+	background:url(../img/validaciones/globoError.png) top left no-repeat;
+}* html #globoError div {
+	background:url(../img/validaciones/globoError.gif) top left no-repeat;
+}
+
+
+
+#globoErrorAlternativo {
+	display:block;
+	width:223px;
+	padding:0 0 5px 0;
+	background:url(../img/validaciones/globoErrorAlternativo.png) bottom left no-repeat;
+	position:absolute;
+	z-index:10;
+	
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:1.1em;
+	color:#e30101;
+}* html #globoErrorAlternativo {
+	background:url(../img/validaciones/globoErrorAlternativo.gif) bottom left no-repeat;
+}
+
+#globoErrorAlternativo div {
+	display:block;
+	padding:9px 20px 5px 10px;
+	background:url(../img/validaciones/globoErrorAlternativo.png) top right no-repeat;
+}* html #globoErrorAlternativo div {
+	background:url(../img/validaciones/globoErrorAlternativo.gif) top right no-repeat;
+}

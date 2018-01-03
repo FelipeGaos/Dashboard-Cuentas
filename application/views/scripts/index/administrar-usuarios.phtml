@@ -1,0 +1,363 @@
+<?php
+//$this->headLink()->appendStylesheet($this->baseUrl() . '/css/dataTables.min.css');
+
+?>
+<style type="text/css">
+  .tachado{text-decoration:line-through;}
+</style>
+<!-- standard version -->
+<script src="https://cdn.rawgit.com/alertifyjs/alertify.js/v1.0.10/dist/js/alertify.js"></script>
+
+
+
+<section class="content-header">
+    <h3>Administraci&oacuten De Usuarios</h3>
+    <br>
+</section>
+
+
+<div class="container-fluid">
+    <div class="row">
+        <button id="btn_nuevo" class="btn btn-primary">
+            <i class="fa fa-user-plus"></i>&nbsp;&nbsp;Agregar Usuario
+        </button>
+    </div>
+    <hr>
+    <div class="row">
+        <table id="tabla-admin-usuarios" class="table table-striped table-hover">
+            <thead id="head_usuarios">
+                <!-- Llenado dinamicamente -->
+                <tr>
+                    <th>Usuario</th>
+                    <th>Nombre</th>
+                    <th>Apellido Paterno</th>
+                    <th>E-Mail</th>
+                    <th>Celular</th>
+                    <th>Estado</th>                    
+                    <th>Editar</th>
+                    <th>Eliminar</th>
+                </tr>
+            </thead>
+            <tbody>
+           <?php 
+             if($this->usuarios)                
+             foreach ($this->usuarios as $fila) {
+                 $clase='';
+                 if($fila['estado']!='A') $clase="class='tachado'";
+                 ?>
+                <tr <?php echo $clase ?> >
+                    <td><?php echo $fila['username']; ?></td>
+                    <td><?php echo $fila['nombres']; ?></td>
+                    <td><?php echo $fila['ape_paterno']; ?></td>
+                    <td><?php echo $fila['e_mail']; ?></td>
+                    <td><?php echo $fila['movil']; ?></td>
+                    <td><?php echo ($fila['estado']=='A')?'ACTIVO':'INACTIVO'; ?></td>                    
+                    <td><?php echo '<button type="button" class="btn btn-warning" title="Editar Usuario" onclick="editar_usuario(\''. $fila['username'].'\');"><i class="fa fa-edit"></i></button>'; ?></td>
+                    <td><?php echo '<button type="button" class="btn btn-danger" title="Eliminar Usuario" onclick="eliminar_usuario(\''. $fila['username'].'\',\''.$fila['estado'].'\');"><i class="fa fa-trash-o"></i></button>'; ?></td>
+                </tr>
+           <?php  } ?>   
+
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="modal_datos" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Edici&oacute;n de Usuario
+        </h4>
+      </div>
+        
+        <div class="modal-body">
+            <form id="form_usuario" class="">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="username">UserName *</label>
+                        <input type="text" class="form-control" name="username" id="username" placeholder="Username">
+                    </div>
+                    <div class="form-group">
+                        <label for="nombres">Nombres *</label>
+                        <input type="text" class="form-control" name="nombres" id="nombres" placeholder="Nombres">
+                    </div>
+                    <div class="form-group">
+                        <label for="ape_paterno">Apellido Paterno *</label>
+                        <input type="text" class="form-control" name="ape_paterno" id="ape_paterno" placeholder="Apellido Paterno">
+                    </div>
+                    <div class="form-group">
+                        <label for="ape_materno">Apellido Materno *</label>
+                        <input type="text" class="form-control" name="ape_materno" id="ape_materno" placeholder="Apellido Materno">
+                        <br> (*) Campos Obligatorios.
+                    </div>
+                </div>
+                <div class="col-md-6">
+               
+                
+                    <div class="form-group">
+                        <label for="clave">Clave *</label>
+                        <input type="password" class="form-control" name="clave" id="clave" placeholder="Clave">
+                    </div>
+                    <div class="form-group">
+                        <label for="e_mail">Email *</label>
+                        <input type="e_mail" class="form-control" name="e_mail" id="e_mail" placeholder="Email">
+                    </div>
+                    <div class="form-group form-inline">
+                        <div class="form-group" style="margin-right: 20px;">
+                            <label for="movil">M&oacute;vil&nbsp;*&nbsp;</label>
+                            <input type="text" class="form-control" name="movil" id="movil" placeholder="N&uacute;mero Tel&eacute;fono" maxlength="11">
+                        </div>
+                        <div class="form-group checkbox">
+                            <label>
+                                <input type="checkbox" name="estado" value="A" id="estado">&nbsp;&nbsp;Activo
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+        </div>
+        <div class="modal-footer">
+<!--             <span id="spin_guardaUser" class="btn btn-info ocultar"><i class="fa fa-spinner fa-pulse"></i> Guardando </span> -->
+            <button type="button" class="btn btn-default bloquear" id="cancela_guardar" data-dismiss="modal">Cancelar</button>
+            <button type="button" class="btn btn-primary bloquear" id="guarda_usuario">Guardar</button>
+        </div>
+    </div>
+  </div>
+</div>
+
+
+
+<!-- Custom JS -->
+<script>
+
+         function editar_usuario(user){
+
+                $('#myModalLabel').empty().text('Edicion de Usuario');
+                $('#form_usuario .form-group').removeClass('has-error');
+                $("#username, #nombres, #ape_paterno, #ape_materno, #area, #clave, #e_mail, #movil").val('');
+                $("#estado").prop({checked: false});
+                $('#username').attr('readonly', 'true');
+                $('#clave').attr('readonly', 'true');
+
+                $.ajax({
+                    async: true, //por defecto
+                    type: 'POST',
+                    url: BASE_URL+'/index.php/index/datos-modal',
+                    data: {user: user},
+                    dataType: 'json'
+                }).done(function(data) {
+                  //  console.dir(data);
+                    if (data) {
+                        usuario = data[0];
+                     //   console.log('Usuario encontrado');
+                        $("#username").val(usuario.username);
+                        $("#nombres").val(usuario.nombres);
+                        $("#ape_paterno").val(usuario.ape_paterno);
+                        $("#ape_materno").val(usuario.ape_materno);
+                        $("#clave").val(usuario.clave);
+                        $("#e_mail").val(usuario.e_mail);
+                        $("#movil").val(usuario.movil);
+                        if(usuario.estado === 'A'){
+                            $("#estado").prop({checked: true});
+                        }
+                        $("#modal_datos").modal();
+                    }else{
+                     alertify.error('Error al Encontrar Usuario '); 
+                    }
+
+                    }).fail(function(){
+                     alertify.error('Error al Editar Usuario -- Error interno');      
+                    });
+        }
+
+         function eliminar_usuario(user,activo){
+                if(activo == 'A'){
+                        alertify
+                          .okBtn("Aceptar")
+                          .cancelBtn("Cancelar")
+                          .confirm("Desactivar al Usuario    :     "+user, function (ev) {
+                               //     console.log('Desactivar:'+user);
+                                         $.ajax({
+                                           dataType: "json",
+                                           url: BASE_URL + "/index.php/index/eliminar-usuario",
+                                           data: {user:user},
+                                           type: "POST"
+                                        }).done(function(detalle){
+                                       //    console.log(detalle);
+                                           if(detalle == 'OK'){
+                                           alertify.success("Usuario Eliminado con Exito!");
+                                            ir_menu(BASE_URL+'/index.php/index/administrar-usuarios');
+                                           //location.reload();
+                                           }else{                              
+                                            alertify.error('Error al ELiminar');
+                                             ir_menu(BASE_URL+'/index.php/index/administrar-usuarios');
+                                           }
+                                        }).fail(function(){
+                                         alertify.error('Error al ELiminar -- Error interno');      
+                                        });
+
+                                     ev.preventDefault();
+                            }, function(ev) {
+                                  ev.preventDefault();
+                                  alertify.error('Operacion cancelada!');
+                         });
+                 }else{
+                    alertify.error('Usuario Ya Desactivado!');
+                 }    
+        }
+
+
+$(document).ready(function() {
+
+    
+    /**
+     * EVENTO CLICK PARA CREAR UN USUARIO.
+     */
+    $("#btn_nuevo").on("click", function(){
+    //    console.log('CREAR USUARIO');
+        
+        $('#myModalLabel').empty().text('Agregar Usuario');
+        $("#username, #nombres, #ape_paterno, #ape_materno, #area, #clave, #email, #movil").val('');
+        $('#username').removeAttr('readonly');
+        $('#clave').removeAttr('readonly');
+        $("#estado").prop({checked: true});
+        $('#form_usuario .form-group').removeClass('has-error');
+        $("#modal_datos").modal();
+        
+
+    });
+    
+
+
+    /**
+     * CONFIGURACION DATATABLE
+     */
+
+        $('#tabla-admin-usuarios').DataTable({
+            "order": [[5, 'asc']],
+            "bPaginate": true,
+            "lengthMenu": [[5, 10, 20, -1], [5, 10, 20, "Todos"]],
+            "bLengthChange": true,
+            "bFilter": true,
+            "bSort": true,
+            "bInfo": false,
+            "bAutoWidth": true,
+            "language": {
+                "lengthMenu": "Mostrar MENU registros por p&aacute;gina",
+                "zeroRecords": "No se ha encontrado nada - lo sentimos",
+                "info": "Mostrando p&aacute;gina PAGE de PAGES",
+                "infoEmpty": "No hay registros disponibles",
+                "search": "BUSCAR:&nbsp;&nbsp;&nbsp;&nbsp;",
+                "zeroRecords": "No se han encontrado registros que coincidan con la b&uacute;squeda",
+                "paginate": {
+                    "first": "Primero",
+                    "last": "&Uacute;ltimo",
+                    "next": "Siguiente",
+                    "previous": "Anterior"
+                }
+            }
+        });
+
+
+
+
+
+ /**
+     * GUARDAR USUARIO
+     */
+    $("#guarda_usuario").on("click", function(){
+        var statusValidacion = false;
+        $(".bloquear").prop("disabled", true);
+        $("#spin_guardaUser").css({opacity:1});        
+        $('#form_usuario .form-group').removeClass('has-error');
+        $('.lbl-error').remove();
+        
+        // Validar Formulario
+        $('#form_usuario .form-control').each(function(index, elementInput) {
+            // Valida Campos Vacios.
+            if ($(elementInput).val() === '') {
+                $(elementInput).parent().addClass('has-error');
+                $(elementInput).parent().append('<label class="lbl-error">* Campo Obligatorio</label>');
+                statusValidacion = false;
+                alertify.error("No se han rellenado los campos");
+                return false;
+            }
+            // Valida formato de E-Mail.
+            else if ($(elementInput).attr('id') === 'e_mail') {
+                var mail = $(elementInput).val();
+                var regex = /[-0-9a-zA-Z.+]+@[-0-9a-zA-Z.+]+\.[a-zA-Z]{2,4}/;
+                
+                if (!regex.test(mail)) {
+                    $(elementInput).parent().addClass('has-error');
+                    $(elementInput).parent().append('<label class="lbl-error">* Error en formato de E-Mail</label>');
+                    statusValidacion = false;
+                    return false;
+                }
+            }
+            // Valida formato de Telefono.
+            else if ($(elementInput).attr('id') === 'movil') {
+                var movil = $(elementInput).val();
+                var regex = /^[1-9]{4}[0-9]{7}$/;
+                
+                if (!regex.test(movil)) {
+                    $(elementInput).parent().addClass('has-error');
+                    $(elementInput).parent().append('<label class="lbl-error">* Formato Incorrecto. Ej: 56912345678</label>');
+                    statusValidacion = false;
+                    return false;
+                }
+            }
+            else {
+                statusValidacion = true;
+            }
+        });
+        
+        if (statusValidacion === true) {
+       //     console.log($("#form_usuario").serialize());
+            
+            $.ajax({
+                async: true, //por defecto
+                type: 'POST',
+                url: BASE_URL+'/index.php/index/set-datos-usuario',
+                data: $("#form_usuario").serialize(),
+                dataType: 'json'
+            }).done(function(data) {
+              //  console.log(data);
+                if (data.statusController === true) {
+                    alertify.success('Proceso Realizado con Exito!');
+                    $("#modal_datos").modal("hide");
+                    ir_menu(BASE_URL+'/index.php/index/administrar-usuarios');
+                    //location.reload();
+                } else {
+                    alertify.error('Fallo Creacion Usuario!');
+                }
+
+
+            }).always(function(){
+                $(".bloquear").prop("disabled", false);
+                $("#spin_guardaUser").css({opacity:0});
+            });
+        }
+        else {
+            $(".bloquear").prop("disabled", false);
+            $("#spin_guardaUser").css({opacity:0});
+        }
+    });
+    
+    /**
+     * CANCELA GUARDAR
+     */
+    $('#cancela_guardar').on('click', function() {
+       $('.lbl-error').remove(); 
+       alertify.error('Proceso cancelado');
+    });
+    
+
+
+});
+    
+
+</script>

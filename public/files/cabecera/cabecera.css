@@ -1,0 +1,83 @@
+@import 'cabeceraReset.css';
+@import 'cabeceraTabsEnlaces.css';
+@import 'cabeceraBuscador.css';
+
+/*---------------------
+ * 		CABECERA
+ *-------------------*/
+#cabecera {
+	display:block;
+	width:966px;
+	padding-top:8px;
+	margin:0;
+	min-height:inherit;
+	background:#e7edf0 !important;
+	height:auto !important;
+}
+#cabecera .cabecera_top {
+	background:url(../../img/cabecera/bg_cabecera.gif) bottom left no-repeat;
+	display:block;
+	
+	padding-bottom:10px;
+	position:relative;
+}
+
+/*---------------------
+ * 	 	  LOGO
+ *-------------------*/
+#cabecera .cabecera_bottom {
+	background:url(../../img/contenido/bg_contenedor.jpg) top left repeat-y;
+	padding:25px 13px 25px 13px;
+	position:relative;
+}
+#cabecera .cabecera_logo {
+	/*padding:0 0 25px 0;*/
+}
+#cabecera .cabecera_logo .logo {
+	float:left;
+	display:block;
+}
+
+#cabecera #logoEntel {
+	background:url(../../img/cabecera/logo_entel_nuevo.png) top left no-repeat;
+	width: 301px;
+	height: 55px;
+	display: block;
+} * html #cabecera #logoEntel {
+    background: url("../../img/cabecera/logo_entel_nuevo.jpg") no-repeat scroll left top transparent;
+}
+
+#cabecera #logoEntel:hover {
+	background-position:left bottom;
+}
+
+/*---------------------
+ * 	 MENU PRINCIPAL
+ *-------------------*/
+#cabecera_menu {
+	background:url(../../img/contenido/bg_contenedor.jpg) top left repeat-y;
+	padding:0 13px 20px 13px;
+	display:block;
+	width:940px;
+}
+#cabecera_menu.fake {
+	padding:5px 13px 22px;
+}
+
+#cabecera .cabecera_logo .mensaje_tooltip {
+    background: url(../../img/home_empresas/tool_tip.gif) no-repeat left top;
+	display:block;
+	height:63px;
+	width:218px;
+	position:absolute;
+	right:265px;
+}
+
+#cabecera .cabecera_logo .mensaje_tooltip p {
+	color:#0073AE;
+	font-family:Arial;
+	font-size:12px;
+	padding-left:44px;
+	padding-top:35px;
+	width:160px;
+}

@@ -1,0 +1,555 @@
+<!--FALTA ESPERA Y RESPUESTA AJAX-->
+
+<?php
+	//var_dump($this->infoHoraUsuarios);
+	echo "<script src='".$this->baseUrl()."/js/jquery.mtz.monthpicker.js'></script>";		
+	$rs=$this->infoHoraUsuarios;
+	
+
+	
+	$horasMensuales = $this->horasMensuales;
+
+
+	$horasActualTrabajador = $this->horasActualTrabajador;
+	
+	
+
+
+	$id = $rs[0]['id'];
+	$fecha = $this->fecha;
+	//echo $fecha;
+	$userSesion = $this->userSesion;
+	
+	$feriados = array();
+	foreach ($this->feriados as $value) {
+		$fechaSeleccionada = explode("-", $value['fecha']);
+		$fechaSeleccionada = $fechaSeleccionada[0]."-".$fechaSeleccionada[1];
+		if ($fecha == $fechaSeleccionada)
+			$feriados[] = $value['fecha'];
+	}
+	//print_r($feriados);
+
+	$fechaHoy = getdate();
+
+	//print_r($rs);
+	 
+	//primer dia de este mes
+	$fechaInicio = "1-". $fechaHoy['mon']."-".$fechaHoy['year'];
+
+	//hoy
+	$fechaFin = $fechaHoy['mday']."-".$fechaHoy['mon']."-".$fechaHoy['year'];
+
+
+//cuenta dias habiles para poder calcular las horas que se deberian haber trabajado a la fecha actual
+function getDiasHabiles($fechainicio, $fechafin, $diasferiados = array()) {
+// Convirtiendo en timestamp las fechas
+	$fechainicio = strtotime($fechainicio);
+	$fechafin = strtotime($fechafin);
+
+// Incremento en 1 dia
+	$diainc = 24*60*60;
+
+// Arreglo de dias habiles, inicianlizacion
+	$diasHabiles = array();
+
+// Se recorre desde la fecha de inicio a la fecha fin, incrementando en 1 dia
+	for ($midia = $fechainicio; $midia <= $fechafin; $midia += $diainc) {
+// Si el dia indicado, no es sabado o domingo es habil
+		if (!in_array(date('N', $midia), array(6,7))) { // DOC: http://www.php.net/manual/es/function.date.php
+// Si no es un dia feriado entonces es habil
+
+			if (!in_array(date('Y-m-d', $midia), $diasferiados)) {
+
+				array_push($diasHabiles, date('Y-m-d', $midia));
+			}
+		}
+	}	
+	return count($diasHabiles);
+}
+
+//funcion para convertir minutos a horas
+function convertToHoursMins($time, $format = '%02d:%02d') {
+    if ($time < 1) {
+        return;
+    }
+    $hours = floor($time / 60);
+    $minutes = ($time % 60);
+    return sprintf($format, $hours, $minutes);
+}
+
+		if(date('Y-m') == $fecha){
+			$diasHabiles = getDiasHabiles($fechaInicio, $fechaFin, $feriados);
+ 		}
+ 		else{
+ 			
+ 			$total_dias = cal_days_in_month(CAL_GREGORIAN, 8, 2003);
+
+ 			$fechaArr = explode("-", $fecha);
+ 			
+ 			$fechaInicio = "1-".$fechaArr[1]."-".$fechaArr[0];
+ 			$fechaFin = $total_dias."-".$fechaArr[1]."-".$fechaArr[0];
+
+ 			$diasHabiles = getDiasHabiles($fechaInicio, $fechaFin, $feriados);
+ 			
+
+
+ 		}
+?>
+
+
+<link rel='stylesheet' href='http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.18/themes/base/jquery-ui.css'>
+
+<div class="container">
+	<h1>Horario mesual de <?php echo $rs[0]['nombre'] ?> </h1>
+	<br>
+
+	<div class="inline-block col-md-4 col-md-offset-3 col-sm-4 col-sm-offset-2 text-center">
+		<label>Seleccionar periodo</label>
+   		<input type="text" class="form-control" id="periodo" placeholder="<?php echo $fecha ?>" ?>
+   		<button type="button" class="btn btn-default " onclick="volver()">volver</button>
+   		<br>
+	</div>
+
+
+
+</div>
+<br>
+
+<?php if (date("Y-m") != $fecha){ ?>
+<div class="panel panel-info">
+	<div class="panel-heading">
+		<h3 class="panel-title">Información del periodo actual</h3>
+	</div>
+	<div class="panel-body">
+		<p><strong>Nombre:</strong> <?php echo $rs[0]['nombre']?></p>
+		<p><strong>RUT:</strong> <?php echo $rs[0]['Rut'] ?> </p>
+		<p><strong>Horas requeridas este periodo: </strong><?php echo $diasHabiles *8 ?></p>
+		<p><strong>Horas realizadas este periodo: </strong><?php  
+		if (!isset($horasActualTrabajador[0]['horas'])){
+			echo "no ha realizado horas";
+			
+
+		}
+		else{
+			echo $horasActualTrabajador[0]['horas'];
+		}
+		?> </p>
+		<p><strong>Horas asignadas por mes: </strong> <?php echo $rs[0]['horasMensuales'] ?> </p>
+	</div>
+</div>
+<?php } ?>
+
+<div class="panel panel-default">
+<div class="panel-heading">Horario. Resultados, periodo <?php echo $fecha ?></div>
+<div class="panel-body">
+<div class="table-responsive">
+<table class="table table-striped text-center">
+ <tr>
+ 	<th>Fecha</th>
+ 	<th>Hora de ingreso</th>
+ 	<th>Hora de salida</th>
+ 	<th>Horas trabajadas</th>
+ 	<th>Horas de trabajo por día</th>
+ 	<th>Diferencia</th>
+ 	<th>Editar</th>
+ 
+ </tr>
+
+
+<?php 
+	
+	
+//variable para sumar horas y minutos trbajadas en este periodo
+	$hTotalPeriodo = 0;
+	$mTotalPeriodo = 0;
+//variable para sumar horas que se deben haber trabajado
+	$hTotal = 0;
+	$mTotal = 0;
+//variable para sumar la diferencia total de horas
+	$hTotalDiferencia = 0;
+	$mTotalDiferencia = 0;
+	
+	if(!is_null($rs[0]['fecha'])){
+	for ($i = 0;$i<count($rs); $i++){
+
+?>
+	<tr>
+
+<!--fecha del ingreso-->
+		<td> <?php echo $rs[$i]['fecha'] ?> </td>
+<!--Hora de ingreso-->
+
+	 	<td> <?php echo $rs[$i]['ingreso'] ?> <?php 
+
+	 		if($rs[$i]['id_ingreso'] ){ 
+	 			//mostrar boton de ingreso modificado
+	 		?>
+	 			<button class="btn btn-xs btn-danger" id="btn-mostrarComentario" onclick="verComentario('<?php echo $rs[$i]['id_ingreso']; ?>')"> <i class="fa fa-exclamation" aria-hidden="true"></i></button>
+	 		
+	 		<?php }
+
+	 	?>
+	 		
+<?php if ( $rs[$i]['xin'] != "" && $rs[$i]['yin'] != "") { 
+	//mostrar boton de mapa
+?>
+	 		
+	 	<button onclick="abrirMapa('<?php echo $rs[$i]['xin'] ?>', '<?php echo $rs[$i]['yin']; ?>')" class="btn btn-xs btn-success" id="btn-mapa"><i class="fa fa-map-marker" aria-hidden="true"></i></button></td>
+
+	 	<?php } ?>
+<!--Hora de salida-->
+	 	<td > <?php 
+	 		if (is_null($rs[$i]['salida']))
+	 			echo "18:00 *";
+	 		else{
+	 			echo $rs[$i]['salida'] ?> <?php 
+
+	 			if($rs[$i]['id_salida'] ){ 
+
+	 				//Mostrar boton de salidas  modificadas
+	 			?>
+	 				<button class="btn btn-xs btn-danger" id="btn-mostrarComentario" onclick="verComentario('<?php echo $rs[$i]['id_salida']; ?>')"><i class="fa fa-exclamation" aria-hidden="true"></i></button>
+	 			<?php }
+	 		}
+
+	 		if ( $rs[$i]['xout'] != "" && $rs[$i]['yout'] != "") {
+	 			//mostrar boton para ver mapa
+
+	 			?>
+			 <button onclick="abrirMapa('<?php echo $rs[$i]['xout'] ?>', '<?php echo $rs[$i]['yout']; ?>')" class="btn btn-xs btn-success" id="btn-mapa"><i class="fa fa-map-marker" aria-hidden="true"></i></button></td>
+	 	<?php } ?>
+<!--Horas de trabajo realizadas-->
+	 	<td> 
+
+	 		<?php 
+
+	 			$ingreso = new DateTime($rs[$i]['ingreso']);
+	 			$salida = new DateTime();
+
+	 			//si no marca salida, automaticamente coloca 18:00 hrs
+	 			if(is_null($rs[$i]['salida'])){
+	 				$salida = new DateTime('18:00');
+	 			}
+
+	 			else{
+	 				$salida = new DateTime(	$rs[$i]['salida']);
+	 			}
+	 			$ingreso->format("H:i:s");
+	 			$salida->format("H:i:s");
+	 			$diferencia = $salida->diff($ingreso);
+
+	 //horas trabajadas salida - ingreso
+				echo $diferencia->format('%H:%I');
+				
+	//se suman horas y minutos trabajadas de cada dia
+				$hTotalPeriodo += $diferencia->format('%H');
+				$mTotalPeriodo += $diferencia->format('%I');
+	 		?>
+
+	 	</td>
+<!--Hora de trabajo requeridas por dia-->
+	 	<td> <?php 
+	 		
+	 		$hora = new DateTime($rs[$i]['horasDiarias']);
+
+	 		echo $hora->format('H:i');
+	 		$hTotal += $hora->format('H');
+	 		$mTotal += $hora->format('i');
+	 //suma de horas requeridas por dia
+	 	?> </td>
+
+<!--diferencia de horas-->
+	 	<td>
+	 		<?php 
+	 			//horas de diferencia trabajadas con respecto a horas que se deben trabajar
+	 			//horas trabajadas en el dia - reales
+	 			$diferencia2 = new DateTime($diferencia->format('%H:%I:%S'));
+	 			$difCalculada = $diferencia2-> diff($hora);
+	 			if($diferencia2 < $hora){
+
+	 				//calcula la diferencia de hora total 
+	 				echo "-";
+	 				$hTotalDiferencia -= $difCalculada->format('%H');
+	 				$mTotalDiferencia -= $difCalculada->format('%I');
+
+	 			}
+	 			else{
+	 				$hTotalDiferencia += $difCalculada->format('%H');
+	 				$mTotalDiferencia += $difCalculada->format('%I');
+	 			}
+	 			echo $difCalculada->format('%H:%I');	
+
+	 		?>
+	 	</td>
+	 		<td>
+
+<!--boton para llamar al modal-->
+		<button type="button" class="btn btn-primary" onclick="llamarLog('<?php echo $rs[$i]['id_reg']; ?>','<?php  echo $fecha?>')"><i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+	  	</button>
+  	</td>
+<!--Boton para ver ubicaciones en el mapa-->
+
+	</tr>
+
+ 	<?php } ?>
+
+ <!--FIN DATOS DE TABLA DINAMICA-->
+
+ <?php } ?>
+<div>
+ 	<p><strong>Horas realizadas en el periodo: </strong><?php 
+ 
+ //los minutos mayores a 60, pasan a las horas.
+		$minToHour = explode(":",convertToHoursMins($mTotalPeriodo, '%02d:%02d'));
+		$hTotalPeriodo += $minToHour[0];
+		if (isset($minToHour[1]))
+			$mTotalPeriodo = $minToHour[1];
+		
+//se imprime la cantidad de horas realizadas
+ 		echo sprintf('%02d:%02d',$hTotalPeriodo, $mTotalPeriodo); 
+ 	?></p>
+ 	<p><strong>Horas requeridas en el periodo: </strong><?php 
+ 		
+ 		echo $diasHabiles * 8;
+
+ 		echo " horas (".$diasHabiles;
+
+ 	?>  días laborales) </p>
+
+ 	<p><strong>Días festivos este mes: </strong>
+ 	<?php echo count($feriados) ?></p>
+
+
+ 	
+</div>
+
+<tr class="alert alert-success"><td colspan="3">
+	<?php 
+		//numero de dias en el periodo
+		$dias = 0;
+		if (!is_null($rs[0]['fecha']))
+			$dias = count($rs);
+		
+		
+	?>
+	<strong>Total</strong><?php echo " (".$dias. " días)" ?>
+
+</td>
+
+
+<!--Horas totales trabajadas-->
+	<td><strong><?php echo sprintf('%02d:%02d',$hTotalPeriodo, $mTotalPeriodo);  ?></strong></td>
+<!--Horas totales requeridas por dia-->
+	<td><strong><?php echo sprintf('%02d:%02d',$hTotal, $mTotal); ?></strong></td>
+<!--diferencia de horas Horas total-->
+	<td><strong><?php 
+		$minToHour = explode(":",convertToHoursMins(abs($mTotalDiferencia), '%02d:%02d'));
+
+		if ($mTotalDiferencia>0){
+			$hTotalDiferencia += $minToHour[0];
+		}else{
+			$hTotalDiferencia -= $minToHour[0];
+		}
+		if (isset($minToHour[1]))
+			$mTotalDiferencia = $minToHour[1];
+
+		echo sprintf('%02d:%02d',$hTotalDiferencia,$mTotalDiferencia); 
+	?></strong></td>
+	<td></td>
+
+</tr>
+
+
+
+</table>
+<p>* No marcó hora de salida</p>
+</div>
+</div>
+</div>
+
+
+        
+<script type="text/javascript">
+	function volver() {
+		location = BASE_URL + "/index.php/index/ver-horas-total"
+	}
+
+	function llamarLog(id, fecha){
+		console.log(fecha);
+		$.ajax({
+            url: BASE_URL + "/index.php/index/log-ediciones",
+            dataType: 'html',
+            type: "POST",
+            data: {id: id,
+            	fecha: fecha
+            }
+        }).done(function(response) {
+			$("#editarHora").html(response);
+			$("#modalEditar").modal();
+        });
+	}
+
+	$(document).ready(function () {
+		
+		options = {
+	   		pattern: 'yyyy-mm', // Default is 'mm/yyyy' and separator char is not mandatory
+	   		startYear: 2010,
+	   		finalYear: 2025,
+	   		monthNames: ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic']
+		};
+		$('#periodo').monthpicker(options);
+	   	$('#periodo').monthpicker().bind('monthpicker-click-month', function (e, month) {	
+
+	   		location = BASE_URL + "/index.php/index/ver-horas-mensual/id/<?php echo $id ?>/fecha/"+ $('#periodo').val();
+		}); 
+	});
+
+	function guardar(fecha){
+		
+		if($("#ingreso").val() == $("#ingreso_old").val() && $("#salida").val() == $("#salida_old").val()){
+			alert(" No se han hecho cambios");
+			return false;
+		}
+
+		var comproabacion = confirm("¿Desea guardar los cambios?");
+		if (comproabacion) {
+			esperaON();
+			$.ajax({
+	            url: BASE_URL + "/index.php/index/log-guardar",
+	            dataType: 'json',
+	            type: "POST",
+	            data: {	id_mov: $("#id_mov").val(),		
+	            		ingreso: $("#ingreso").val(),
+	            		salida: $("#salida").val(),
+	            		ingreso_old: $("#ingreso_old").val(),
+	            		salida_old: $("#salida_old").val(),
+	            		comentario: $("#comentario").val(),
+	            		id_usuario: $("#id_usuario").val(),	
+	            		vacio: $('#vacio').val()
+	        		}
+	        }).done(function(response) {
+				
+				
+				if(response[0] == true && response[1]== null){
+					alert("Se modifico la hora de ingreso");
+				}
+				else if(response[0] == null && response[1] == true){
+					alert("Se modifico la hora de salida");
+				}
+				else if(response[0] == true && response[1] == true){
+					alert("Se modificaron las horas de ingreso y de salida");
+				}
+				else{
+					alert("Ocurrió un error");
+					esperaOFF();
+				}
+
+				location = BASE_URL + "/index.php/index/ver-horas-mensual/id/<?php echo $id ?>/fecha/"+ fecha;
+	        });
+		}
+	}
+
+	function abrirMapa(xin, yin){
+
+		$.ajax({
+            url: BASE_URL + "/index.php/index/modal-ubicaciones",
+            dataType: 'html',
+            type: "POST",
+            data: {
+            	xin: xin,
+            	yin: yin
+           
+            }
+        }).done(function(response) {
+			$("#verMapa").html(response);
+			$("#modalMapa").modal();
+
+        });
+	}
+
+	function verComentario(id){
+		
+	
+		$.ajax({
+            url: BASE_URL + "/index.php/index/modal-comentario",
+            dataType: 'html',
+            type: "POST",
+            data: {
+            	id: id
+            }
+        }).done(function(response) {
+			$("#verComentario").html(response);
+			$("#modalComentario").modal();
+        });
+	}
+
+
+
+</script>
+
+
+
+
+<!--Modal para editar-->
+<div class="modal fade" id="modalEditar" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 class="modal-title" id="exampleModalLabel">Editar registro</h3>
+      </div>
+      <div class="modal-body">
+      
+      	<div id="editarHora"></div>
+      
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+        <button type="button" class="btn btn-primary" onclick="guardar('<?php  echo $fecha?>')">Guardar cambios</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<!--Modal ver mapa-->
+<div class="modal fade" id="modalMapa" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 class="modal-title" id="exampleModalLabel">Ubicación</h3>
+      </div>
+      <div class="modal-body">
+      
+      	<div id="verMapa">
+      		<div id="map"></div>
+      	</div>
+      
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--Modal para mostrar comentario-->
+<div class="modal fade" id="modalComentario" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 class="modal-title" id="exampleModalLabel">Modificaciones</h3>
+      </div>
+      <div class="modal-body">
+      
+      	<div id="verComentario">
+      		
+      	</div>
+      
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+      </div>
+    </div>
+  </div>
+</div>

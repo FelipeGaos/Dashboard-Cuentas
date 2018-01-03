@@ -1,0 +1,42 @@
+
+
+<script type="text/javascript" src="<?php echo $this->baseUrl(); ?>/plugins/wicket-master/wicket.js"></script>
+<script type="text/javascript" src="<?php echo $this->baseUrl(); ?>/plugins/wicket-master/wicket-gmap3.js"></script>
+
+
+<script type="text/javascript" src="<?php echo $this->baseUrl(); ?>/plugins/wicket-master/wkt.js"></script>
+<style type="text/css">
+	#canvas {width:100%;height:300px;background:#AAA;border-left:1px solid #999;border-right:1px solid #999;}
+	#wkt {width:100%;height:150px;border:1px solid #999;padding:3px;resize:none;}
+</style>
+
+<?php 
+	$poligono = $this->poligono;
+	$id = $this->id;
+	$det = $this->det;
+?>
+
+    
+<div>
+	<input type="text" class="form-control" name="imp_desc" id="imp_desc" value="<?php  echo $det;?>">
+	<input type="hidden" class="form-control" name="imp_desc" id="imp_desc_old" value="<?php  echo $det;?>">
+  	<div id="canvas"></div>
+    <textarea type="text" name="wkt" id="wkt" style="display: none"> <?php echo $poligono; ?></textarea>
+    <textarea type="text" name="wkt_old" id="wkt_old" style="display: none"> <?php echo $poligono; ?></textarea>
+    <input type="hidden" name="imp_id" id="imp_id" value="<?php echo $id ;?>">
+    
+</div>
+        
+
+<script type="text/javascript">
+	
+$( document ).ready(function() {
+    console.log( "ready!" );
+	app.gmap=app.init();	
+});
+	
+	
+</script>    
+
+
+

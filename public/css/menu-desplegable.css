@@ -1,0 +1,588 @@
+#cabecera-menu-principal {
+	position: relative;
+	z-index: 100;
+	background: url(../img/menu-desplegable/bg_contenedor.jpg) top left
+		repeat-y;
+	padding: 0 13px 20px 13px;
+	display: block;
+	width: 940px;
+}
+
+#cabecera-menu-principal.small {
+	width: 744px;
+	background: url(../img/menu-desplegable/bg_contenedor_770.gif) top left
+		repeat-y;
+	padding: 0 13px 10px 13px;
+}
+
+.menu-principal {
+	display: block;
+}
+
+.menu-principal .menu-izquierda,.menu-principal .menu-derecha {
+	display: block;
+	width: 6px;
+	height: 36px;
+	float: left;
+	margin: 0;
+	padding: 0;
+}
+
+.menu-principal .menu-izquierda {
+	background: url(../img/menu-desplegable/bg_menu_izq.gif) top left
+		no-repeat;
+}
+
+.menu-principal .menu-derecha {
+	background: url(../img/menu-desplegable/bg_menu_der.gif) top right
+		no-repeat;
+}
+
+.menu-principal .menu-centro {
+	display: block;
+	float: left;
+	height: 36px;
+	width: 98%;
+	background: #0073AE;
+	border-right: 1px #0073AE solid;
+}
+
+#cabecera-menu-principal.small .menu-principal .menu-centro {
+	width: 97%;
+}
+
+.menu-principal ul.opciones-menu {
+	margin: 0px;
+}
+
+.menu-principal .opciones-menu li {
+	display: block;
+	position: relative;
+	float: left;
+	background: none;
+	padding: 0px;
+	margin: 0 20px 0 0px;
+}
+
+.menu-principal .opciones-menu li a.superior {
+	display: block;
+	position: relative;
+	z-index: 5;
+	color: #FFFFFF;
+	font-size: 14px;
+	text-decoration: none;
+	padding-right: 5px;
+	margin-top: -7px;
+}
+
+.menu-principal .opciones-menu li a.superior span {
+	display: block;
+	/*
+	padding:17px 30px 8px 30px;
+	*/
+	padding: 17px 20px 8px 20px;
+}
+
+.small .menu-principal .opciones-menu li a.superior span {
+	display: block;
+	padding: 17px 15px 8px 15px;
+}
+
+.menu-principal .opciones-menu li a.superior.hover {
+	color: #0073AE;
+	background: url(../img/menu-desplegable/bg_pestana_principal.png)
+		no-repeat scroll right -41px;
+}
+
+.menu-principal .opciones-menu li a.superior.hover span {
+	background: url(../img/menu-desplegable/bg_pestana_principal.png)
+		no-repeat scroll left top;
+}
+
+.menu-principal .opciones-menu li .contenido-opciones {
+	display: none;
+	top: 33px;
+	position: absolute;
+	z-index: 0;
+	padding: 20px 10px 25px 5px;
+	background: #FFFFFF;
+	border: 1px solid #0073AE;
+	-webkit-border-radius: 5px 5px 5px 5px;
+	border-radius: 5px 5px 5px 5px;
+	-webkit-box-shadow: 2px 3px 5px 1px rgba(0, 0, 0, 0.3);
+	box-shadow: 2px 3px 5px 1px rgba(0, 0, 0, 0.3);
+}
+
+.menu-principal .opciones-menu li .contenido-opciones.mi-entel {
+	left: 0px;
+	width: 500px;
+	-webkit-border-radius: 5px 5px 5px 5px;
+	border-radius: 0px 5px 5px 5px;
+}
+
+.menu-principal .opciones-menu li .contenido-opciones.mi-entel h2 {
+	color: #666;
+	display: block;
+	font-size: 14px;
+	font-weight: bold;
+	background: none;
+	margin: 16px 0 0 0;
+	padding: 0px;
+	height: auto !important;
+	width: auto !important;
+	border: none;
+}
+
+.menu-principal .opciones-menu li .contenido-opciones.mi-entel p {
+	color: #444;
+	display: block;
+	font-size: 11px;
+}
+
+.menu-principal .opciones-menu li .contenido-opciones.mi-entel .borde-login
+	{
+	border-bottom: 1px solid #ccc;
+	padding: 0 0 12px 0;
+	margin-bottom: 10px;
+	width: 200px;
+}
+
+.menu-principal .opciones-menu li .contenido-opciones.mi-entel .separador-login
+	{
+	background: none repeat scroll 0 0 #B2B2B2;
+	border-right: 9px solid #FF5800;
+	display: block;
+	height: 3px;
+	margin: 4px 0 20px;
+}
+
+.menu-principal .opciones-menu li .contenido-opciones.mi-entel .fila-formulario
+	{
+	display: block;
+	/*display: inline-block;*/
+	margin: 0 0 15px;
+}
+
+.menu-principal .opciones-menu li .contenido-opciones.mi-entel .label {
+	color: #000000;
+	display: block;
+	font-family: Tahoma, Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	margin: 0 0 3px;
+}
+
+.menu-principal .opciones-menu li .contenido-opciones.mi-entel .input-formulario
+	{
+	display: block;
+	color: #666666;
+	font-family: Tahoma, Arial, Helvetica, sans-serif;
+	font-size: 13px;
+	width: 150px;
+	height: 26px;
+	border: #CCC solid 1px;
+	-webkit-border-radius: 2px;
+	border-radius: 2px;
+	padding-left: 2px;
+}
+.input-clave
+	{
+	display: inline-block;
+	color: #666666;
+	font-family: Tahoma, Arial, Helvetica, sans-serif;
+	font-size: 13px;
+	width: 100px;
+	height: 26px;
+	border: #CCC solid 1px;
+	-webkit-border-radius: 2px;
+	border-radius: 2px;
+	padding-left: 2px;
+}
+.input-div
+{
+	display:inline-block;
+}
+* html .menu-principal .opciones-menu li .contenido-opciones.mi-entel .input-formulario
+	{
+	height: 20px;
+	padding-top: 5px;
+}
+
+*+html .menu-principal .opciones-menu li .contenido-opciones.mi-entel .input-formulario
+	{
+	height: 20px;
+	padding-top: 5px;
+}
+
+.menu-principal .opciones-menu li .contenido-opciones.mi-entel .input-formulario.error
+	{
+	border: #F00 solid 1px;
+}
+
+.menu-principal .opciones-menu li .contenido-opciones.mi-entel .input {
+	position: relative;
+}
+
+.menu-principal .opciones-menu li .contenido-opciones.mi-entel .input span.clave-texto
+	{
+	display: block;
+	position: absolute;
+	color: #666666;
+	font-size: 12px;
+	font-family: Tahoma, Arial, Helvetica, sans-serif;
+	z-index: 29;
+	padding: 6px 0 0 2px;
+	top: 0;
+	left: 1px;
+}
+
+* html .menu-principal .opciones-menu li .contenido-opciones.mi-entel .input span.clave-texto
+	{
+	top: 2px;
+}
+
+.menu-principal .opciones-menu li .contenido-opciones.mi-entel .contenedor-botones
+	{
+	display: block;
+	margin: 25px 0 5px;
+}
+
+.menu-principal .opciones-menu li .contenido-opciones.mi-entel .solicitar-clave
+	{
+	display: block;
+	margin-left:10px;
+	float: left;
+}
+
+.menu-principal .opciones-menu li .contenido-opciones.mi-entel .solicitar-clave a
+	{
+	border-bottom: 1px dotted #0073AE;
+	color: #0073AE;
+	display: block;
+	float: left;
+	font-family: Tahoma, Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	margin: 5px 10px 0 0;
+	text-decoration: none;
+	padding: 0;
+}
+
+.menu-principal .opciones-menu li .contenido-opciones.mi-entel .contenedor-boton-ingresar
+	{
+	display: block;
+	float: left;
+}
+
+.menu-principal .btnAzulMenuDesplegable {
+	background: url(../img/menu-desplegable/btn-azul.gif) no-repeat scroll
+		right -24px transparent;
+	color: #FFFFFF;
+	display: block;
+	font-family: Tahome, Arial, Helvetica, sans-serif;
+	font-size: 1.1em;
+	font-weight: bolder;
+	height: 24px;
+	padding-right: 9px;
+	text-decoration: none;
+	width: 70px;
+}
+
+.menu-principal .btnAzulMenuDesplegable span {
+	background: url(../img/menu-desplegable/btn-azul.gif) no-repeat scroll
+		left top transparent;
+	color: #FFFFFF;
+	cursor: pointer;
+	display: block;
+	height: 19px;
+	padding: 5px 4px 0 15px;
+}
+
+.menu-principal .btnAzulMenuDesplegable:hover {
+	background-position: right -72px;
+	top: 0;
+	text-decoration: none;
+}
+
+.menu-principal .btnAzulMenuDesplegable:hover span {
+	background-position: left -48px;
+}
+
+.menu-principal .opciones-menu li .contenido-opciones.telefonia {
+	left: 0px;
+	/*width:695px;*/
+	width: 250px;
+	-webkit-border-radius: 5px 5px 5px 5px;
+	border-radius: 0px 5px 5px 5px;
+}
+
+.menu-principal .opciones-menu li .contenido-opciones.internet {
+	left: -70px;
+	width: 480px;
+}
+
+.menu-principal .opciones-menu li .contenido-opciones.correo {
+	left: -170px;
+	width: 480px;
+}
+
+.menu-principal .opciones-menu li .contenido-opciones.equipos {
+	left: -270px;
+	width: 695px;
+}
+
+.menu-principal .opciones-menu li .contenido-opciones.serviciosti {
+	left: -310px;
+	width: 480px;
+}
+
+.menu-principal .opciones-menu li .contenido-opciones.soluciones-moviles
+	{
+	left: -100px;
+	width: 470px;
+}
+
+.menu-principal .opciones-menu li .contenido-opciones.ayuda {
+	left: -550px;
+	width: 725px;
+}
+
+.menu-principal .opciones-menu li .contenido-opciones .menu-columna {
+	display: block;
+	float: left;
+	width: 200px;
+	padding-right: 20px;
+	margin-left: 20px;
+	border-right: 1px dotted #CCC;
+}
+
+* html .menu-principal .opciones-menu li .contenido-opciones .menu-columna
+	{
+	margin-left: 10px;
+	padding-right: 10px;
+	width: 210px;
+}
+
+.menu-principal .opciones-menu li .contenido-opciones .menu-columna .titulo-opciones
+	{
+	display: block;
+	padding: 0 0 12px 0;
+	background: url(../img/menu-desplegable/ico_menu_flecha_gris.png)
+		no-repeat right 17px;
+	height: 50px;
+}
+
+.menu-principal .opciones-menu li .contenido-opciones .menu-columna .titulo-opciones .imagen-titulo
+	{
+	display: block;
+	float: left;
+	width: 32px;
+}
+
+.menu-principal .opciones-menu li .contenido-opciones .menu-columna .titulo-opciones .texto-titulo
+	{
+	display: block;
+	float: left;
+	margin-top: 16px;
+	width: 190px;
+}
+
+.menu-principal .opciones-menu li .contenido-opciones .menu-columna .titulo-opciones .texto-titulo a span
+	{
+	color: #666;
+	font-size: 14px;
+	font-weight: bold;
+}
+
+.menu-principal .opciones-menu li .contenido-opciones .menu-columna.ultima
+	{
+	width: 200px;
+	border: none;
+	padding-right: 0px;
+}
+
+.menu-principal .opciones-menu li .contenido-opciones li {
+	border-bottom: 1px solid #CCC;
+	padding: 4px 0px;
+	float: none;
+}
+
+.menu-principal .opciones-menu li .contenido-opciones li a {
+	text-decoration: none;
+	line-height: 19px;
+}
+
+.menu-principal .opciones-menu li .contenido-opciones li a:hover {
+	text-decoration: underline;
+}
+
+.menu-principal .opciones-menu li .contenido-opciones li a span {
+	color: #444;
+	font-size: 11px;
+	padding: 2px 0px 3px 0px;
+}
+
+.menu-principal .opciones-menu li .contenido-opciones li a:hover span {
+	text-decoration: underline;
+}
+
+.menu-principal .opciones-menu li .contenido-opciones .menu-destacado {
+	display: block;
+	padding: 7px;
+	background: #0073AE;
+	border: #0073AE solid 1px;
+}
+
+.menu-principal .opciones-menu li .contenido-opciones.mi-entel .menu-destacado
+	{
+	height: 200px;
+}
+
+.menu-principal .opciones-menu li .contenido-opciones .menu-destacado h2
+	{
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 18px;
+	font-weight: bold;
+	color: #FFF;
+	margin: 15px 0 10px;
+	padding: 0;
+	background: none;
+	height: auto !important;
+	width: auto !important;
+}
+
+.menu-principal .opciones-menu li .contenido-opciones .menu-destacado img
+	{
+	/*display:block;
+	width:187px;
+	height:69px;*/
+	
+}
+
+.menu-principal .opciones-menu li .contenido-opciones .menu-destacado p
+	{
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 14px;
+	color: #FFF;
+}
+
+.menu-principal .opciones-menu li .contenido-opciones .menu-destacado p.texto-banner
+	{
+	height: 85px;
+	display: block;
+	padding: 0;
+	margin: 0px;
+}
+
+.menu-principal .opciones-menu li .contenido-opciones .menu-destacado a.mas
+	{
+	background: url(../img/menu-desplegable/ico_mas_verde.jpg) no-repeat
+		left 1px;
+	display: block;
+	margin: 20px 0 0 0;
+	padding: 0 0 0 15px;
+	overflow: hidden;
+	color: #33A935;
+	font-size: 12px;
+	text-decoration: none;
+}
+
+#globoErrorMenuDesplegable {
+	display: block;
+	width: 223px;
+	padding: 0 0 5px 0;
+	position: absolute;
+	z-index: 30;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 1.1em;
+	color: #e30101;
+}
+
+#globoErrorMenuDesplegable div {
+	display: block;
+	padding: 6px 10px 5px;
+	background: url(../img/menu-desplegable/globoError.png) top left
+		no-repeat;
+	height: 23px;
+	z-index: 30;
+}
+
+* html #globoErrorMenuDesplegable div {
+	background: url(../img/menu-desplegable/globoError.gif) top left
+		no-repeat;
+}
+
+/***********************************/
+/*		BOTON NARANJA GRANDE       */
+/***********************************/
+.menu-principal .opciones-menu li .contenido-opciones .menu-destacado a.btnNaranjaGrande
+	{
+	background: url(../img/menu-desplegable/btn_naranjaGrande.png) right
+		-40px no-repeat;
+	height: 38px;
+	display: inline-block;
+	text-decoration: none;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	font-weight: bolder;
+	color: #FFF;
+	padding-right: 6px;
+	margin: 20px 0px 0 37px;
+}
+
+.menu-principal .opciones-menu li .contenido-opciones .menu-destacado a.btnNaranjaGrande.bajo
+	{
+	margin: 5px 0px 0 37px;
+}
+
+.menu-principal .opciones-menu li .contenido-opciones .menu-destacado a.btnNaranjaGrande span
+	{
+	background: url(../img/menu-desplegable/btn_naranjaGrande.png) top left
+		no-repeat;
+	padding: 8px 0px 12px 11px;
+	display: block;
+	cursor: pointer;
+	text-align: center;
+	width: 100px;
+	color: #FFF;
+}
+
+.menu-principal .opciones-menu li .contenido-opciones .menu-destacado a.btnNaranjaGrande:hover
+	{
+	background-position: right -120px;
+}
+
+.menu-principal .opciones-menu li .contenido-opciones .menu-destacado a.btnNaranjaGrande:hover span
+	{
+	background-position: left -80px;
+	text-decoration: none;
+	/*padding:13px 1px 12px 11px;*/
+}
+
+* html .menu-principal .opciones-menu li .contenido-opciones .menu-destacado a.btnNaranjaGrande,* html .menu-principal .opciones-menu li .contenido-opciones .menu-destacado a.btnNaranjaGrande span,* html .menu-principal .opciones-menu li .contenido-opciones .menu-destacado a.btnNaranjaGrande:hover,* html .menu-principal .opciones-menu li .contenido-opciones .menu-destacado a.btnNaranjaGrande:hover span
+	{
+	background-image:
+		url(/personas/menuDesp/img/botones/../img/menu-desplegable/btn_naranjaGrande.gif);
+}
+
+.menu-principal .opciones-menu li .contenido-opciones #mantencion-pagina
+	{
+	color: #0073AE;
+	height: 160px;
+	margin: auto;
+	text-align: center;
+	width: 335px;
+}
+
+.menu-principal .opciones-menu li .contenido-opciones #mantencion-pagina h1
+	{
+	font: bold 12px Arial;
+	margin-bottom: 10px;
+	padding-left: 0px;
+	background: none;
+	text-align: left;
+}
+
+.menu-principal .opciones-menu li .contenido-opciones #mantencion-pagina h2
+	{
+	font: 12px Arial;
+	text-align: left;
+}

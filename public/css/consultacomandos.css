@@ -1,0 +1,69 @@
+table.estado {
+	border: 0px solid black;
+	border-color: inherit;
+	border-top-color: inherit;
+	border-right-color: inherit;
+	border-bottom-color: inherit;
+	border-left-color: inherit;
+	table-layout: fixed;
+	font-weight: bold;
+	width: 200px;
+}
+
+th.estado {
+	border: 0px solid black;
+	font-size: 15px;
+	overflow: hidden;
+	width: 400px;
+	font-size: 10px;
+}
+
+td.estado {
+	border-color: inherit;
+	border-top-color: inherit;
+	border-right-color: inherit;
+	border-bottom-color: inherit;
+	border-left-color: inherit;
+	overflow: hidden;
+	width: 200px;
+	font-size: 13px;
+	font-color: #FFFFFF;
+    height: 25px;
+    padding: 10px;
+}
+
+th.estado_sce {
+	border-color: inherit;
+	border-top-color: inherit;
+	border-right-color: inherit;
+	border-bottom-color: inherit;
+	border-left-color: inherit;
+	font-weight: bold;
+	overflow: hidden;
+	width: 90px;
+    height: 25px;
+	font-size: 11px;
+}
+
+td.estado_sce {
+	border-color: inherit;
+	border-top-color: inherit;
+	border-right-color: inherit;
+	border-bottom-color: inherit;
+	border-left-color: inherit;
+	overflow: hidden;
+	width: 120px;
+	font-size: 10px;
+}
+
+tr:hover td{
+	background-color: lightsteelblue;
+}
+
+.fila_0 { background-color: #FFFFFF;}
+.fila_1 { background-color: #E1E8F1;}
+
+.fixed-dialog {
+  position: fixed !important;
+  top: 150px !important;
+}

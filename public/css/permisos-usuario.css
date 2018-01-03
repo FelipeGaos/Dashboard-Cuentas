@@ -1,0 +1,50 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+    Created on : 09-02-2015, 05:56:07 PM
+    Author     : michael.aliaga
+*/
+/* pisar clases bootstrap */
+.panel-heading{
+    padding: 5px 8px !important;
+}
+    .panel-body {
+    padding: 5px !important;
+}
+/*fin bootstrap*/
+
+.usuario_permiso{
+    cursor: pointer
+}
+#usuarios-scroll, #menu-scroll{
+    max-height: 350px;
+    overflow: auto;
+    font-size: 11px;
+}
+.usuario_seleccionado{
+    background-color: #e1edf7;
+}
+.ul_parent_menu{
+    display: inline-flex;
+    font-size: 11px;
+    font-family: verdana, tahoma, sans-serif;
+}
+.ul_parent{
+    border: 1px solid #d2d2d2;
+    margin: 2px;
+    padding-left: 5px !important;
+    padding-right: 5px !important;
+    min-width: 200px;
+}
+.sub_items{
+    word-wrap: break-word;
+    padding-left: 0px;
+}
+.sub_items li{
+    list-style-type: none;
+}
+.sub_items_opt{
+    font-size: 10px;
+    color: #D14747;
+}

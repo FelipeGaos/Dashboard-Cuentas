@@ -1,0 +1,33 @@
+<script type="text/javascript">
+$(document).ready(function() {
+    $('#exportcsv').click(function() {
+        var csv = [];
+        var enc = [];
+        FS=';';
+        $('table').find('thead').not('.tablesorter-stickyHeader').find('th:visible').each(function(){
+            enc.push ($(this).text());
+        });
+    	csv[0] = enc.join(FS);
+        $('table').find('tbody tr:visible').each(function(){
+        	var fila = [];
+        	$(this).find('td').each(function(){
+        		celda = $(this).text();
+        		celda = celda.replace(/;/g, ',');
+            	fila.push(celda);
+        	});
+        	str = fila.join(FS);
+        	str = str.replace(/\n/g, ' ');
+        	csv[csv.length] = str;
+        });
+        document.getElementById('csv_text').value = csv.join('\n');
+        document.formcsv.action = "<?php echo $this->baseUrl()."/index.php/index/exportcsv"; ?>";
+        document.formcsv.submit();
+    });
+});
+</script>
+<br>
+<input type="image" src="<?php echo $this->baseUrl(); ?>/img/excel_icon.png" id="exportcsv" name="exportcsv" value="export csv">
+<br>
+<form id="formcsv" name="formcsv" method ="post" > 
+<input type="hidden" id="csv_text" name="csv_text">
+</form>
